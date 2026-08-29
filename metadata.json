@@ -1,0 +1,6 @@
+{
+  "name": "VocabMCQ - Interactive Vocabulary Quiz & Question Bank",
+  "description": "Interactive MCQ quiz and question bank generator for synonyms and antonyms with Bengali meanings and dataset filtering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
