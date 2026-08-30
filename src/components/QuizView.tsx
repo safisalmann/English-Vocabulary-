@@ -15,6 +15,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { MCQQuestion, QuizResult } from '../types';
+import { SolutionCard } from './SolutionCard';
 
 interface QuizViewProps {
   questions: MCQQuestion[];
@@ -341,9 +342,8 @@ export const QuizView: React.FC<QuizViewProps> = ({
                   })}
                 </div>
 
-                <div className="p-3 bg-[#121316] rounded-2xl border border-[#2A2B2F] text-xs text-[#8E8F94]">
-                  <span className="font-bold text-[#E2E2E2] block mb-0.5">Explanation:</span>
-                  {q.explanation}
+                <div className="mt-3">
+                  <SolutionCard question={q} userAnswerIndex={userAns} />
                 </div>
               </div>
             );
@@ -358,32 +358,32 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
   return (
     <div className="max-w-3xl mx-auto">
-      {/* Top Bar: Progress, Timer, Instant Feedback Toggle */}
-      <div className="bg-[#16171A] rounded-2xl border border-[#2A2B2F] p-4 mb-4 shadow-sm">
-        <div className="flex items-center justify-between gap-4 mb-2.5">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-black text-[#D4AF37] bg-[#D4AF37]/15 px-2.5 py-1 rounded-lg border border-[#D4AF37]/30">
-              Question {currentIndex + 1} of {questions.length}
+      {/* Top Bar: Progress, Timer, Instant Feedback Toggle (Sticky on mobile) */}
+      <div className="sticky top-[52px] md:static z-30 bg-[#16171A]/95 backdrop-blur-md rounded-2xl border border-[#2A2B2F] p-3 sm:p-4 mb-3.5 sm:mb-4 shadow-md">
+        <div className="flex items-center justify-between gap-2 sm:gap-4 mb-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="text-[11px] sm:text-xs font-black text-[#D4AF37] bg-[#D4AF37]/15 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg border border-[#D4AF37]/30 whitespace-nowrap">
+              Q {currentIndex + 1} of {questions.length}
             </span>
-            <span className="text-xs text-[#8E8F94] font-medium hidden sm:inline">
-              Dataset: <strong className="text-white">{currentQ.datasetId}</strong>
+            <span className="text-[11px] text-[#8E8F94] font-medium hidden sm:inline">
+              Set: <strong className="text-white">{currentQ.datasetId}</strong>
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-[#E2E2E2] bg-[#1C1D21] border border-[#2A2B2F] px-2.5 py-1 rounded-lg">
-              <Clock className="w-3.5 h-3.5 text-[#D4AF37]" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#E2E2E2] bg-[#1C1D21] border border-[#2A2B2F] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg">
+              <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#D4AF37]" />
               <span>{formatTime(secondsElapsed)}</span>
             </div>
 
-            <label className="inline-flex items-center gap-1.5 cursor-pointer text-xs font-bold text-[#8E8F94] hover:text-white">
+            <label className="inline-flex items-center gap-1 cursor-pointer text-[11px] sm:text-xs font-bold text-[#8E8F94] hover:text-white select-none">
               <input
                 type="checkbox"
                 checked={showInstantFeedback}
                 onChange={(e) => setShowInstantFeedback(e.target.checked)}
-                className="w-3.5 h-3.5 accent-[#D4AF37] rounded focus:ring-0"
+                className="w-3.5 h-3.5 accent-[#D4AF37] rounded focus:ring-0 cursor-pointer"
               />
-              <span className="hidden sm:inline">Instant Check</span>
+              <span className="hidden xs:inline sm:inline">Feedback</span>
             </label>
 
             <button
@@ -395,13 +395,13 @@ export const QuizView: React.FC<QuizViewProps> = ({
               }`}
               title="Bookmark question"
             >
-              <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
+              <Bookmark className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isBookmarked ? 'fill-current' : ''}`} />
             </button>
           </div>
         </div>
 
         {/* Progress bar */}
-        <div className="w-full bg-[#1C1D21] h-2 rounded-full overflow-hidden border border-[#2A2B2F]/60">
+        <div className="w-full bg-[#1C1D21] h-1.5 sm:h-2 rounded-full overflow-hidden border border-[#2A2B2F]/60">
           <div
             className="bg-[#D4AF37] h-full transition-all duration-300 ease-out"
             style={{ width: `${progressPercent}%` }}
@@ -409,28 +409,23 @@ export const QuizView: React.FC<QuizViewProps> = ({
         </div>
       </div>
 
-      {/* Main Question Card */}
-      <div className="bg-[#16171A] rounded-3xl border border-[#2A2B2F] p-6 sm:p-8 shadow-md mb-4 relative">
+      {/* Main Question Card (Mobile-Optimized) */}
+      <div className="bg-[#16171A] rounded-2xl sm:rounded-3xl border border-[#2A2B2F] p-4 sm:p-8 shadow-md mb-4 relative">
         
         {/* Badges */}
-        <div className="flex items-center justify-between gap-2 mb-4">
-          <div className="flex items-center gap-2">
-            <span className={`px-2.5 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${
+        <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 flex-wrap">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+            <span className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider ${
               currentQ.category === 'Synonym' ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30' : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
             }`}>
               {currentQ.category}
             </span>
-            <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[#1C1D21] text-[#8E8F94] border border-[#2A2B2F]">
+            <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-[11px] sm:text-xs font-bold bg-[#1C1D21] text-[#8E8F94] border border-[#2A2B2F]">
               Letter {currentQ.letter}
             </span>
-            {currentQ.questionType === 'multiple_both' && (
-              <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20 hidden sm:inline">
-                2-Target Rule (Both A & B)
-              </span>
-            )}
-            {currentQ.questionType === 'negative_not' && (
-              <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-950/40 text-rose-300 border border-rose-800/40 hidden sm:inline">
-                3+ Target Rule (NOT a Synonym)
+            {currentQ.sourceExam && (
+              <span className="px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-bold text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/25">
+                {currentQ.sourceExam}
               </span>
             )}
           </div>
@@ -446,9 +441,9 @@ export const QuizView: React.FC<QuizViewProps> = ({
         </div>
 
         {/* Word Display */}
-        <div className="mb-4">
-          <div className="text-xs font-bold text-[#8E8F94] uppercase tracking-wider mb-1">Target Word:</div>
-          <div className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight flex items-baseline gap-3">
+        <div className="mb-3.5 sm:mb-4">
+          <div className="text-[10px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-wider mb-0.5">Target Word:</div>
+          <div className="text-xl sm:text-3xl font-serif font-bold text-white tracking-tight flex items-baseline gap-2 sm:gap-3 flex-wrap">
             <span>{currentQ.word}</span>
             {currentQ.bengaliMeaning && (
               <span className="text-base sm:text-lg font-semibold text-[#D4AF37] font-['Noto_Sans_Bengali']">
@@ -459,14 +454,14 @@ export const QuizView: React.FC<QuizViewProps> = ({
         </div>
 
         {/* Question Text */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-[#121316] border border-[#2A2B2F] mb-6">
-          <p className="text-base sm:text-lg font-bold text-[#E2E2E2] leading-relaxed">
+        <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#121316] border border-[#2A2B2F] mb-4 sm:mb-6">
+          <p className="text-sm sm:text-lg font-bold text-[#E2E2E2] leading-relaxed">
             {currentQ.questionText}
           </p>
         </div>
 
         {/* 4 Options */}
-        <div className="grid grid-cols-1 gap-3 mb-6">
+        <div className="grid grid-cols-1 gap-2.5 sm:gap-3 mb-4 sm:mb-6">
           {currentQ.options.map((option, idx) => {
             const label = (['A', 'B', 'C', 'D'] as const)[idx];
             const isSelected = selectedOptionIndex === idx;
@@ -495,20 +490,20 @@ export const QuizView: React.FC<QuizViewProps> = ({
                 key={idx}
                 id={`option-${currentQ.id}-${label}`}
                 onClick={() => handleSelectOption(idx)}
-                className={`w-full p-4 rounded-2xl border-2 text-left flex items-center justify-between transition-all duration-150 cursor-pointer ${cardStyles}`}
+                className={`w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border text-left flex items-center justify-between transition-all duration-150 cursor-pointer min-h-[48px] ${cardStyles}`}
               >
-                <div className="flex items-center gap-3">
-                  <span className={`w-8 h-8 rounded-xl border flex items-center justify-center text-sm font-black shrink-0 ${labelStyles}`}>
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <span className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl border flex items-center justify-center text-xs sm:text-sm font-black shrink-0 ${labelStyles}`}>
                     {label}
                   </span>
-                  <span className="text-base font-medium">{option}</span>
+                  <span className="text-sm sm:text-base font-medium">{option}</span>
                 </div>
 
                 {hasAnsweredCurrent && showInstantFeedback && isRight && (
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 shrink-0" />
                 )}
                 {hasAnsweredCurrent && showInstantFeedback && isSelected && !isRight && (
-                  <XCircle className="w-5 h-5 text-rose-400 shrink-0" />
+                  <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-rose-400 shrink-0" />
                 )}
                 {!hasAnsweredCurrent && (
                   <span className="text-xs text-[#8E8F94] font-mono hidden sm:inline">
@@ -522,40 +517,18 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
         {/* Instant Explanation Drawer */}
         {hasAnsweredCurrent && showInstantFeedback && (
-          <div className="p-5 rounded-2xl bg-[#121316] border border-[#2A2B2F] text-[#E2E2E2] space-y-2 animate-in fade-in slide-in-from-top-2 duration-200">
-            <div className="flex items-center gap-2 text-[#D4AF37] font-bold text-sm">
-              <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-              <span>Answer & Explanation Breakdown:</span>
-            </div>
-            
-            <p className="text-sm font-semibold text-[#E2E2E2] leading-relaxed">
-              <strong className="text-emerald-400">Correct Answer: {currentQ.correctAnswerLabel}) {currentQ.correctAnswerText}</strong>
-            </p>
-
-            <p className="text-xs text-[#8E8F94] leading-relaxed">
-              {currentQ.explanation}
-            </p>
-
-            {currentQ.providedTargets.length > 0 && (
-              <div className="pt-2 border-t border-[#2A2B2F] flex items-center gap-1.5 flex-wrap text-xs text-[#8E8F94]">
-                <span className="font-bold text-[#E2E2E2]">Source list ({currentQ.category}s):</span>
-                {currentQ.providedTargets.map((tgt, i) => (
-                  <span key={i} className="px-2 py-0.5 bg-[#1C1D21] border border-[#2A2B2F] rounded-md text-[#D4AF37] font-semibold">
-                    {tgt}
-                  </span>
-                ))}
-              </div>
-            )}
+          <div className="animate-in fade-in slide-in-from-top-2 duration-200 mt-3">
+            <SolutionCard question={currentQ} userAnswerIndex={selectedOptionIndex} />
           </div>
         )}
       </div>
 
       {/* Bottom Navigation Buttons */}
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center justify-between gap-3 pt-1 pb-4">
         <button
           onClick={handlePrevious}
           disabled={currentIndex === 0}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#16171A] border border-[#2A2B2F] text-[#E2E2E2] font-bold text-xs rounded-xl hover:bg-[#1C1D21] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-xs cursor-pointer"
+          className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2.5 bg-[#16171A] border border-[#2A2B2F] text-[#E2E2E2] font-bold text-xs rounded-xl hover:bg-[#1C1D21] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-xs cursor-pointer min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Previous</span>
@@ -569,7 +542,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
                 setIsCompleted(true);
                 setIsTimerRunning(false);
               }}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D4AF37] hover:bg-[#E5C158] text-[#0F1012] font-black text-xs rounded-xl shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 bg-[#D4AF37] hover:bg-[#E5C158] text-[#0F1012] font-black text-xs rounded-xl shadow-md transition-all cursor-pointer min-h-[44px]"
             >
               <span>Submit & View Results</span>
               <Award className="w-4 h-4" />
@@ -578,7 +551,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
             <button
               id="btn-next-question"
               onClick={handleNext}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D4AF37] hover:bg-[#E5C158] text-[#0F1012] font-black text-xs rounded-xl shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 bg-[#D4AF37] hover:bg-[#E5C158] text-[#0F1012] font-black text-xs rounded-xl shadow-md transition-all cursor-pointer min-h-[44px]"
             >
               <span>{hasAnsweredCurrent ? 'Next Question' : 'Skip / Next'}</span>
               <ArrowRight className="w-4 h-4" />

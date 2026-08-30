@@ -23,20 +23,20 @@ import {
 export default function App() {
   const [currentView, setCurrentView] = useState<'quiz' | 'bank' | 'flashcards' | 'json'>('quiz');
   
-  // Datasets state
+  // Datasets state (Initialized with Set A through Set I)
   const [datasets, setDatasets] = useState<DatasetMetadata[]>(() => {
-    const saved = localStorage.getItem('vocab_datasets');
+    const saved = localStorage.getItem('vocab_datasets_v2');
     return saved ? JSON.parse(saved) : INITIAL_DATASETS;
   });
 
-  // Questions state (initialized with complete Z7 dataset)
+  // Questions state (Initialized with 207 MCQs from Sets A-I)
   const [allQuestions, setAllQuestions] = useState<MCQQuestion[]>(() => {
-    const saved = localStorage.getItem('vocab_questions');
+    const saved = localStorage.getItem('vocab_questions_v2');
     return saved ? JSON.parse(saved) : INITIAL_QUESTIONS;
   });
 
-  // Selected Dataset: Defaults to 'Z7' as requested
-  const [selectedDatasetId, setSelectedDatasetId] = useState<string>('Z7');
+  // Selected Dataset: Defaults to 'Set A'
+  const [selectedDatasetId, setSelectedDatasetId] = useState<string>('Set A');
 
   // Bookmarks
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
@@ -46,7 +46,7 @@ export default function App() {
 
   // Filter state
   const [filter, setFilter] = useState<QuizFilter>({
-    datasetId: 'Z7',
+    datasetId: 'Set A',
     letter: 'all',
     category: 'all',
     questionType: 'all',
@@ -59,12 +59,12 @@ export default function App() {
 
   // Sync datasets to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_datasets', JSON.stringify(datasets));
+    localStorage.setItem('vocab_datasets_v2', JSON.stringify(datasets));
   }, [datasets]);
 
   // Sync questions to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_questions', JSON.stringify(allQuestions));
+    localStorage.setItem('vocab_questions_v2', JSON.stringify(allQuestions));
   }, [allQuestions]);
 
   // Sync bookmarks to localStorage
@@ -213,23 +213,23 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-6 pb-24 md:pb-8">
         
-        {/* Dataset Status Banner */}
-        <div className="mb-6 bg-gradient-to-r from-[#181A1F] via-[#141518] to-[#101114] text-[#E2E2E2] rounded-3xl p-6 sm:p-7 border border-[#2A2B2F] shadow-lg relative overflow-hidden">
+        {/* Dataset Status Banner (Mobile-Optimized) */}
+        <div className="mb-4 sm:mb-6 bg-gradient-to-r from-[#181A1F] via-[#141518] to-[#101114] text-[#E2E2E2] rounded-2xl sm:rounded-3xl p-4 sm:p-7 border border-[#2A2B2F] shadow-md relative overflow-hidden">
           <div className="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />
           
-          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2.5 py-1 rounded-lg text-xs font-black bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 tracking-wide">
-                  Active Dataset: {selectedDatasetId}
+              <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                <span className="px-2 py-0.5 rounded-md text-[11px] font-black bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 tracking-wide">
+                  Active Set: {selectedDatasetId}
                 </span>
                 <span className="text-xs text-[#8E8F94] font-medium">
-                  {datasetQuestions.length} Total MCQs Formulated
+                  {datasetQuestions.length} Formulated MCQs
                 </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-tight">
+              <h2 className="text-lg sm:text-2xl font-serif font-bold text-white tracking-tight leading-snug">
                 {currentDatasetMeta?.name || `Dataset ${selectedDatasetId}`}
               </h2>
               <p className="text-xs sm:text-sm text-[#9CA3AF] mt-1 max-w-2xl leading-relaxed">
@@ -238,20 +238,20 @@ export default function App() {
             </div>
 
             {/* Quick stats pills */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <div className="px-3.5 py-2 rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center min-w-[80px]">
-                <span className="text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Letters</span>
-                <span className="text-base font-bold text-[#D4AF37]">{availableLetters.length}</span>
+            <div className="grid grid-cols-3 sm:flex items-center gap-2 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-[#2A2B2F]/60">
+              <div className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center">
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Letters</span>
+                <span className="text-sm sm:text-base font-bold text-[#D4AF37]">{availableLetters.length}</span>
               </div>
-              <div className="px-3.5 py-2 rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center min-w-[80px]">
-                <span className="text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Synonyms</span>
-                <span className="text-base font-bold text-[#E2E2E2]">
+              <div className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center">
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Synonyms</span>
+                <span className="text-sm sm:text-base font-bold text-[#E2E2E2]">
                   {datasetQuestions.filter(q => q.category === 'Synonym').length}
                 </span>
               </div>
-              <div className="px-3.5 py-2 rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center min-w-[80px]">
-                <span className="text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Antonyms</span>
-                <span className="text-base font-bold text-[#E2E2E2]">
+              <div className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center">
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Antonyms</span>
+                <span className="text-sm sm:text-base font-bold text-[#E2E2E2]">
                   {datasetQuestions.filter(q => q.category === 'Antonym').length}
                 </span>
               </div>
@@ -306,14 +306,14 @@ export default function App() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#121316] border-t border-[#2A2B2F] py-6 mt-12">
+      {/* Footer (Optimized for mobile padding above bottom bar) */}
+      <footer className="bg-[#121316] border-t border-[#2A2B2F] py-6 mb-16 md:mb-0">
         <div className="max-w-7xl mx-auto px-4 text-center text-xs text-[#8E8F94] space-y-1">
           <p className="font-semibold text-[#D4AF37]">
             VocabMCQ • Vocabulary Question Bank & Quiz Engine
           </p>
-          <p className="text-[#6B6C70]">
-            Full support for Dataset Z7, future datasets (Z6, Z5, P4), Bengali meanings, 1-target, 2-target "Both A & B", and 3+ target "NOT a synonym/antonym" rules.
+          <p className="text-[#6B6C70] text-[11px]">
+            BCS & Admission Test Synonyms & Antonyms with Comprehensive Bengali Solutions.
           </p>
         </div>
       </footer>

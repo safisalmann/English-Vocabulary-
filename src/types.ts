@@ -3,18 +3,20 @@ export type QuestionTypeRule = 'single' | 'multiple_both' | 'negative_not';
 
 export interface MCQQuestion {
   id: string;
-  datasetId: string; // e.g. "Z7", "Z6", "Z5", "P4"
-  letter: string; // e.g. "E", "F", "G", "H", "I", "J", "K"
+  datasetId: string; // e.g. "Set A", "Set B", "Set C", etc.
+  letter: string; // e.g. "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"
   word: string;
+  sourceExam?: string; // e.g. "45th BCS", "DU: 23-24, B"
   category: QuestionCategory;
   questionType: QuestionTypeRule;
   questionText: string;
   options: [string, string, string, string]; // Exactly 4 options: A, B, C, D
+  optionMeanings?: [string, string, string, string]; // Bengali meanings of options A, B, C, D
   correctAnswerIndex: number; // 0, 1, 2, 3
   correctAnswerLabel: 'A' | 'B' | 'C' | 'D';
   correctAnswerText: string;
   bengaliMeaning: string;
-  providedTargets: string[]; // Original synonyms/antonyms given
+  providedTargets: string[]; // Original target words/synonyms/antonyms
   explanation: string;
 }
 

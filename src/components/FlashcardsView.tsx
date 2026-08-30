@@ -94,13 +94,13 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
         </div>
       </div>
 
-      {/* 3D Flashcard Container */}
+      {/* 3D Flashcard Container (Mobile-Optimized) */}
       <div
         onClick={() => setIsFlipped(!isFlipped)}
-        className="min-h-96 w-full cursor-pointer select-none"
+        className="min-h-[280px] sm:min-h-96 w-full cursor-pointer select-none"
       >
         <div
-          className={`w-full h-full min-h-96 rounded-3xl border-2 transition-all duration-300 p-8 flex flex-col justify-between shadow-lg relative ${
+          className={`w-full h-full min-h-[280px] sm:min-h-96 rounded-2xl sm:rounded-3xl border-2 transition-all duration-300 p-4 sm:p-8 flex flex-col justify-between shadow-lg relative ${
             isFlipped 
               ? 'border-[#D4AF37] bg-[#1A1813] shadow-[#D4AF37]/5' 
               : 'border-[#2A2B2F] bg-[#16171A] hover:border-[#38393F]'
@@ -108,77 +108,106 @@ export const FlashcardsView: React.FC<FlashcardsViewProps> = ({
         >
           {/* Card Top */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase ${
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-[11px] sm:text-xs font-bold uppercase ${
                 currentQ.category === 'Synonym' ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30' : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
               }`}>
                 {currentQ.category}
               </span>
-              <span className="text-xs font-bold text-[#8E8F94] bg-[#1C1D21] border border-[#2A2B2F] px-2.5 py-0.5 rounded-lg">
+              <span className="text-[11px] sm:text-xs font-bold text-[#8E8F94] bg-[#1C1D21] border border-[#2A2B2F] px-2 py-0.5 sm:px-2.5 rounded-md sm:rounded-lg">
                 Letter {currentQ.letter}
               </span>
             </div>
 
-            <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={() => handleSpeak(currentQ.word)}
-                className="p-2 text-[#8E8F94] hover:text-[#D4AF37] hover:bg-[#1C1D21] rounded-xl transition-colors cursor-pointer"
+                className="p-1.5 sm:p-2 text-[#8E8F94] hover:text-[#D4AF37] hover:bg-[#1C1D21] rounded-xl transition-colors cursor-pointer"
                 title="Pronounce"
               >
-                <Volume2 className="w-5 h-5" />
+                <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               <button
                 onClick={() => onToggleBookmark(currentQ.id)}
-                className="p-2 text-[#8E8F94] hover:text-[#D4AF37] hover:bg-[#1C1D21] rounded-xl transition-colors cursor-pointer"
+                className="p-1.5 sm:p-2 text-[#8E8F94] hover:text-[#D4AF37] hover:bg-[#1C1D21] rounded-xl transition-colors cursor-pointer"
                 title="Bookmark"
               >
-                <Bookmark className={`w-5 h-5 ${isBookmarked ? 'fill-[#D4AF37] text-[#D4AF37]' : ''}`} />
+                <Bookmark className={`w-4 h-4 sm:w-5 sm:h-5 ${isBookmarked ? 'fill-[#D4AF37] text-[#D4AF37]' : ''}`} />
               </button>
             </div>
           </div>
 
           {/* Card Center */}
-          <div className="text-center py-6">
+          <div className="text-center py-4 sm:py-6">
             {!isFlipped ? (
-              <div className="space-y-3">
-                <div className="text-xs font-bold text-[#8E8F94] uppercase tracking-widest">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="text-[10px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-widest">
                   Target Word
                 </div>
-                <h3 className="text-4xl font-serif font-bold text-white tracking-tight">
+                <h3 className="text-2xl sm:text-4xl font-serif font-bold text-white tracking-tight">
                   {currentQ.word}
                 </h3>
-                <p className="text-xs text-[#8E8F94] pt-2 flex items-center justify-center gap-1.5">
+                <p className="text-xs text-[#8E8F94] pt-1.5 sm:pt-2 flex items-center justify-center gap-1.5">
                   <RotateCw className="w-3.5 h-3.5 text-[#D4AF37]" />
-                  <span>Click to reveal Bengali meaning & answers</span>
+                  <span>Tap to reveal Bengali meaning & answer</span>
                 </p>
               </div>
             ) : (
-              <div className="space-y-4 animate-in fade-in zoom-in-95 duration-200">
-                <div>
-                  <span className="text-xs font-bold text-[#8E8F94] uppercase tracking-widest block mb-1">
-                    বাংলা অর্থ (Bengali Meaning)
-                  </span>
-                  <div className="text-2xl font-bold text-[#D4AF37] font-['Noto_Sans_Bengali']">
+              <div className="space-y-2.5 sm:space-y-3 animate-in fade-in zoom-in-95 duration-200 text-left">
+                {/* Target Word Meaning */}
+                <div className="p-2.5 sm:p-3 bg-[#121316] rounded-xl border border-[#2A2B2F]">
+                  <div className="text-[10px] sm:text-[11px] font-bold text-[#8E8F94] uppercase tracking-wider mb-0.5">
+                    বাংলা অর্থ (Bengali Meaning):
+                  </div>
+                  <div className="text-base sm:text-xl font-bold text-[#D4AF37] font-['Noto_Sans_Bengali']">
                     {currentQ.bengaliMeaning || 'অর্থ অন্তর্ভুক্ত'}
                   </div>
+                  {currentQ.sourceExam && (
+                    <div className="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] mt-1">
+                      {currentQ.sourceExam}
+                    </div>
+                  )}
                 </div>
 
-                <div className="pt-3 border-t border-[#2A2B2F]">
-                  <span className="text-xs font-bold text-[#8E8F94] uppercase tracking-widest block mb-2">
-                    Key {currentQ.category}s:
-                  </span>
-                  <div className="flex flex-wrap items-center justify-center gap-1.5">
-                    {currentQ.providedTargets.map((tgt, i) => (
-                      <span key={i} className="px-3 py-1 bg-[#1C1D21] border border-[#2A2B2F] text-[#E2E2E2] font-semibold text-xs rounded-xl shadow-xs">
-                        {tgt}
-                      </span>
-                    ))}
+                {/* 4 Options with Bengali Meanings */}
+                <div className="space-y-1.5">
+                  <div className="text-[11px] font-bold text-[#8E8F94] uppercase tracking-wider">
+                    অপশনগুলোর বাংলা অর্থ:
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                    {currentQ.options.map((opt, optIdx) => {
+                      const label = (['A', 'B', 'C', 'D'] as const)[optIdx];
+                      const isRight = currentQ.correctAnswerIndex === optIdx;
+                      const optMeaning = currentQ.optionMeanings?.[optIdx];
+
+                      return (
+                        <div
+                          key={optIdx}
+                          className={`p-2 rounded-lg border text-xs ${
+                            isRight
+                              ? 'bg-emerald-950/40 border-emerald-500/60 text-emerald-200 font-bold'
+                              : 'bg-[#121316] border-[#2A2B2F] text-[#E2E2E2]'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span>({label}) {opt}</span>
+                            {isRight && <span className="text-[10px] text-emerald-400 font-black">✓ Correct</span>}
+                          </div>
+                          {optMeaning && (
+                            <div className="text-[11px] text-[#8E8F94] font-['Noto_Sans_Bengali'] pl-2 border-l border-[#2A2B2F] mt-0.5">
+                              = {optMeaning}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
-                <div className="p-3.5 bg-[#121316] rounded-2xl border border-[#2A2B2F] text-xs text-[#8E8F94] text-left">
-                  <strong className="text-[#E2E2E2]">MCQ Question:</strong> {currentQ.questionText} <br />
-                  <span className="text-emerald-400 font-bold block mt-1">Answer: {currentQ.correctAnswerLabel}) {currentQ.correctAnswerText}</span>
+                <div className="p-2.5 bg-emerald-950/20 rounded-xl border border-emerald-500/30 text-xs">
+                  <span className="text-emerald-400 font-bold">
+                    সঠিক উত্তর: ({currentQ.correctAnswerLabel}) {currentQ.correctAnswerText}
+                  </span>
                 </div>
               </div>
             )}

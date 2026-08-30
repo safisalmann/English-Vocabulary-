@@ -13,6 +13,7 @@ import {
   FileCode
 } from 'lucide-react';
 import { MCQQuestion } from '../types';
+import { SolutionCard } from './SolutionCard';
 
 interface QuestionsListProps {
   questions: MCQQuestion[];
@@ -80,42 +81,37 @@ export const QuestionsList: React.FC<QuestionsListProps> = ({
               {/* Card Header / Summary Row */}
               <div 
                 onClick={() => setExpandedId(isExpanded ? null : q.id)}
-                className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer select-none bg-[#16171A] hover:bg-[#1C1D21] transition-colors"
+                className="p-3.5 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 cursor-pointer select-none bg-[#16171A] hover:bg-[#1C1D21] transition-colors"
               >
-                <div className="flex items-start sm:items-center gap-3">
-                  <span className="w-8 h-8 rounded-xl bg-[#1C1D21] border border-[#2A2B2F] text-[#D4AF37] font-bold text-xs flex items-center justify-center shrink-0">
+                <div className="flex items-start sm:items-center gap-2.5 sm:gap-3">
+                  <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-[#1C1D21] border border-[#2A2B2F] text-[#D4AF37] font-bold text-xs flex items-center justify-center shrink-0">
                     {idx + 1}
                   </span>
 
                   <div>
-                    <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase ${
+                    <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap mb-1">
+                      <span className={`px-2 py-0.5 rounded text-[11px] sm:text-xs font-bold uppercase ${
                         q.category === 'Synonym' ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30' : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
                       }`}>
                         {q.category}
                       </span>
-                      <span className="text-xs font-bold text-[#8E8F94] bg-[#1C1D21] border border-[#2A2B2F] px-2 py-0.5 rounded">
+                      <span className="text-[11px] sm:text-xs font-bold text-[#8E8F94] bg-[#1C1D21] border border-[#2A2B2F] px-2 py-0.5 rounded">
                         Set: {q.datasetId}
                       </span>
-                      <span className="text-xs font-bold text-[#8E8F94] bg-[#1C1D21] border border-[#2A2B2F] px-2 py-0.5 rounded">
+                      <span className="text-[11px] sm:text-xs font-bold text-[#8E8F94] bg-[#1C1D21] border border-[#2A2B2F] px-2 py-0.5 rounded">
                         Letter {q.letter}
                       </span>
-                      {q.questionType === 'multiple_both' && (
-                        <span className="text-[11px] font-bold text-[#D4AF37] bg-[#D4AF37]/10 px-2 py-0.5 rounded border border-[#D4AF37]/20">
-                          Both A & B Rule
-                        </span>
-                      )}
-                      {q.questionType === 'negative_not' && (
-                        <span className="text-[11px] font-bold text-rose-300 bg-rose-950/40 px-2 py-0.5 rounded border border-rose-800/40">
-                          NOT a {q.category}
+                      {q.sourceExam && (
+                        <span className="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] bg-[#D4AF37]/15 border border-[#D4AF37]/30 px-2 py-0.5 rounded">
+                          {q.sourceExam}
                         </span>
                       )}
                     </div>
 
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-base font-serif font-bold text-white">{q.word}</span>
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                      <span className="text-base sm:text-lg font-serif font-bold text-white">{q.word}</span>
                       {q.bengaliMeaning && (
-                        <span className="text-xs font-semibold text-[#D4AF37] font-['Noto_Sans_Bengali']">
+                        <span className="text-xs sm:text-sm font-semibold text-[#D4AF37] font-['Noto_Sans_Bengali']">
                           ({q.bengaliMeaning})
                         </span>
                       )}
@@ -123,37 +119,43 @@ export const QuestionsList: React.FC<QuestionsListProps> = ({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 self-end sm:self-center" onClick={(e) => e.stopPropagation()}>
-                  <button
-                    onClick={() => handleSpeak(q.word)}
-                    className="p-1.5 text-[#8E8F94] hover:text-[#D4AF37] hover:bg-[#1C1D21] rounded-lg transition-colors cursor-pointer"
-                    title="Speak word"
-                  >
-                    <Volume2 className="w-4 h-4" />
-                  </button>
+                <div className="flex items-center justify-between sm:justify-end gap-1.5 pt-1.5 sm:pt-0 border-t sm:border-t-0 border-[#2A2B2F]/60" onClick={(e) => e.stopPropagation()}>
+                  <div className="text-[11px] text-[#8E8F94] sm:hidden">
+                    Ans: <span className="text-emerald-400 font-bold">({q.correctAnswerLabel})</span>
+                  </div>
 
-                  <button
-                    onClick={() => handleCopyJson(q)}
-                    className="p-1.5 text-[#8E8F94] hover:text-emerald-400 hover:bg-[#1C1D21] rounded-lg transition-colors cursor-pointer"
-                    title="Copy Question JSON"
-                  >
-                    {isCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                  </button>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleSpeak(q.word)}
+                      className="p-1.5 text-[#8E8F94] hover:text-[#D4AF37] hover:bg-[#1C1D21] rounded-lg transition-colors cursor-pointer"
+                      title="Speak word"
+                    >
+                      <Volume2 className="w-4 h-4" />
+                    </button>
 
-                  <button
-                    onClick={() => onToggleBookmark(q.id)}
-                    className="p-1.5 text-[#8E8F94] hover:text-[#D4AF37] hover:bg-[#1C1D21] rounded-lg transition-colors cursor-pointer"
-                    title="Bookmark"
-                  >
-                    <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-[#D4AF37] text-[#D4AF37]' : ''}`} />
-                  </button>
+                    <button
+                      onClick={() => handleCopyJson(q)}
+                      className="p-1.5 text-[#8E8F94] hover:text-emerald-400 hover:bg-[#1C1D21] rounded-lg transition-colors cursor-pointer"
+                      title="Copy Question JSON"
+                    >
+                      {isCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                    </button>
 
-                  <button
-                    onClick={() => setExpandedId(isExpanded ? null : q.id)}
-                    className="p-1.5 text-[#8E8F94] hover:text-white rounded-lg cursor-pointer"
-                  >
-                    {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-                  </button>
+                    <button
+                      onClick={() => onToggleBookmark(q.id)}
+                      className="p-1.5 text-[#8E8F94] hover:text-[#D4AF37] hover:bg-[#1C1D21] rounded-lg transition-colors cursor-pointer"
+                      title="Bookmark"
+                    >
+                      <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-[#D4AF37] text-[#D4AF37]' : ''}`} />
+                    </button>
+
+                    <button
+                      onClick={() => setExpandedId(isExpanded ? null : q.id)}
+                      className="p-1.5 text-[#8E8F94] hover:text-white rounded-lg cursor-pointer ml-1"
+                    >
+                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -198,19 +200,8 @@ export const QuestionsList: React.FC<QuestionsListProps> = ({
                     })}
                   </div>
 
-                  {/* Detailed explanation */}
-                  <div className="p-3.5 bg-[#16171A] rounded-xl border border-[#2A2B2F] text-xs text-[#8E8F94] space-y-1">
-                    <div className="font-bold text-[#D4AF37] flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Correct Answer: {q.correctAnswerLabel}) {q.correctAnswerText}</span>
-                    </div>
-                    <p className="text-[#8E8F94] leading-relaxed">{q.explanation}</p>
-                    {q.providedTargets.length > 0 && (
-                      <div className="text-[11px] text-[#6B6C70] pt-1 border-t border-[#2A2B2F]">
-                        Provided {q.category} list: <strong className="text-[#E2E2E2]">{q.providedTargets.join(', ')}</strong>
-                      </div>
-                    )}
-                  </div>
+                  {/* Full Solution and Bangla Meanings */}
+                  <SolutionCard question={q} userAnswerIndex={userAns} />
                 </div>
               )}
             </div>
