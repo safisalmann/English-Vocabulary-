@@ -1,6 +1,6 @@
 {
   "name": "VocabMCQ - Interactive Vocabulary Quiz & Question Bank",
-  "description": "Interactive MCQ quiz and question bank generator for synonyms and antonyms with Bengali meanings and dataset filtering.",
+  "description": "Interactive MCQ quiz and question bank for Appropriate Prepositions (116 questions in 2 datasets: A-H and I-Z) and vocabulary with Bengali meanings.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

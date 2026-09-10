@@ -132,13 +132,14 @@ export const DatasetFilterBar: React.FC<DatasetFilterBarProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3 pt-2.5 sm:pt-3 border-t border-[#2A2B2F]">
         <div>
           <span className="text-[11px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-wider block mb-1.5">
-            Vocabulary Type:
+            Category Type:
           </span>
           <div className="flex flex-wrap gap-1.5">
             {[
               { id: 'all', label: 'All Types' },
-              { id: 'Synonym', label: 'Synonyms Only' },
-              { id: 'Antonym', label: 'Antonyms Only' }
+              { id: 'Preposition', label: 'Preposition' },
+              { id: 'Synonym', label: 'Synonyms' },
+              { id: 'Antonym', label: 'Antonyms' }
             ].map((cat) => (
               <button
                 key={cat.id}

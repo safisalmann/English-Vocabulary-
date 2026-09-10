@@ -1,22 +1,22 @@
-export type QuestionCategory = 'Synonym' | 'Antonym';
+export type QuestionCategory = 'Preposition' | 'Synonym' | 'Antonym';
 export type QuestionTypeRule = 'single' | 'multiple_both' | 'negative_not';
 
 export interface MCQQuestion {
   id: string;
-  datasetId: string; // e.g. "Set A", "Set B", "Set C", etc.
-  letter: string; // e.g. "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"
-  word: string;
-  sourceExam?: string; // e.g. "45th BCS", "DU: 23-24, B"
+  datasetId: string; // e.g. "Preposition A-H", "Preposition I-Z"
+  letter: string; // e.g. "A", "B", "C", "D", etc.
+  word: string; // e.g. "adhere to", "look into"
+  sourceExam?: string; // e.g. "45th BCS", "DU: 21-22, C"
   category: QuestionCategory;
   questionType: QuestionTypeRule;
   questionText: string;
   options: [string, string, string, string]; // Exactly 4 options: A, B, C, D
-  optionMeanings?: [string, string, string, string]; // Bengali meanings of options A, B, C, D
+  optionMeanings?: [string, string, string, string]; // Optional
   correctAnswerIndex: number; // 0, 1, 2, 3
   correctAnswerLabel: 'A' | 'B' | 'C' | 'D';
   correctAnswerText: string;
-  bengaliMeaning: string;
-  providedTargets: string[]; // Original target words/synonyms/antonyms
+  bengaliMeaning: string; // Bangla meaning of the correct answer
+  providedTargets: string[];
   explanation: string;
 }
 
