@@ -29,10 +29,6 @@ export const DatasetFilterBar: React.FC<DatasetFilterBarProps> = ({
     onFilterChange({ ...filter, category });
   };
 
-  const handleTypeClick = (questionType: string) => {
-    onFilterChange({ ...filter, questionType });
-  };
-
   const resetFilters = () => {
     onFilterChange({
       datasetId: filter.datasetId,
@@ -128,16 +124,16 @@ export const DatasetFilterBar: React.FC<DatasetFilterBarProps> = ({
         </div>
       </div>
 
-      {/* Filter Row 2: Category & Question Rule Types */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3 pt-2.5 sm:pt-3 border-t border-[#2A2B2F]">
-        <div>
-          <span className="text-[11px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-wider block mb-1.5">
+      {/* Filter Row 2: Category Types */}
+      <div className="pt-2.5 sm:pt-3 border-t border-[#2A2B2F] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-[11px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-wider shrink-0">
             Category Type:
           </span>
           <div className="flex flex-wrap gap-1.5">
             {[
               { id: 'all', label: 'All Types' },
-              { id: 'Preposition', label: 'Preposition' },
+              { id: 'Preposition', label: 'Prepositions' },
               { id: 'Synonym', label: 'Synonyms' },
               { id: 'Antonym', label: 'Antonyms' }
             ].map((cat) => (
@@ -151,32 +147,6 @@ export const DatasetFilterBar: React.FC<DatasetFilterBarProps> = ({
                 }`}
               >
                 {cat.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <span className="text-[11px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-wider block mb-1.5">
-            MCQ Formulation Rule:
-          </span>
-          <div className="flex flex-wrap gap-1.5">
-            {[
-              { id: 'all', label: 'All Rules' },
-              { id: 'single', label: '1 Target (Direct)' },
-              { id: 'multiple_both', label: '2 Targets (Both A & B)' },
-              { id: 'negative_not', label: '3+ Targets (NOT a Syn/Ant)' }
-            ].map((typ) => (
-              <button
-                key={typ.id}
-                onClick={() => handleTypeClick(typ.id)}
-                className={`px-2.5 py-1 text-xs font-bold rounded-lg border transition-all cursor-pointer ${
-                  filter.questionType === typ.id
-                    ? 'bg-[#D4AF37]/15 text-[#D4AF37] border-[#D4AF37]/40 font-black'
-                    : 'bg-[#1C1D21] text-[#8E8F94] border-[#2A2B2F] hover:text-white'
-                }`}
-              >
-                {typ.label}
               </button>
             ))}
           </div>

@@ -91,7 +91,11 @@ export const QuestionsList: React.FC<QuestionsListProps> = ({
                   <div>
                     <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap mb-1">
                       <span className={`px-2 py-0.5 rounded text-[11px] sm:text-xs font-bold uppercase ${
-                        q.category === 'Synonym' ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30' : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
+                        q.category === 'Preposition'
+                          ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/40'
+                          : q.category === 'Synonym'
+                          ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30'
+                          : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
                       }`}>
                         {q.category}
                       </span>
