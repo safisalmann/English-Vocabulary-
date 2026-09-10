@@ -83,11 +83,18 @@ export const QuizView: React.FC<QuizViewProps> = ({
   const hasAnsweredCurrent = selectedOptionIndex !== undefined;
 
   const handleSelectOption = (index: number) => {
-    if (hasAnsweredCurrent && showInstantFeedback) return;
     setUserAnswers(prev => ({
       ...prev,
       [currentQ.id]: index
     }));
+  };
+
+  const handleClearCurrentAnswer = () => {
+    setUserAnswers(prev => {
+      const next = { ...prev };
+      delete next[currentQ.id];
+      return next;
+    });
   };
 
   const handleSpeak = (text: string) => {
@@ -386,6 +393,16 @@ export const QuizView: React.FC<QuizViewProps> = ({
               <span className="hidden xs:inline sm:inline">Feedback</span>
             </label>
 
+            {hasAnsweredCurrent && (
+              <button
+                onClick={handleClearCurrentAnswer}
+                className="px-2 py-1 bg-[#1C1D21] hover:bg-[#23242A] border border-[#2A2B2F] hover:border-amber-500/40 text-amber-300 text-[10px] sm:text-xs font-bold rounded-lg transition-colors cursor-pointer"
+                title="Reset answer for this question"
+              >
+                Try Again
+              </button>
+            )}
+
             <button
               onClick={() => onToggleBookmark(currentQ.id)}
               className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
@@ -416,7 +433,11 @@ export const QuizView: React.FC<QuizViewProps> = ({
         <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 flex-wrap">
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
             <span className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider ${
-              currentQ.category === 'Synonym' ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30' : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
+              currentQ.category === 'Preposition'
+                ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/40'
+                : currentQ.category === 'Synonym'
+                ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30'
+                : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
             }`}>
               {currentQ.category}
             </span>
@@ -442,13 +463,34 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
         {/* Word Display */}
         <div className="mb-3.5 sm:mb-4">
-          <div className="text-[10px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-wider mb-0.5">Target Word:</div>
+          <div className="text-[10px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-wider mb-0.5">
+            {currentQ.category === 'Preposition' ? 'Appropriate Preposition:' : 'Target Word:'}
+          </div>
           <div className="text-xl sm:text-3xl font-serif font-bold text-white tracking-tight flex items-baseline gap-2 sm:gap-3 flex-wrap">
-            <span>{currentQ.word}</span>
-            {currentQ.bengaliMeaning && (
-              <span className="text-base sm:text-lg font-semibold text-[#D4AF37] font-['Noto_Sans_Bengali']">
-                ({currentQ.bengaliMeaning})
-              </span>
+            {currentQ.category === 'Preposition' ? (
+              hasAnsweredCurrent ? (
+                <>
+                  <span className="text-[#D4AF37]">{currentQ.word}</span>
+                  {currentQ.bengaliMeaning && (
+                    <span className="text-base sm:text-lg font-semibold text-emerald-400 font-['Noto_Sans_Bengali']">
+                      — {currentQ.bengaliMeaning}
+                    </span>
+                  )}
+                </>
+              ) : (
+                <span className="text-[#E2E2E2] text-base sm:text-xl font-medium font-sans">
+                  Complete the sentence with the appropriate preposition:
+                </span>
+              )
+            ) : (
+              <>
+                <span>{currentQ.word}</span>
+                {currentQ.bengaliMeaning && (
+                  <span className="text-base sm:text-lg font-semibold text-[#D4AF37] font-['Noto_Sans_Bengali']">
+                    ({currentQ.bengaliMeaning})
+                  </span>
+                )}
+              </>
             )}
           </div>
         </div>

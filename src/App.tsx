@@ -23,20 +23,51 @@ import {
 export default function App() {
   const [currentView, setCurrentView] = useState<'quiz' | 'bank' | 'flashcards' | 'json'>('quiz');
   
-  // Datasets state (Initialized with Set A through Set I)
+  // Datasets state (Ensure INITIAL_DATASETS with 116 Prepositions are always loaded)
   const [datasets, setDatasets] = useState<DatasetMetadata[]>(() => {
-    const saved = localStorage.getItem('vocab_datasets_v2');
-    return saved ? JSON.parse(saved) : INITIAL_DATASETS;
+    try {
+      // Clear legacy caches that lacked prepositions
+      localStorage.removeItem('vocab_datasets');
+      localStorage.removeItem('vocab_datasets_v2');
+      localStorage.removeItem('vocab_datasets_v3');
+      
+      const saved = localStorage.getItem('vocab_datasets_v5');
+      if (!saved) return INITIAL_DATASETS;
+      const parsed: DatasetMetadata[] = JSON.parse(saved);
+      // Ensure built-in datasets are always up-to-date
+      const hasPrepositions = parsed.some(d => d.id === '1st A-H') && parsed.some(d => d.id === '2nd I-Z');
+      if (!hasPrepositions) {
+        return INITIAL_DATASETS;
+      }
+      return parsed;
+    } catch {
+      return INITIAL_DATASETS;
+    }
   });
 
-  // Questions state (Initialized with 207 MCQs from Sets A-I)
+  // Questions state (Ensure all 116 Prepositions + Vocabulary MCQs are present)
   const [allQuestions, setAllQuestions] = useState<MCQQuestion[]>(() => {
-    const saved = localStorage.getItem('vocab_questions_v2');
-    return saved ? JSON.parse(saved) : INITIAL_QUESTIONS;
+    try {
+      localStorage.removeItem('vocab_questions');
+      localStorage.removeItem('vocab_questions_v2');
+      localStorage.removeItem('vocab_questions_v3');
+
+      const saved = localStorage.getItem('vocab_questions_v5');
+      if (!saved) return INITIAL_QUESTIONS;
+      const parsed: MCQQuestion[] = JSON.parse(saved);
+      const prepCount = parsed.filter(q => q.category === 'Preposition').length;
+      // If cached questions do not have the 116 prepositions, reset to INITIAL_QUESTIONS
+      if (prepCount < 116) {
+        return INITIAL_QUESTIONS;
+      }
+      return parsed;
+    } catch {
+      return INITIAL_QUESTIONS;
+    }
   });
 
-  // Selected Dataset: Defaults to 'Set A'
-  const [selectedDatasetId, setSelectedDatasetId] = useState<string>('Set A');
+  // Selected Dataset: Defaults to '1st A-H' (Appropriate Prepositions Part 1)
+  const [selectedDatasetId, setSelectedDatasetId] = useState<string>('1st A-H');
 
   // Bookmarks
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
@@ -46,7 +77,7 @@ export default function App() {
 
   // Filter state
   const [filter, setFilter] = useState<QuizFilter>({
-    datasetId: 'Set A',
+    datasetId: '1st A-H',
     letter: 'all',
     category: 'all',
     questionType: 'all',
@@ -59,12 +90,12 @@ export default function App() {
 
   // Sync datasets to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_datasets_v2', JSON.stringify(datasets));
+    localStorage.setItem('vocab_datasets_v5', JSON.stringify(datasets));
   }, [datasets]);
 
   // Sync questions to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_questions_v2', JSON.stringify(allQuestions));
+    localStorage.setItem('vocab_questions_v5', JSON.stringify(allQuestions));
   }, [allQuestions]);
 
   // Sync bookmarks to localStorage
@@ -72,14 +103,40 @@ export default function App() {
     localStorage.setItem('vocab_bookmarks', JSON.stringify(bookmarkedIds));
   }, [bookmarkedIds]);
 
-  // When selectedDatasetId changes, update filter
+  // When selectedDatasetId changes, update filter and reset category & letter
   const handleSelectDataset = (id: string) => {
     setSelectedDatasetId(id);
     setFilter(prev => ({
       ...prev,
       datasetId: id,
-      letter: 'all'
+      letter: 'all',
+      category: 'all',
+      questionType: 'all'
     }));
+  };
+
+  const handleFilterChange = (newFilter: QuizFilter) => {
+    // Smart adaptation: If user clicks 'Preposition' category while on a Vocabulary set (Set A-I)
+    if (newFilter.category === 'Preposition' && selectedDatasetId !== '1st A-H' && selectedDatasetId !== '2nd I-Z' && selectedDatasetId !== 'all') {
+      setSelectedDatasetId('1st A-H');
+      setFilter({
+        ...newFilter,
+        datasetId: '1st A-H',
+        letter: 'all'
+      });
+      return;
+    }
+    // If user clicks 'Synonym' or 'Antonym' while on a Preposition set
+    if ((newFilter.category === 'Synonym' || newFilter.category === 'Antonym') && (selectedDatasetId === '1st A-H' || selectedDatasetId === '2nd I-Z')) {
+      setSelectedDatasetId('Set A');
+      setFilter({
+        ...newFilter,
+        datasetId: 'Set A',
+        letter: 'all'
+      });
+      return;
+    }
+    setFilter(newFilter);
   };
 
   const handleToggleBookmark = (id: string) => {
@@ -243,26 +300,96 @@ export default function App() {
                 <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Letters</span>
                 <span className="text-sm sm:text-base font-bold text-[#D4AF37]">{availableLetters.length}</span>
               </div>
+              {datasetQuestions.some(q => q.category === 'Preposition') ? (
+                <div className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-[#1C1D21] border border-emerald-500/30 text-center">
+                  <span className="text-[9px] sm:text-[10px] uppercase font-bold text-emerald-400 tracking-wider block">Prepositions</span>
+                  <span className="text-sm sm:text-base font-bold text-emerald-300">
+                    {datasetQuestions.filter(q => q.category === 'Preposition').length}
+                  </span>
+                </div>
+              ) : (
+                <div className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center">
+                  <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Synonyms</span>
+                  <span className="text-sm sm:text-base font-bold text-[#E2E2E2]">
+                    {datasetQuestions.filter(q => q.category === 'Synonym').length}
+                  </span>
+                </div>
+              )}
               <div className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center">
-                <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Synonyms</span>
-                <span className="text-sm sm:text-base font-bold text-[#E2E2E2]">
-                  {datasetQuestions.filter(q => q.category === 'Synonym').length}
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">
+                  {datasetQuestions.some(q => q.category === 'Preposition') ? 'Exam Sources' : 'Antonyms'}
                 </span>
-              </div>
-              <div className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-[#1C1D21] border border-[#2A2B2F] text-center">
-                <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#8E8F94] tracking-wider block">Antonyms</span>
                 <span className="text-sm sm:text-base font-bold text-[#E2E2E2]">
-                  {datasetQuestions.filter(q => q.category === 'Antonym').length}
+                  {datasetQuestions.some(q => q.category === 'Preposition')
+                    ? 'BCS & Unis'
+                    : datasetQuestions.filter(q => q.category === 'Antonym').length}
                 </span>
               </div>
             </div>
           </div>
         </div>
 
+        {/* Quick Dataset Switcher Pills */}
+        <div className="mb-3.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+          <span className="text-xs font-bold text-[#8E8F94] shrink-0 mr-1 flex items-center gap-1">
+            <Layers className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span>Switch:</span>
+          </span>
+          <button
+            onClick={() => handleSelectDataset('1st A-H')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 ${
+              selectedDatasetId === '1st A-H'
+                ? 'bg-[#D4AF37] text-[#0F1012] font-black shadow-xs'
+                : 'bg-[#16171A] hover:bg-[#202127] text-[#E2E2E2] border border-[#2A2B2F]'
+            }`}
+          >
+            <span>📌 1st: Preposition (A-H)</span>
+            <span className={`px-1.5 py-0.2 rounded text-[10px] ${selectedDatasetId === '1st A-H' ? 'bg-black/20 text-[#0F1012]' : 'bg-[#2A2B2F] text-[#8E8F94]'}`}>
+              59 Qs
+            </span>
+          </button>
+          <button
+            onClick={() => handleSelectDataset('2nd I-Z')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 ${
+              selectedDatasetId === '2nd I-Z'
+                ? 'bg-[#D4AF37] text-[#0F1012] font-black shadow-xs'
+                : 'bg-[#16171A] hover:bg-[#202127] text-[#E2E2E2] border border-[#2A2B2F]'
+            }`}
+          >
+            <span>📌 2nd: Preposition (I-Z)</span>
+            <span className={`px-1.5 py-0.2 rounded text-[10px] ${selectedDatasetId === '2nd I-Z' ? 'bg-black/20 text-[#0F1012]' : 'bg-[#2A2B2F] text-[#8E8F94]'}`}>
+              57 Qs
+            </span>
+          </button>
+          <button
+            onClick={() => {
+              setSelectedDatasetId('all');
+              setFilter(prev => ({ ...prev, datasetId: 'all', category: 'Preposition', letter: 'all' }));
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 ${
+              selectedDatasetId === 'all' && filter.category === 'Preposition'
+                ? 'bg-[#D4AF37] text-[#0F1012] font-black shadow-xs'
+                : 'bg-[#16171A] hover:bg-[#202127] text-[#E2E2E2] border border-[#2A2B2F]'
+            }`}
+          >
+            <span>📖 All Prepositions (116 Qs)</span>
+          </button>
+          <button
+            onClick={() => handleSelectDataset('Set A')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 ${
+              selectedDatasetId === 'Set A'
+                ? 'bg-[#D4AF37] text-[#0F1012] font-black shadow-xs'
+                : 'bg-[#16171A] hover:bg-[#202127] text-[#E2E2E2] border border-[#2A2B2F]'
+            }`}
+          >
+            <span>Vocabulary Sets (A-I)</span>
+          </button>
+        </div>
+
         {/* Universal Filter Bar */}
         <DatasetFilterBar
           filter={filter}
-          onFilterChange={setFilter}
+          onFilterChange={handleFilterChange}
           availableLetters={availableLetters}
           totalQuestions={datasetQuestions.length}
           filteredCount={filteredQuestions.length}
