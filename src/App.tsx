@@ -23,20 +23,21 @@ import {
 export default function App() {
   const [currentView, setCurrentView] = useState<'quiz' | 'bank' | 'flashcards' | 'json'>('quiz');
   
-  // Datasets state (Ensure INITIAL_DATASETS with 116 Prepositions are always loaded)
+  // Datasets state (Ensure INITIAL_DATASETS with Prepositions and all Sets A-Z are always loaded)
   const [datasets, setDatasets] = useState<DatasetMetadata[]>(() => {
     try {
-      // Clear legacy caches that lacked prepositions
       localStorage.removeItem('vocab_datasets');
       localStorage.removeItem('vocab_datasets_v2');
       localStorage.removeItem('vocab_datasets_v3');
+      localStorage.removeItem('vocab_datasets_v5');
       
-      const saved = localStorage.getItem('vocab_datasets_v5');
+      const saved = localStorage.getItem('vocab_datasets_v6');
       if (!saved) return INITIAL_DATASETS;
       const parsed: DatasetMetadata[] = JSON.parse(saved);
       // Ensure built-in datasets are always up-to-date
       const hasPrepositions = parsed.some(d => d.id === '1st A-H') && parsed.some(d => d.id === '2nd I-Z');
-      if (!hasPrepositions) {
+      const hasNewSets = parsed.some(d => d.id === 'Set P') && parsed.some(d => d.id === 'Set W-Z');
+      if (!hasPrepositions || !hasNewSets) {
         return INITIAL_DATASETS;
       }
       return parsed;
@@ -45,19 +46,21 @@ export default function App() {
     }
   });
 
-  // Questions state (Ensure all 116 Prepositions + Vocabulary MCQs are present)
+  // Questions state (Ensure all Prepositions + Sets A-Z MCQs are present)
   const [allQuestions, setAllQuestions] = useState<MCQQuestion[]>(() => {
     try {
       localStorage.removeItem('vocab_questions');
       localStorage.removeItem('vocab_questions_v2');
       localStorage.removeItem('vocab_questions_v3');
+      localStorage.removeItem('vocab_questions_v5');
 
-      const saved = localStorage.getItem('vocab_questions_v5');
+      const saved = localStorage.getItem('vocab_questions_v6');
       if (!saved) return INITIAL_QUESTIONS;
       const parsed: MCQQuestion[] = JSON.parse(saved);
       const prepCount = parsed.filter(q => q.category === 'Preposition').length;
-      // If cached questions do not have the 116 prepositions, reset to INITIAL_QUESTIONS
-      if (prepCount < 116) {
+      const hasQ257 = parsed.some(q => q.id === 'SET-P-257');
+      const hasQ349 = parsed.some(q => q.id === 'SET-Z-349');
+      if (prepCount < 116 || !hasQ257 || !hasQ349) {
         return INITIAL_QUESTIONS;
       }
       return parsed;
@@ -90,12 +93,12 @@ export default function App() {
 
   // Sync datasets to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_datasets_v5', JSON.stringify(datasets));
+    localStorage.setItem('vocab_datasets_v6', JSON.stringify(datasets));
   }, [datasets]);
 
   // Sync questions to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_questions_v5', JSON.stringify(allQuestions));
+    localStorage.setItem('vocab_questions_v6', JSON.stringify(allQuestions));
   }, [allQuestions]);
 
   // Sync bookmarks to localStorage

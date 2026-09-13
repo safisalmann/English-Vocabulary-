@@ -10,6 +10,14 @@ import { setFQuestions } from './sets/setF';
 import { setGQuestions } from './sets/setG';
 import { setHQuestions } from './sets/setH';
 import { setIQuestions } from './sets/setI';
+import { setPQuestions } from './sets/setP';
+import { setQQuestions } from './sets/setQ';
+import { setRQuestions } from './sets/setR';
+import { setSQuestions } from './sets/setS';
+import { setTQuestions } from './sets/setT';
+import { setUQuestions } from './sets/setU';
+import { setVQuestions } from './sets/setV';
+import { setWZQuestions } from './sets/setWZ';
 
 export const INITIAL_DATASETS: DatasetMetadata[] = [
   {
@@ -89,6 +97,62 @@ export const INITIAL_DATASETS: DatasetMetadata[] = [
     description: 'Letter I Synonyms & Antonyms from BCS & Top University tests.',
     count: setIQuestions.length,
     letters: ['I'],
+  },
+  {
+    id: 'Set P',
+    name: 'Set P (Vocabulary P)',
+    description: 'Letter P Synonyms & Antonyms (Q257-271) from BCS & Top Universities.',
+    count: setPQuestions.length,
+    letters: ['P'],
+  },
+  {
+    id: 'Set Q',
+    name: 'Set Q (Vocabulary Q)',
+    description: 'Letter Q Synonyms & Antonyms (Q272-274) from BCS & Top Universities.',
+    count: setQQuestions.length,
+    letters: ['Q'],
+  },
+  {
+    id: 'Set R',
+    name: 'Set R (Vocabulary R)',
+    description: 'Letter R Synonyms & Antonyms (Q275-284) from BCS & Top Universities.',
+    count: setRQuestions.length,
+    letters: ['R'],
+  },
+  {
+    id: 'Set S',
+    name: 'Set S (Vocabulary S)',
+    description: 'Letter S Synonyms & Antonyms (Q285-314) from BCS & Top Universities.',
+    count: setSQuestions.length,
+    letters: ['S'],
+  },
+  {
+    id: 'Set T',
+    name: 'Set T (Vocabulary T)',
+    description: 'Letter T Synonyms & Antonyms (Q315-327) from BCS & Top Universities.',
+    count: setTQuestions.length,
+    letters: ['T'],
+  },
+  {
+    id: 'Set U',
+    name: 'Set U (Vocabulary U)',
+    description: 'Letter U Synonyms & Antonyms (Q328-333) from BCS & Top Universities.',
+    count: setUQuestions.length,
+    letters: ['U'],
+  },
+  {
+    id: 'Set V',
+    name: 'Set V (Vocabulary V)',
+    description: 'Letter V Synonyms & Antonyms (Q334-340) from BCS & Top Universities.',
+    count: setVQuestions.length,
+    letters: ['V'],
+  },
+  {
+    id: 'Set W-Z',
+    name: 'Set W-Z (Vocabulary W-Z)',
+    description: 'Letters W to Z Synonyms & Antonyms (Q341-349) from BCS & Top Universities.',
+    count: setWZQuestions.length,
+    letters: ['W', 'Z'],
   }
 ];
 
@@ -103,5 +167,13 @@ export const INITIAL_QUESTIONS: MCQQuestion[] = [
   ...setFQuestions,
   ...setGQuestions,
   ...setHQuestions,
-  ...setIQuestions
+  ...setIQuestions,
+  ...setPQuestions,
+  ...setQQuestions,
+  ...setRQuestions,
+  ...setSQuestions,
+  ...setTQuestions,
+  ...setUQuestions,
+  ...setVQuestions,
+  ...setWZQuestions
 ];
