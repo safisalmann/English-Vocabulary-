@@ -22,10 +22,12 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({ question }) => {
         )}
       </div>
 
-      {/* 1. Question Word / Preposition Phrase Meaning */}
+      {/* 1. Question Word / Preposition Phrase / Group Verb Meaning */}
       <div className="p-3 bg-[#16171A] rounded-xl border border-[#2A2B2F]/80">
         <div className="text-[11px] font-bold text-[#8E8F94] uppercase tracking-wider mb-1">
-          {question.category === 'Preposition'
+          {question.category === 'Group Verb'
+            ? 'Group Verb ও বাংলা অর্থ (সঠিক উত্তর):'
+            : question.category === 'Preposition'
             ? 'Appropriate Preposition ও বাংলা অর্থ (সঠিক উত্তর):'
             : 'শব্দের অর্থ (Question Word):'}
         </div>
@@ -37,10 +39,12 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({ question }) => {
         </div>
       </div>
 
-      {/* 2. Options Display with Meaning ONLY for Correct Answer */}
+      {/* 2. Options Display with Meanings of all 4 Group Verbs */}
       <div>
         <div className="text-[11px] font-bold text-[#8E8F94] uppercase tracking-wider mb-2">
-          {question.category === 'Preposition'
+          {question.category === 'Group Verb'
+            ? '৪টি অপশনের Group Verb-এর বাংলা অর্থ (Solutions):'
+            : question.category === 'Preposition'
             ? 'অপশনসমূহ (সঠিক উত্তরের অর্থসহ):'
             : 'অপশনগুলোর বাংলা অর্থ (Options Meaning):'}
         </div>
@@ -48,8 +52,8 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({ question }) => {
           {question.options.map((opt, idx) => {
             const label = (['A', 'B', 'C', 'D'] as const)[idx];
             const isRight = question.correctAnswerIndex === idx;
-            // Only give meaning of the correct answer if Preposition or if optionMeanings is provided
-            const meaning = isRight ? question.bengaliMeaning : question.optionMeanings?.[idx];
+            // Display optionMeaning if provided, otherwise fallback to bengaliMeaning for isRight
+            const meaning = question.optionMeanings?.[idx] || (isRight ? question.bengaliMeaning : undefined);
 
             return (
               <div
@@ -71,15 +75,15 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({ question }) => {
                     </span>
                   )}
                 </div>
-                {/* Bengali meaning strictly for the correct answer only */}
-                {isRight && (
+                {/* Bengali meaning */}
+                {isRight && meaning && (
                   <div className="text-[11px] text-emerald-300 font-['Noto_Sans_Bengali'] font-medium pl-3 border-l-2 border-emerald-500/60 mt-0.5">
-                    অর্থ: {meaning}
+                    {question.category === 'Group Verb' ? meaning : `অর্থ: ${meaning}`}
                   </div>
                 )}
-                {!isRight && meaning && question.category !== 'Preposition' && (
-                  <div className="text-[11px] text-[#8E8F94] font-['Noto_Sans_Bengali'] pl-3 border-l border-[#2A2B2F]">
-                    = {meaning}
+                {!isRight && meaning && (question.category !== 'Preposition' || question.optionMeanings) && (
+                  <div className="text-[11px] text-[#A3A4A9] font-['Noto_Sans_Bengali'] pl-3 border-l border-[#2A2B2F]">
+                    {question.category === 'Group Verb' ? meaning : `= ${meaning}`}
                   </div>
                 )}
               </div>
@@ -103,6 +107,23 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({ question }) => {
           {question.category}
         </span>
       </div>
+
+      {/* Example Sentence & Bangla Translation */}
+      {question.exampleSentence && (
+        <div className="p-3 bg-[#181A1F] rounded-xl border border-[#2A2B2F] space-y-1.5">
+          <div className="text-[11px] font-bold text-[#D4AF37] uppercase tracking-wider">
+            বাক্য গঠন (Example Sentence) ও বাংলা অনুবাদ:
+          </div>
+          <div className="text-sm font-serif text-white font-medium pl-2.5 border-l-2 border-[#D4AF37]">
+            "{question.exampleSentence}"
+          </div>
+          {question.sentenceBengaliTranslation && (
+            <div className="text-xs text-emerald-300 font-['Noto_Sans_Bengali'] pl-2.5">
+              অনুবাদ: {question.sentenceBengaliTranslation}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Explanation Details */}
       {question.explanation && (

@@ -276,7 +276,13 @@ export const QuizView: React.FC<QuizViewProps> = ({
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2">
                     <span className={`px-2.5 py-0.5 rounded-md text-xs font-bold ${
-                      q.category === 'Synonym' ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30' : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
+                      q.category === 'Group Verb'
+                        ? 'bg-cyan-950/40 text-cyan-300 border border-cyan-500/40'
+                        : q.category === 'Preposition'
+                        ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/40'
+                        : q.category === 'Synonym'
+                        ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30'
+                        : 'bg-amber-950/40 text-amber-300 border border-amber-800/40'
                     }`}>
                       {q.category}
                     </span>
@@ -432,8 +438,10 @@ export const QuizView: React.FC<QuizViewProps> = ({
         {/* Badges */}
         <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 flex-wrap">
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-            <span className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider ${
-              currentQ.category === 'Preposition'
+            <span className={`px-2.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider ${
+              currentQ.category === 'Group Verb'
+                ? 'bg-cyan-950/40 text-cyan-300 border border-cyan-500/40'
+                : currentQ.category === 'Preposition'
                 ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/40'
                 : currentQ.category === 'Synonym'
                 ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30'
@@ -464,7 +472,11 @@ export const QuizView: React.FC<QuizViewProps> = ({
         {/* Word Display */}
         <div className="mb-3.5 sm:mb-4">
           <div className="text-[10px] sm:text-xs font-bold text-[#8E8F94] uppercase tracking-wider mb-0.5">
-            {currentQ.category === 'Preposition' ? 'Appropriate Preposition:' : 'Target Word:'}
+            {currentQ.category === 'Group Verb'
+              ? 'Group Verb:'
+              : currentQ.category === 'Preposition'
+              ? 'Appropriate Preposition:'
+              : 'Target Word:'}
           </div>
           <div className="text-xl sm:text-3xl font-serif font-bold text-white tracking-tight flex items-baseline gap-2 sm:gap-3 flex-wrap">
             {currentQ.category === 'Preposition' ? (
@@ -482,6 +494,15 @@ export const QuizView: React.FC<QuizViewProps> = ({
                   Complete the sentence with the appropriate preposition:
                 </span>
               )
+            ) : currentQ.category === 'Group Verb' ? (
+              <>
+                <span className="text-[#D4AF37]">{currentQ.word}</span>
+                {hasAnsweredCurrent && currentQ.bengaliMeaning && (
+                  <span className="text-base sm:text-lg font-semibold text-emerald-400 font-['Noto_Sans_Bengali']">
+                    — {currentQ.bengaliMeaning}
+                  </span>
+                )}
+              </>
             ) : (
               <>
                 <span>{currentQ.word}</span>
@@ -500,6 +521,17 @@ export const QuizView: React.FC<QuizViewProps> = ({
           <p className="text-sm sm:text-lg font-bold text-[#E2E2E2] leading-relaxed">
             {currentQ.questionText}
           </p>
+          {currentQ.exampleSentence && (
+            <div className="mt-3 pt-3 border-t border-[#2A2B2F]/70 text-xs sm:text-sm text-[#A3A4A9]">
+              <span className="text-[#D4AF37] font-semibold">Sentence: </span>
+              <span className="italic font-serif text-white">"{currentQ.exampleSentence}"</span>
+              {hasAnsweredCurrent && currentQ.sentenceBengaliTranslation && (
+                <div className="mt-1 text-emerald-400/90 font-['Noto_Sans_Bengali'] text-xs sm:text-sm font-medium">
+                  বাংলা অনুবাদ: {currentQ.sentenceBengaliTranslation}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* 4 Options */}

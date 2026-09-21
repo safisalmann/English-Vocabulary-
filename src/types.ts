@@ -1,4 +1,4 @@
-export type QuestionCategory = 'Preposition' | 'Synonym' | 'Antonym';
+export type QuestionCategory = 'Preposition' | 'Synonym' | 'Antonym' | 'Group Verb';
 export type QuestionTypeRule = 'single' | 'multiple_both' | 'negative_not';
 
 export interface MCQQuestion {
@@ -18,6 +18,8 @@ export interface MCQQuestion {
   bengaliMeaning: string; // Bangla meaning of the correct answer
   providedTargets: string[];
   explanation: string;
+  exampleSentence?: string;
+  sentenceBengaliTranslation?: string;
 }
 
 export interface DatasetMetadata {

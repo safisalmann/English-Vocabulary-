@@ -23,21 +23,24 @@ import {
 export default function App() {
   const [currentView, setCurrentView] = useState<'quiz' | 'bank' | 'flashcards' | 'json'>('quiz');
   
-  // Datasets state (Ensure INITIAL_DATASETS with Prepositions and all Sets A-Z are always loaded)
+  // Datasets state (Ensure INITIAL_DATASETS with Group Verbs, Prepositions and all Sets A-Z are always loaded)
   const [datasets, setDatasets] = useState<DatasetMetadata[]>(() => {
     try {
       localStorage.removeItem('vocab_datasets');
       localStorage.removeItem('vocab_datasets_v2');
       localStorage.removeItem('vocab_datasets_v3');
       localStorage.removeItem('vocab_datasets_v5');
+      localStorage.removeItem('vocab_datasets_v6');
+      localStorage.removeItem('vocab_datasets_v7');
       
-      const saved = localStorage.getItem('vocab_datasets_v6');
+      const saved = localStorage.getItem('vocab_datasets_v8');
       if (!saved) return INITIAL_DATASETS;
       const parsed: DatasetMetadata[] = JSON.parse(saved);
       // Ensure built-in datasets are always up-to-date
+      const gvDataset = parsed.find(d => d.id === 'Group Verbs');
       const hasPrepositions = parsed.some(d => d.id === '1st A-H') && parsed.some(d => d.id === '2nd I-Z');
       const hasNewSets = parsed.some(d => d.id === 'Set P') && parsed.some(d => d.id === 'Set W-Z');
-      if (!hasPrepositions || !hasNewSets) {
+      if (!gvDataset || (gvDataset.count || 0) < 280 || !hasPrepositions || !hasNewSets) {
         return INITIAL_DATASETS;
       }
       return parsed;
@@ -46,21 +49,25 @@ export default function App() {
     }
   });
 
-  // Questions state (Ensure all Prepositions + Sets A-Z MCQs are present)
+  // Questions state (Ensure all Group Verbs + Prepositions + Sets A-Z MCQs are present)
   const [allQuestions, setAllQuestions] = useState<MCQQuestion[]>(() => {
     try {
       localStorage.removeItem('vocab_questions');
       localStorage.removeItem('vocab_questions_v2');
       localStorage.removeItem('vocab_questions_v3');
       localStorage.removeItem('vocab_questions_v5');
+      localStorage.removeItem('vocab_questions_v6');
+      localStorage.removeItem('vocab_questions_v7');
 
-      const saved = localStorage.getItem('vocab_questions_v6');
+      const saved = localStorage.getItem('vocab_questions_v8');
       if (!saved) return INITIAL_QUESTIONS;
       const parsed: MCQQuestion[] = JSON.parse(saved);
+      const groupVerbCount = parsed.filter(q => q.category === 'Group Verb').length;
       const prepCount = parsed.filter(q => q.category === 'Preposition').length;
-      const hasQ257 = parsed.some(q => q.id === 'SET-P-257');
       const hasQ349 = parsed.some(q => q.id === 'SET-Z-349');
-      if (prepCount < 116 || !hasQ257 || !hasQ349) {
+      const hasGV54 = parsed.some(q => q.id === 'GV-54');
+      const hasGVM01 = parsed.some(q => q.id === 'GVM-001');
+      if (groupVerbCount < 280 || prepCount < 116 || !hasQ349 || !hasGV54 || !hasGVM01) {
         return INITIAL_QUESTIONS;
       }
       return parsed;
@@ -69,8 +76,8 @@ export default function App() {
     }
   });
 
-  // Selected Dataset: Defaults to '1st A-H' (Appropriate Prepositions Part 1)
-  const [selectedDatasetId, setSelectedDatasetId] = useState<string>('1st A-H');
+  // Selected Dataset: Defaults to 'Group Verbs' if user was studying it, else 'Group Verbs'
+  const [selectedDatasetId, setSelectedDatasetId] = useState<string>('Group Verbs');
 
   // Bookmarks
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
@@ -80,7 +87,7 @@ export default function App() {
 
   // Filter state
   const [filter, setFilter] = useState<QuizFilter>({
-    datasetId: '1st A-H',
+    datasetId: 'Group Verbs',
     letter: 'all',
     category: 'all',
     questionType: 'all',
@@ -93,12 +100,12 @@ export default function App() {
 
   // Sync datasets to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_datasets_v6', JSON.stringify(datasets));
+    localStorage.setItem('vocab_datasets_v8', JSON.stringify(datasets));
   }, [datasets]);
 
   // Sync questions to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_questions_v6', JSON.stringify(allQuestions));
+    localStorage.setItem('vocab_questions_v8', JSON.stringify(allQuestions));
   }, [allQuestions]);
 
   // Sync bookmarks to localStorage

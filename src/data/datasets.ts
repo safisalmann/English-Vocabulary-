@@ -18,8 +18,22 @@ import { setTQuestions } from './sets/setT';
 import { setUQuestions } from './sets/setU';
 import { setVQuestions } from './sets/setV';
 import { setWZQuestions } from './sets/setWZ';
+import { groupVerbQuestions } from './sets/groupVerbs';
+import { groupVerbMeaningQuestions } from './sets/groupVerbMeaningQuestions';
+
+export const allGroupVerbQuestions: MCQQuestion[] = [
+  ...groupVerbQuestions,
+  ...groupVerbMeaningQuestions
+];
 
 export const INITIAL_DATASETS: DatasetMetadata[] = [
+  {
+    id: 'Group Verbs',
+    name: 'Group Verbs (Phrasal Verbs)',
+    description: 'Complete 282 Group Verb & Phrasal Verb MCQs (54 BCS/University questions + 228 Meaning & Sentence MCQs from A to W) with full Bengali solutions, example sentences & meanings of all 4 options.',
+    count: allGroupVerbQuestions.length,
+    letters: ['A', 'B', 'C', 'D', 'F', 'G', 'H', 'K', 'L', 'M', 'P', 'R', 'S', 'T', 'W'],
+  },
   {
     id: '1st A-H',
     name: '1st Dataset: Preposition (A-H)',
@@ -175,5 +189,6 @@ export const INITIAL_QUESTIONS: MCQQuestion[] = [
   ...setTQuestions,
   ...setUQuestions,
   ...setVQuestions,
-  ...setWZQuestions
+  ...setWZQuestions,
+  ...allGroupVerbQuestions
 ];
