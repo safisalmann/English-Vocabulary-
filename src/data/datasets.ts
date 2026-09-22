@@ -20,19 +20,21 @@ import { setVQuestions } from './sets/setV';
 import { setWZQuestions } from './sets/setWZ';
 import { groupVerbQuestions } from './sets/groupVerbs';
 import { groupVerbMeaningQuestions } from './sets/groupVerbMeaningQuestions';
+import { groupVerbMissingQuestions } from './sets/groupVerbMissingLetters';
 
 export const allGroupVerbQuestions: MCQQuestion[] = [
   ...groupVerbQuestions,
-  ...groupVerbMeaningQuestions
+  ...groupVerbMeaningQuestions,
+  ...groupVerbMissingQuestions
 ];
 
 export const INITIAL_DATASETS: DatasetMetadata[] = [
   {
     id: 'Group Verbs',
     name: 'Group Verbs (Phrasal Verbs)',
-    description: 'Complete 282 Group Verb & Phrasal Verb MCQs (54 BCS/University questions + 228 Meaning & Sentence MCQs from A to W) with full Bengali solutions, example sentences & meanings of all 4 options.',
+    description: 'Complete 318 Group Verb & Phrasal Verb MCQs covering all 26 letters A to Z (54 BCS/University questions + 264 Meaning & Sentence MCQs) with full Bengali solutions, example sentences & meanings of all 4 options.',
     count: allGroupVerbQuestions.length,
-    letters: ['A', 'B', 'C', 'D', 'F', 'G', 'H', 'K', 'L', 'M', 'P', 'R', 'S', 'T', 'W'],
+    letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
   },
   {
     id: '1st A-H',
@@ -47,7 +49,7 @@ export const INITIAL_DATASETS: DatasetMetadata[] = [
     name: '2nd Dataset: Preposition (I-Z)',
     description: 'Appropriate Prepositions 60-116 (Letters I to Z) from BCS & Top Universities with Bengali meaning of the correct answer only.',
     count: prepositionIZQuestions.length,
-    letters: ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'Z'],
+    letters: ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y', 'Z'],
   },
   {
     id: 'Set A',
@@ -166,7 +168,7 @@ export const INITIAL_DATASETS: DatasetMetadata[] = [
     name: 'Set W-Z (Vocabulary W-Z)',
     description: 'Letters W to Z Synonyms & Antonyms (Q341-349) from BCS & Top Universities.',
     count: setWZQuestions.length,
-    letters: ['W', 'Z'],
+    letters: ['W', 'X', 'Y', 'Z'],
   }
 ];
 

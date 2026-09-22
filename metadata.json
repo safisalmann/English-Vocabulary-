@@ -1,6 +1,6 @@
 {
   "name": "VocabMCQ - Interactive Vocabulary Quiz & Question Bank",
-  "description": "Interactive MCQ quiz and question bank for Appropriate Prepositions (116 questions in 2 datasets: A-H and I-Z) and vocabulary with Bengali meanings.",
+  "description": "Interactive MCQ quiz and question bank for Group Verbs (318 questions covering all 26 letters A-Z), Appropriate Prepositions (118 questions in datasets A-H & I-Z), and Vocabulary Sets with complete Bengali meanings.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

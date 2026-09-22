@@ -32,15 +32,16 @@ export default function App() {
       localStorage.removeItem('vocab_datasets_v5');
       localStorage.removeItem('vocab_datasets_v6');
       localStorage.removeItem('vocab_datasets_v7');
+      localStorage.removeItem('vocab_datasets_v8');
       
-      const saved = localStorage.getItem('vocab_datasets_v8');
+      const saved = localStorage.getItem('vocab_datasets_v9');
       if (!saved) return INITIAL_DATASETS;
       const parsed: DatasetMetadata[] = JSON.parse(saved);
       // Ensure built-in datasets are always up-to-date
       const gvDataset = parsed.find(d => d.id === 'Group Verbs');
       const hasPrepositions = parsed.some(d => d.id === '1st A-H') && parsed.some(d => d.id === '2nd I-Z');
       const hasNewSets = parsed.some(d => d.id === 'Set P') && parsed.some(d => d.id === 'Set W-Z');
-      if (!gvDataset || (gvDataset.count || 0) < 280 || !hasPrepositions || !hasNewSets) {
+      if (!gvDataset || (gvDataset.count || 0) < 315 || (gvDataset.letters?.length || 0) < 26 || !hasPrepositions || !hasNewSets) {
         return INITIAL_DATASETS;
       }
       return parsed;
@@ -58,16 +59,19 @@ export default function App() {
       localStorage.removeItem('vocab_questions_v5');
       localStorage.removeItem('vocab_questions_v6');
       localStorage.removeItem('vocab_questions_v7');
+      localStorage.removeItem('vocab_questions_v8');
 
-      const saved = localStorage.getItem('vocab_questions_v8');
+      const saved = localStorage.getItem('vocab_questions_v9');
       if (!saved) return INITIAL_QUESTIONS;
       const parsed: MCQQuestion[] = JSON.parse(saved);
       const groupVerbCount = parsed.filter(q => q.category === 'Group Verb').length;
       const prepCount = parsed.filter(q => q.category === 'Preposition').length;
       const hasQ349 = parsed.some(q => q.id === 'SET-Z-349');
+      const hasX348A = parsed.some(q => q.id === 'SET-X-348A');
       const hasGV54 = parsed.some(q => q.id === 'GV-54');
       const hasGVM01 = parsed.some(q => q.id === 'GVM-001');
-      if (groupVerbCount < 280 || prepCount < 116 || !hasQ349 || !hasGV54 || !hasGVM01) {
+      const hasGVM229 = parsed.some(q => q.id === 'GVM-229');
+      if (groupVerbCount < 315 || prepCount < 118 || !hasQ349 || !hasX348A || !hasGV54 || !hasGVM01 || !hasGVM229) {
         return INITIAL_QUESTIONS;
       }
       return parsed;
@@ -165,6 +169,15 @@ export default function App() {
   const availableLetters = useMemo(() => {
     const letterSet = new Set(datasetQuestions.map(q => q.letter));
     return Array.from(letterSet).sort();
+  }, [datasetQuestions]);
+
+  // Letter counts for current dataset
+  const letterCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    datasetQuestions.forEach(q => {
+      counts[q.letter] = (counts[q.letter] || 0) + 1;
+    });
+    return counts;
   }, [datasetQuestions]);
 
   // Filtered questions based on active filters
@@ -404,6 +417,7 @@ export default function App() {
           totalQuestions={datasetQuestions.length}
           filteredCount={filteredQuestions.length}
           bookmarkedCount={bookmarkedIds.length}
+          letterCounts={letterCounts}
         />
 
         {/* View Routing */}
