@@ -297,6 +297,7 @@ export const DatasetFilterBar: React.FC<DatasetFilterBarProps> = ({
           <div className="flex flex-wrap gap-1.5">
             {[
               { id: 'all', label: 'All Types' },
+              { id: 'Spelling', label: 'Spelling (বানান)' },
               { id: 'Group Verb', label: 'Group Verbs' },
               { id: 'Preposition', label: 'Prepositions' },
               { id: 'Synonym', label: 'Synonyms' },

@@ -1,4 +1,4 @@
-export type QuestionCategory = 'Preposition' | 'Synonym' | 'Antonym' | 'Group Verb';
+export type QuestionCategory = 'Preposition' | 'Synonym' | 'Antonym' | 'Group Verb' | 'Spelling';
 export type QuestionTypeRule = 'single' | 'multiple_both' | 'negative_not';
 
 export interface MCQQuestion {

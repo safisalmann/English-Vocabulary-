@@ -69,10 +69,12 @@ export const Header: React.FC<HeaderProps> = ({
                     onChange={(e) => onSelectDataset(e.target.value)}
                     className="bg-transparent border-0 text-[#E2E2E2] text-xs font-bold focus:ring-0 focus:outline-hidden cursor-pointer pr-1 max-w-[140px] truncate"
                   >
+                    <option value="Spelling" className="bg-[#1C1D21] text-[#D4AF37] font-bold">Spelling Master (165)</option>
+                    <option value="Group Verbs" className="bg-[#1C1D21] text-amber-400 font-bold">Group Verbs (318)</option>
                     <option value="1st A-H" className="bg-[#1C1D21] text-emerald-400 font-bold">1st: Preposition (A-H) (59)</option>
                     <option value="2nd I-Z" className="bg-[#1C1D21] text-emerald-400 font-bold">2nd: Preposition (I-Z) (57)</option>
                     <option value="all" className="bg-[#1C1D21] text-white">All Sets</option>
-                    {datasets.filter(d => d.id !== '1st A-H' && d.id !== '2nd I-Z').map((d) => (
+                    {datasets.filter(d => d.id !== '1st A-H' && d.id !== '2nd I-Z' && d.id !== 'Spelling' && d.id !== 'Group Verbs').map((d) => (
                       <option key={d.id} value={d.id} className="bg-[#1C1D21] text-white">
                         {d.id} ({d.count} Qs)
                       </option>
@@ -127,7 +129,15 @@ export const Header: React.FC<HeaderProps> = ({
                     onChange={(e) => onSelectDataset(e.target.value)}
                     className="bg-transparent border-0 text-[#E2E2E2] font-bold focus:ring-0 focus:outline-hidden cursor-pointer pr-4"
                   >
-                    <optgroup label="Appropriate Prepositions" className="bg-[#16171A] text-[#D4AF37] font-bold">
+                    <optgroup label="Spelling & Phrasal Verbs" className="bg-[#16171A] text-[#D4AF37] font-bold">
+                      <option value="Spelling" className="bg-[#1C1D21] text-[#D4AF37] font-bold">
+                        Spelling Master (165 MCQs) • A-Z
+                      </option>
+                      <option value="Group Verbs" className="bg-[#1C1D21] text-amber-400 font-bold">
+                        Group Verbs (318 MCQs) • A-Z
+                      </option>
+                    </optgroup>
+                    <optgroup label="Appropriate Prepositions" className="bg-[#16171A] text-emerald-400 font-bold">
                       <option value="1st A-H" className="bg-[#1C1D21] text-emerald-400 font-bold">
                         1st Dataset: Preposition (A-H) (59 MCQs)
                       </option>
@@ -137,7 +147,7 @@ export const Header: React.FC<HeaderProps> = ({
                     </optgroup>
                     <optgroup label="Vocabulary Sets (Synonyms & Antonyms)" className="bg-[#16171A] text-[#8E8F94]">
                       <option value="all" className="bg-[#1C1D21] text-white">All Datasets ({datasets.reduce((acc, d) => acc + d.count, 0)} MCQs)</option>
-                      {datasets.filter(d => d.id !== '1st A-H' && d.id !== '2nd I-Z').map((d) => (
+                      {datasets.filter(d => d.id !== '1st A-H' && d.id !== '2nd I-Z' && d.id !== 'Spelling' && d.id !== 'Group Verbs').map((d) => (
                         <option key={d.id} value={d.id} className="bg-[#1C1D21] text-white">
                           {d.id} {d.count > 0 ? `(${d.count} MCQs)` : '(Ready for Data)'}
                         </option>

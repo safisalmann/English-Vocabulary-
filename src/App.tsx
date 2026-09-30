@@ -23,7 +23,7 @@ import {
 export default function App() {
   const [currentView, setCurrentView] = useState<'quiz' | 'bank' | 'flashcards' | 'json'>('quiz');
   
-  // Datasets state (Ensure INITIAL_DATASETS with Group Verbs, Prepositions and all Sets A-Z are always loaded)
+  // Datasets state (Ensure INITIAL_DATASETS with Spelling, Group Verbs, Prepositions and all Sets A-Z are always loaded)
   const [datasets, setDatasets] = useState<DatasetMetadata[]>(() => {
     try {
       localStorage.removeItem('vocab_datasets');
@@ -33,15 +33,17 @@ export default function App() {
       localStorage.removeItem('vocab_datasets_v6');
       localStorage.removeItem('vocab_datasets_v7');
       localStorage.removeItem('vocab_datasets_v8');
+      localStorage.removeItem('vocab_datasets_v9');
       
-      const saved = localStorage.getItem('vocab_datasets_v9');
+      const saved = localStorage.getItem('vocab_datasets_v10');
       if (!saved) return INITIAL_DATASETS;
       const parsed: DatasetMetadata[] = JSON.parse(saved);
       // Ensure built-in datasets are always up-to-date
       const gvDataset = parsed.find(d => d.id === 'Group Verbs');
       const hasPrepositions = parsed.some(d => d.id === '1st A-H') && parsed.some(d => d.id === '2nd I-Z');
       const hasNewSets = parsed.some(d => d.id === 'Set P') && parsed.some(d => d.id === 'Set W-Z');
-      if (!gvDataset || (gvDataset.count || 0) < 315 || (gvDataset.letters?.length || 0) < 26 || !hasPrepositions || !hasNewSets) {
+      const hasSpelling = parsed.some(d => d.id === 'Spelling');
+      if (!gvDataset || (gvDataset.count || 0) < 315 || (gvDataset.letters?.length || 0) < 26 || !hasPrepositions || !hasNewSets || !hasSpelling) {
         return INITIAL_DATASETS;
       }
       return parsed;
@@ -50,7 +52,7 @@ export default function App() {
     }
   });
 
-  // Questions state (Ensure all Group Verbs + Prepositions + Sets A-Z MCQs are present)
+  // Questions state (Ensure all Spelling + Group Verbs + Prepositions + Sets A-Z MCQs are present)
   const [allQuestions, setAllQuestions] = useState<MCQQuestion[]>(() => {
     try {
       localStorage.removeItem('vocab_questions');
@@ -60,10 +62,12 @@ export default function App() {
       localStorage.removeItem('vocab_questions_v6');
       localStorage.removeItem('vocab_questions_v7');
       localStorage.removeItem('vocab_questions_v8');
+      localStorage.removeItem('vocab_questions_v9');
 
-      const saved = localStorage.getItem('vocab_questions_v9');
+      const saved = localStorage.getItem('vocab_questions_v10');
       if (!saved) return INITIAL_QUESTIONS;
       const parsed: MCQQuestion[] = JSON.parse(saved);
+      const spellingCount = parsed.filter(q => q.category === 'Spelling').length;
       const groupVerbCount = parsed.filter(q => q.category === 'Group Verb').length;
       const prepCount = parsed.filter(q => q.category === 'Preposition').length;
       const hasQ349 = parsed.some(q => q.id === 'SET-Z-349');
@@ -71,7 +75,7 @@ export default function App() {
       const hasGV54 = parsed.some(q => q.id === 'GV-54');
       const hasGVM01 = parsed.some(q => q.id === 'GVM-001');
       const hasGVM229 = parsed.some(q => q.id === 'GVM-229');
-      if (groupVerbCount < 315 || prepCount < 118 || !hasQ349 || !hasX348A || !hasGV54 || !hasGVM01 || !hasGVM229) {
+      if (spellingCount < 165 || groupVerbCount < 315 || prepCount < 118 || !hasQ349 || !hasX348A || !hasGV54 || !hasGVM01 || !hasGVM229) {
         return INITIAL_QUESTIONS;
       }
       return parsed;
@@ -80,8 +84,8 @@ export default function App() {
     }
   });
 
-  // Selected Dataset: Defaults to 'Group Verbs' if user was studying it, else 'Group Verbs'
-  const [selectedDatasetId, setSelectedDatasetId] = useState<string>('Group Verbs');
+  // Selected Dataset: Defaults to 'Spelling' so user immediately explores the newly inserted 165 questions
+  const [selectedDatasetId, setSelectedDatasetId] = useState<string>('Spelling');
 
   // Bookmarks
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
@@ -91,7 +95,7 @@ export default function App() {
 
   // Filter state
   const [filter, setFilter] = useState<QuizFilter>({
-    datasetId: 'Group Verbs',
+    datasetId: 'Spelling',
     letter: 'all',
     category: 'all',
     questionType: 'all',
@@ -104,12 +108,12 @@ export default function App() {
 
   // Sync datasets to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_datasets_v8', JSON.stringify(datasets));
+    localStorage.setItem('vocab_datasets_v10', JSON.stringify(datasets));
   }, [datasets]);
 
   // Sync questions to localStorage
   useEffect(() => {
-    localStorage.setItem('vocab_questions_v8', JSON.stringify(allQuestions));
+    localStorage.setItem('vocab_questions_v10', JSON.stringify(allQuestions));
   }, [allQuestions]);
 
   // Sync bookmarks to localStorage
@@ -130,6 +134,16 @@ export default function App() {
   };
 
   const handleFilterChange = (newFilter: QuizFilter) => {
+    // Smart adaptation: If user clicks 'Spelling' category while on another specific set
+    if (newFilter.category === 'Spelling' && selectedDatasetId !== 'Spelling' && selectedDatasetId !== 'all') {
+      setSelectedDatasetId('Spelling');
+      setFilter({
+        ...newFilter,
+        datasetId: 'Spelling',
+        letter: 'all'
+      });
+      return;
+    }
     // Smart adaptation: If user clicks 'Preposition' category while on a Vocabulary set (Set A-I)
     if (newFilter.category === 'Preposition' && selectedDatasetId !== '1st A-H' && selectedDatasetId !== '2nd I-Z' && selectedDatasetId !== 'all') {
       setSelectedDatasetId('1st A-H');

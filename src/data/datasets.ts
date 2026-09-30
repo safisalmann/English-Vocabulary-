@@ -21,6 +21,7 @@ import { setWZQuestions } from './sets/setWZ';
 import { groupVerbQuestions } from './sets/groupVerbs';
 import { groupVerbMeaningQuestions } from './sets/groupVerbMeaningQuestions';
 import { groupVerbMissingQuestions } from './sets/groupVerbMissingLetters';
+import { spellingQuestions } from './sets/spellingQuestions';
 
 export const allGroupVerbQuestions: MCQQuestion[] = [
   ...groupVerbQuestions,
@@ -169,10 +170,18 @@ export const INITIAL_DATASETS: DatasetMetadata[] = [
     description: 'Letters W to Z Synonyms & Antonyms (Q341-349) from BCS & Top Universities.',
     count: setWZQuestions.length,
     letters: ['W', 'X', 'Y', 'Z'],
+  },
+  {
+    id: 'Spelling',
+    name: 'Spelling & Vocabulary Master (বানান ও শব্দার্থ)',
+    description: '165 High-Yield Spelling MCQs formulated from BCS, Bank, Medical & University admission tests (e.g. "... মানে কি?"). Covers 165 essential vocabulary words across letters A to Z with detailed Bengali solutions and spelling trap explanations.',
+    count: spellingQuestions.length,
+    letters: Array.from(new Set(spellingQuestions.map(q => q.letter))).sort(),
   }
 ];
 
 export const INITIAL_QUESTIONS: MCQQuestion[] = [
+  ...spellingQuestions,
   ...prepositionAHQuestions,
   ...prepositionIZQuestions,
   ...setAQuestions,
