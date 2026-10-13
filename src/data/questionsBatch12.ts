@@ -1,0 +1,410 @@
+import { RawMCQ } from './questionsData';
+
+export const BATCH_12: RawMCQ[] = [
+  {
+    "id": 765,
+    "question": "All of the people at the conference are ----.",
+    "targetWord": "mathematics teachers",
+    "category": "Adjective",
+    "examTag": "18th BCS, প্রাথমিক শিক্ষক-১৯",
+    "options": ["mathematics teachers", "mathematic teachers", "mathematics teacher", "mathematic's teachers"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "গণিত শিক্ষকবৃন্দ",
+    "explanationBangla": "Noun-adjunct হিসেবে 'mathematics' শব্দটি অপরিবর্তিত থাকে এবং মূল noun বহুবচন হয়"
+  },
+  {
+    "id": 766,
+    "question": "I like Japanese cars. Which form of adjective is the underlined word?",
+    "targetWord": "Japanese",
+    "category": "Adjective",
+    "examTag": "পরিকল্পনা পরিদর্শক-১৮",
+    "options": ["possessive", "exclamatory", "proper", "relative"],
+    "correctAnswer": "c",
+    "wordMeaningBangla": "জাপানি",
+    "explanationBangla": "possessive - অধিকারবাচক, exclamatory - বিস্ময়সূচক, proper - Proper Noun (Japan) থেকে গঠিত Proper Adjective, relative - সম্বন্ধবাচক"
+  },
+  {
+    "id": 767,
+    "question": "Which one is an example of ordinal numeral adjective?",
+    "targetWord": "third",
+    "category": "Adjective",
+    "examTag": "পরিবার পরিকল্পনা সহকারী-১৮",
+    "options": ["five", "third", "single", "some"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "তৃতীয়",
+    "explanationBangla": "five - Cardinal, third - ক্রমবাচক বা Ordinal (first, second, third), single - Multiplicative, some - Indefinite"
+  },
+  {
+    "id": 768,
+    "question": "Rahim is the third child of his family. Here 'third' is -",
+    "targetWord": "Ordinal numeral",
+    "category": "Adjective",
+    "examTag": "RU 09-10",
+    "options": ["Cardinal numeral", "Ordinal numeral", "Multiplicative numeral", "Indefinite numeral"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "ক্রমিক অবস্থান",
+    "explanationBangla": "Cardinal - এক, দুই; Ordinal - প্রথম, দ্বিতীয়, তৃতীয় ক্রমিক স্থান; Multiplicative - একক, দ্বিগুণ"
+  },
+  {
+    "id": 769,
+    "question": "Which one of the following is a cardinal numeral adjective?",
+    "targetWord": "five",
+    "category": "Adjective",
+    "examTag": "গণপূর্ত অধিদপ্তর-১৫",
+    "options": ["second", "single", "multiple", "five"],
+    "correctAnswer": "d",
+    "wordMeaningBangla": "পাঁচ",
+    "explanationBangla": "second - Ordinal, single - Multiplicative, multiple - গুণিতক, five - গণনাযোগ্য সংখ্যা Cardinal"
+  },
+  {
+    "id": 770,
+    "question": "This is his pen. What kind of adjective 'his' is?",
+    "targetWord": "his",
+    "category": "Adjective",
+    "examTag": "KUET 07-08",
+    "options": ["Numeral adjective", "Pronominal adjective", "Quantitative adjective", "Descriptive adjective"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "তার (পজেসিভ অ্যাডজেকটিভ)",
+    "explanationBangla": "Pronoun যখন noun এর পূর্বে বসে adjective এর কাজ করে তখন তাকে Pronominal Adjective বলে"
+  },
+  {
+    "id": 771,
+    "question": "The man was carrying a ------------ bag.",
+    "targetWord": "small black plastic",
+    "category": "Adjective",
+    "examTag": "রাজশাহী কৃষি ব্যাংক-১৫",
+    "options": ["black small plastic", "small and black", "small black plastic", "plastic small black"],
+    "correctAnswer": "c",
+    "wordMeaningBangla": "ছোট কালো প্লাস্টিকের ব্যাগ",
+    "explanationBangla": "Adjective এর সঠিক ক্রম: Size (small) + Colour (black) + Material (plastic)"
+  },
+  {
+    "id": 772,
+    "question": "We were asked to write a - essay on child labour.",
+    "targetWord": "five-hundred-word",
+    "category": "Adjective",
+    "examTag": "JnU 08-09",
+    "options": ["five-hundred words", "five hundred word", "five hundreds words", "five hundreds word"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "পাঁচশত শব্দের",
+    "explanationBangla": "হাইফেনযুক্ত কম্পাউন্ড অ্যাডজেক্টিভ সর্বদা singular থাকে, তাই word হবে, words নয়"
+  },
+  {
+    "id": 773,
+    "question": "I was simply impressed to see - majestic palace.",
+    "targetWord": "a ten-year-old",
+    "category": "Adjective",
+    "examTag": "CU 17-18",
+    "options": ["a ten-years-old", "a ten-year-old", "ten-year-old", "ten-years-old"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "একটি দশ বছর বয়সী",
+    "explanationBangla": "Hyphenated compound adjective এ year এর সাথে s যুক্ত হয় না"
+  },
+  {
+    "id": 774,
+    "question": "The UN envoy came to Bangladesh on - visit.",
+    "targetWord": "a three-day",
+    "category": "Adjective",
+    "examTag": "CU 11-12",
+    "options": ["a three-day", "a three-days", "three-days", "the three-day", "three-day"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "তিন দিনের সফর",
+    "explanationBangla": "a three-day visit: visit নাউনের পূর্বে adjective হিসেবে three-day বসেছে (s ছাড়া)"
+  },
+  {
+    "id": 775,
+    "question": "I saw - one-eyed man when I was walking on the road.",
+    "targetWord": "a",
+    "category": "Articles",
+    "examTag": "37th BCS",
+    "options": ["a", "an", "the", "no article"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "একটি একচোখা মানুষ",
+    "explanationBangla": "'O' এর উচ্চারণ 'ওয়া' (wa) এর মতো হলে তার পূর্বে an না বসে a বসে"
+  },
+  {
+    "id": 776,
+    "question": "He went to - hospital because he had - heart attack.",
+    "targetWord": "no article, a",
+    "category": "Articles",
+    "examTag": "39th BCS",
+    "options": ["no article, an", "a, an", "the, no article", "no article, a"],
+    "correctAnswer": "d",
+    "wordMeaningBangla": "হাসপাতালে, হার্ট অ্যাটাক",
+    "explanationBangla": "চিকিৎসার উদ্দেশ্যে hospital এ যাওয়ায় article নেই; আর heart attack এর পূর্বে 'a' বসে"
+  },
+  {
+    "id": 777,
+    "question": "'The French' refers to -",
+    "targetWord": "the French people",
+    "category": "Articles",
+    "examTag": "33rd BCS",
+    "options": ["the French people", "the French language", "the French manners", "the French society"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "ফরাসি জাতি / জনগণ",
+    "explanationBangla": "ভাষার পূর্বে The বসলে তা সমগ্র জাতিকে বোঝায় (The French = ফরাসি জাতি)"
+  },
+  {
+    "id": 778,
+    "question": "Sports medicine experts agree that ice should be applied immediately when an athlete suffers an injury to - leg.",
+    "targetWord": "the",
+    "category": "Articles",
+    "examTag": "Dental 01-02",
+    "options": ["an", "his", "its", "the"],
+    "correctAnswer": "d",
+    "wordMeaningBangla": "আক্রান্ত পা-টিতে",
+    "explanationBangla": "শরীরের কোনো নির্দিষ্ট অঙ্গে আঘাত বোঝাতে preposition এর পর Definite article 'the' বসে"
+  },
+  {
+    "id": 779,
+    "question": "Nasim is - university student.",
+    "targetWord": "a",
+    "category": "Articles",
+    "examTag": "CU 14-15",
+    "options": ["a", "the", "reading", "an"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "একজন বিশ্ববিদ্যালয়ের ছাত্র",
+    "explanationBangla": "ভাওয়েল U এর উচ্চারণ 'ইউ' (you) এর মতো হলে তার পূর্বে an না বসে a বসে"
+  },
+  {
+    "id": 780,
+    "question": "England is - European country.",
+    "targetWord": "a",
+    "category": "Articles",
+    "examTag": "পররাষ্ট্র মন্ত্রণালয়-১৯",
+    "options": ["an", "a", "the", "no article"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "একটি ইউরোপীয় দেশ",
+    "explanationBangla": "European শব্দের শুরুতে Eu এর উচ্চারণ 'ইউ' হওয়ায় an এর পরিবর্তে a বসে"
+  },
+  {
+    "id": 781,
+    "question": "Iron is - useful metal.",
+    "targetWord": "a",
+    "category": "Articles",
+    "examTag": "RU 08-09",
+    "options": ["an", "a", "the", "no article"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "একটি দরকারি ধাতু",
+    "explanationBangla": "useful শব্দের শুরুতে u এর উচ্চারণ 'ইউ' হওয়ায় তার পূর্বে a বসে"
+  },
+  {
+    "id": 782,
+    "question": "I can do it in - hour and half.",
+    "targetWord": "an",
+    "category": "Articles",
+    "examTag": "CU 15-16",
+    "options": ["the, a", "a, a", "an, a", "an, an"],
+    "correctAnswer": "c",
+    "wordMeaningBangla": "দেড় ঘণ্টার মধ্যে",
+    "explanationBangla": "hour এ 'h' অনুচ্চারিত থাকায় an hour বসে, এবং half এর পূর্বে a বসে (an hour and a half)"
+  },
+  {
+    "id": 783,
+    "question": "He is - heir to his father's property.",
+    "targetWord": "an",
+    "category": "Articles",
+    "examTag": "RU 09-10",
+    "options": ["an", "the", "a", "none"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "একজন উত্তরাধিকারী",
+    "explanationBangla": "heir (উত্তরাধিকারী) শব্দের 'h' অনুচ্চারিত (উচ্চারণ এয়ার) হওয়ায় an বসে"
+  },
+  {
+    "id": 784,
+    "question": "Mr. Rahim is - honorable man.",
+    "targetWord": "an",
+    "category": "Articles",
+    "examTag": "RU 09-10",
+    "options": ["an", "a", "the", "no article"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "একজন সম্মানিত ব্যক্তি",
+    "explanationBangla": "honorable শব্দের 'h' অনুচ্চারিত থাকায় স্বরধ্বনি 'অ' উচ্চারিত হয়ে an বসে"
+  },
+  {
+    "id": 785,
+    "question": "He is - M.A. in English.",
+    "targetWord": "an",
+    "category": "Articles",
+    "examTag": "RU 09-10",
+    "options": ["a", "an", "the", "none"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "ইংরেজিতে এম.এ.",
+    "explanationBangla": "সংক্ষিপ্ত পদবি M.A. উচ্চারণে প্রথমে ভাওয়েল সাউন্ড 'এ' (Em) আসায় an বসে"
+  },
+  {
+    "id": 786,
+    "question": "Which of the following will have 'a' before it?",
+    "targetWord": "B.ED",
+    "category": "Articles",
+    "examTag": "RU 08-09",
+    "options": ["F.R.C.S", "M.ED", "B.ED", "L.M.F."],
+    "correctAnswer": "c",
+    "wordMeaningBangla": "বি.এড ডিগ্রিধারী",
+    "explanationBangla": "B.ED ব্যঞ্জনধ্বনি (বি) দিয়ে শুরু হওয়ায় a বসে; বাকিগুলোতে ভাওয়েল সাউন্ডে an বসে"
+  },
+  {
+    "id": 787,
+    "question": "The more, the merrier. Here the underlined 'the' are -",
+    "targetWord": "Instrumental 'the'",
+    "category": "Articles",
+    "examTag": "মাদকদ্রব্য নিয়ন্ত্রণ অধিদপ্তর-১৯",
+    "options": ["Instrumental 'the'", "Familiar 'the'", "Defining 'the'", "Generalizing 'the'"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "যত বেশি তত আনন্দ",
+    "explanationBangla": "যত... তত বোঝাতে দুটি Comparative এর পূর্বে ব্যবহৃত 'the' হলো Adverbial বা Instrumental 'the'"
+  },
+  {
+    "id": 788,
+    "question": "He struck me on the head. Here the word 'the' is used as -",
+    "targetWord": "possessive 'the'",
+    "category": "Articles",
+    "examTag": "BRUR 14-15",
+    "options": ["familiar 'the'", "generalizing 'the'", "defining 'the'", "possessive 'the'"],
+    "correctAnswer": "d",
+    "wordMeaningBangla": "আমার মাথায় (পজেসিভ the)",
+    "explanationBangla": "শরীরের অঙ্গপ্রত্যঙ্গের পূর্বে possessive (my head) এর বিকল্প হিসেবে the বসলে তাকে Possessive 'the' বলে"
+  },
+  {
+    "id": 789,
+    "question": "He can play - piano.",
+    "targetWord": "the",
+    "category": "Articles",
+    "examTag": "DU 09-10",
+    "options": ["an", "the", "a", "no article needed"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "পিয়ানো বাজানো",
+    "explanationBangla": "বাদ্যযন্ত্র বাজানো বোঝালে বাদ্যযন্ত্রের পূর্বে Definite article 'the' বসে"
+  },
+  {
+    "id": 790,
+    "question": "- Mount Everest is the highest peak in the Himalayas.",
+    "targetWord": "No article",
+    "category": "Articles",
+    "examTag": "১৫তম শিক্ষক নিবন্ধন-১৯",
+    "options": ["A", "An", "The", "No article"],
+    "correctAnswer": "d",
+    "wordMeaningBangla": "মাউন্ট এভারেস্ট",
+    "explanationBangla": "একক পর্বতশৃঙ্গের নামের পূর্বে কোনো article বসে না (পর্বতমালার পূর্বে the বসে)"
+  },
+  {
+    "id": 791,
+    "question": "I lived in - Netherlands for two years.",
+    "targetWord": "the",
+    "category": "Articles",
+    "examTag": "JnU 06-07",
+    "options": ["the", "a", "an", "no article"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "নেদারল্যান্ডস দেশটিতে",
+    "explanationBangla": "বহুবচনাত্মক বা বর্ণনামূলক ভৌগোলিক নামের দেশের পূর্বে The বসে (The Netherlands, The USA)"
+  },
+  {
+    "id": 792,
+    "question": "- English are industrious.",
+    "targetWord": "The",
+    "category": "Articles",
+    "examTag": "প্রাথমিক শিক্ষক-১৯",
+    "options": ["The", "An", "Each", "A"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "ইংরেজ জাতি",
+    "explanationBangla": "সমগ্র ইংরেজ জাতিকে বোঝাতে ভাষার নামের পূর্বে The বসে জাতিবাচক বহুবচন হয়"
+  },
+  {
+    "id": 793,
+    "question": "The doctor took the round in the hospital. Here 'round' is a/an-",
+    "targetWord": "noun",
+    "category": "Articles",
+    "examTag": "Dental 17-18",
+    "options": ["adjective", "noun", "verb", "adverb"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "হাসপাতাল পরিদর্শন",
+    "explanationBangla": "article 'the' এর ঠিক পরে একটিমাত্র শব্দ বসলে তা Noun হিসেবে কাজ করে"
+  },
+  {
+    "id": 794,
+    "question": "Man is mortal. Choose the correct sentence.",
+    "targetWord": "Man is mortal",
+    "category": "Articles",
+    "examTag": "শ্রম ও কর্মসংস্থান মন্ত্রণালয়-০৪",
+    "options": ["The man is mortal", "Man is mortal", "A man is mortal", "None"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "মানুষ মরণশীল",
+    "explanationBangla": "সমগ্র মানবজাতি অর্থে Man বা Woman এর পূর্বে কোনো Article বসে না"
+  },
+  {
+    "id": 795,
+    "question": "- glass is, for practical purpose, a solid, its molecular structure is that of a liquid.",
+    "targetWord": "Although",
+    "category": "Conjunction & Linkers",
+    "examTag": "20th BCS",
+    "options": ["Because", "Since", "Although", "If"],
+    "correctAnswer": "c",
+    "wordMeaningBangla": "যদিও",
+    "explanationBangla": "Because - কারণ, Since - যেহেতু, Although - বৈপরীত্য প্রকাশে 'যদিও' অর্থে সঠিক কনজাংশন, If - যদি"
+  },
+  {
+    "id": 796,
+    "question": "I could not sleep - very tired.",
+    "targetWord": "although I was",
+    "category": "Conjunction & Linkers",
+    "examTag": "35th BCS, BSMSTU 11-12",
+    "options": ["although I was", "in spite of", "despite", "despite I was"],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "যদিও আমি খুব ক্লান্ত ছিলাম",
+    "explanationBangla": "despite/in spite of এর পর clause বসে না; although এর পর পূর্ণাঙ্গ ক্লজ (although I was) বসে"
+  },
+  {
+    "id": 797,
+    "question": "Water boils - you heat it to 100° centigrade.",
+    "targetWord": "if",
+    "category": "Conjunction & Linkers",
+    "examTag": "24th BCS, RU 13-14",
+    "options": ["unless", "until", "if", "although"],
+    "correctAnswer": "c",
+    "wordMeaningBangla": "যদি",
+    "explanationBangla": "unless - যদি না, until - যে পর্যন্ত না, if - বৈজ্ঞানিক সত্য শর্তে 'যদি' অর্থে সঠিক, although - যদিও"
+  },
+  {
+    "id": 798,
+    "question": "They suffered much - tornado had hit their village.",
+    "targetWord": "since",
+    "category": "Conjunction & Linkers",
+    "examTag": "31st BCS",
+    "options": ["until", "since", "as if", "let alone"],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "যেহেতু / কারণ",
+    "explanationBangla": "until - পর্যন্ত, since - কারণ বা সময় প্রকাশে কনজাংশন, as if - যেন, let alone - ভাবাই যায় না"
+  },
+  {
+    "id": 799,
+    "question": "Which but is a preposition?",
+    "targetWord": "but",
+    "category": "Conjunction & Linkers",
+    "examTag": "41st BCS",
+    "options": [
+      "It is but right to admit our faults.",
+      "What can we do but sit and wait?",
+      "We tried hard, but did not succeed.",
+      "There is no one but likes him."
+    ],
+    "correctAnswer": "b",
+    "wordMeaningBangla": "ব্যতীত / ছাড়া",
+    "explanationBangla": "'What can we do but sit and wait' বাক্যে but অর্থ ছাড়া/ব্যতীত যা preposition"
+  },
+  {
+    "id": 800,
+    "question": "Which is the correct sentence given below?",
+    "targetWord": "neither ... nor",
+    "category": "Conjunction & Linkers",
+    "examTag": "Dental 17-18",
+    "options": [
+      "I eat neither mangoes nor bananas",
+      "Neither I eat mangoes nor I eat bananas",
+      "I eat mangoes neither bananas eat",
+      "I neither eat mangoes or bananas"
+    ],
+    "correctAnswer": "a",
+    "wordMeaningBangla": "আমও খাই না, কলাও খাই না",
+    "explanationBangla": "Correlative conjunction এ 'neither... nor' সমজাতীয় পার্টস অব স্পিচকে (mangoes nor bananas) যুক্ত করে"
+  }
+];

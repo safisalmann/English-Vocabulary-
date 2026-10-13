@@ -1,312 +1,121 @@
 import React from 'react';
-import { 
-  BookOpen, 
-  HelpCircle, 
-  Layers, 
-  FileJson, 
-  PlusCircle, 
-  Database,
-  CheckCircle2,
-  Bookmark
-} from 'lucide-react';
-import { DatasetMetadata } from '../types';
+import { Volume2, VolumeX, Flame, Bookmark, Sparkles, Wifi, WifiOff } from 'lucide-react';
+import { soundManager } from '../utils/audio';
 
 interface HeaderProps {
-  currentView: 'quiz' | 'bank' | 'flashcards' | 'json';
-  onViewChange: (view: 'quiz' | 'bank' | 'flashcards' | 'json') => void;
-  datasets: DatasetMetadata[];
-  selectedDatasetId: string;
-  onSelectDataset: (id: string) => void;
-  onOpenAddModal: () => void;
-  totalFilteredCount: number;
+  currentStreak: number;
+  bestStreak: number;
   bookmarkedCount: number;
+  overallAccuracy: number;
+  onOpenBookmarks: () => void;
+  soundEnabled: boolean;
+  onToggleSound: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  currentView,
-  onViewChange,
-  datasets,
-  selectedDatasetId,
-  onSelectDataset,
-  onOpenAddModal,
-  totalFilteredCount,
-  bookmarkedCount
+  currentStreak,
+  bookmarkedCount,
+  overallAccuracy,
+  onOpenBookmarks,
+  soundEnabled,
+  onToggleSound,
 }) => {
-  const currentDataset = datasets.find(d => d.id === selectedDatasetId);
+  const [isOnline, setIsOnline] = React.useState(navigator.onLine);
+
+  React.useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   return (
-    <>
-      {/* Sticky Top Header (Mobile & Desktop) */}
-      <header className="bg-[#16171A]/95 backdrop-blur-md border-b border-[#2A2B2F] sticky top-0 z-40 shadow-md">
-        <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
-          
-          {/* MOBILE VIEW (Compact 1-row header: ~54px height) */}
-          <div className="flex md:hidden items-center justify-between py-2.5 gap-2">
-            {/* Logo & App title */}
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#B38F24] flex items-center justify-center text-[#0F1012] shadow-xs shadow-[#D4AF37]/20 shrink-0">
-                <BookOpen className="w-4 h-4 stroke-[2.5]" />
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <h1 className="text-base font-serif font-bold text-white tracking-tight leading-none">VocabMCQ</h1>
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-black bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
-                    {selectedDatasetId === 'all' ? 'All' : selectedDatasetId}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Dataset selector & Add Set */}
+    <header className="sticky top-0 z-30 bg-slate-950/85 backdrop-blur-md border-b border-indigo-950/60 px-4 py-2.5 transition-all">
+      <div className="max-w-4xl mx-auto flex items-center justify-between">
+        {/* Brand */}
+        <div className="flex items-center gap-2.5">
+          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-violet-600 to-pink-500 shadow-lg shadow-indigo-500/25 ring-1 ring-white/20">
+            <Sparkles className="w-5 h-5 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-950 animate-pulse" />
+          </div>
+          <div>
             <div className="flex items-center gap-1.5">
-              <div className="relative inline-flex items-center">
-                <label htmlFor="mobile-dataset-select" className="sr-only">Select Dataset</label>
-                <div className="flex items-center gap-1 bg-[#1C1D21] border border-[#2A2B2F] rounded-lg px-2 py-1 text-xs font-bold text-[#E2E2E2]">
-                  <Database className="w-3 h-3 text-[#D4AF37] shrink-0" />
-                  <select
-                    id="mobile-dataset-select"
-                    value={selectedDatasetId}
-                    onChange={(e) => onSelectDataset(e.target.value)}
-                    className="bg-transparent border-0 text-[#E2E2E2] text-xs font-bold focus:ring-0 focus:outline-hidden cursor-pointer pr-1 max-w-[140px] truncate"
-                  >
-                    <option value="Spelling" className="bg-[#1C1D21] text-[#D4AF37] font-bold">Spelling Master (165)</option>
-                    <option value="Group Verbs" className="bg-[#1C1D21] text-amber-400 font-bold">Group Verbs (318)</option>
-                    <option value="1st A-H" className="bg-[#1C1D21] text-emerald-400 font-bold">1st: Preposition (A-H) (59)</option>
-                    <option value="2nd I-Z" className="bg-[#1C1D21] text-emerald-400 font-bold">2nd: Preposition (I-Z) (57)</option>
-                    <option value="all" className="bg-[#1C1D21] text-white">All Sets</option>
-                    {datasets.filter(d => d.id !== '1st A-H' && d.id !== '2nd I-Z' && d.id !== 'Spelling' && d.id !== 'Group Verbs').map((d) => (
-                      <option key={d.id} value={d.id} className="bg-[#1C1D21] text-white">
-                        {d.id} ({d.count} Qs)
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <button
-                id="mobile-btn-add-dataset"
-                onClick={onOpenAddModal}
-                className="p-1.5 text-xs font-bold text-[#E2E2E2] bg-[#1C1D21] hover:bg-[#23242A] border border-[#2A2B2F] hover:border-[#D4AF37]/50 rounded-lg transition-colors shadow-2xs"
-                title="Add / Import Set"
-                aria-label="Add or Import Dataset"
-              >
-                <PlusCircle className="w-4 h-4 text-[#D4AF37]" />
-              </button>
+              <span className="font-extrabold text-base tracking-tight bg-gradient-to-r from-white via-indigo-200 to-violet-300 bg-clip-text text-transparent">
+                PulseMCQ
+              </span>
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                1,214 Qs
+              </span>
             </div>
-          </div>
-
-          {/* DESKTOP VIEW (Standard rich row) */}
-          <div className="hidden md:flex flex-row items-center justify-between py-3.5 gap-3">
-            
-            {/* Logo & Dataset Badge */}
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#B38F24] flex items-center justify-center text-[#0F1012] shadow-sm shadow-[#D4AF37]/20">
-                <BookOpen className="w-5 h-5 stroke-[2.5]" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="text-xl font-serif font-bold text-white tracking-tight">VocabMCQ</h1>
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-bold bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
-                    {selectedDatasetId === 'all' ? 'All Sets' : selectedDatasetId}
-                  </span>
-                </div>
-                <p className="text-xs text-[#8E8F94] font-medium">
-                  Synonyms & Antonyms MCQ Engine • Bengali Translation Support
-                </p>
-              </div>
-            </div>
-
-            {/* Dataset Selector Dropdown & Add Dataset Button */}
-            <div className="flex items-center flex-wrap gap-2">
-              <div className="relative inline-flex items-center">
-                <label htmlFor="dataset-select" className="sr-only">Select Dataset</label>
-                <div className="flex items-center gap-1.5 bg-[#1C1D21] border border-[#2A2B2F] rounded-xl px-3 py-1.5 text-sm font-medium text-[#E2E2E2] focus-within:border-[#D4AF37]/60">
-                  <Database className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="text-xs text-[#8E8F94] uppercase tracking-wider font-semibold">Dataset:</span>
-                  <select
-                    id="dataset-select"
-                    value={selectedDatasetId}
-                    onChange={(e) => onSelectDataset(e.target.value)}
-                    className="bg-transparent border-0 text-[#E2E2E2] font-bold focus:ring-0 focus:outline-hidden cursor-pointer pr-4"
-                  >
-                    <optgroup label="Spelling & Phrasal Verbs" className="bg-[#16171A] text-[#D4AF37] font-bold">
-                      <option value="Spelling" className="bg-[#1C1D21] text-[#D4AF37] font-bold">
-                        Spelling Master (165 MCQs) • A-Z
-                      </option>
-                      <option value="Group Verbs" className="bg-[#1C1D21] text-amber-400 font-bold">
-                        Group Verbs (318 MCQs) • A-Z
-                      </option>
-                    </optgroup>
-                    <optgroup label="Appropriate Prepositions" className="bg-[#16171A] text-emerald-400 font-bold">
-                      <option value="1st A-H" className="bg-[#1C1D21] text-emerald-400 font-bold">
-                        1st Dataset: Preposition (A-H) (59 MCQs)
-                      </option>
-                      <option value="2nd I-Z" className="bg-[#1C1D21] text-emerald-400 font-bold">
-                        2nd Dataset: Preposition (I-Z) (57 MCQs)
-                      </option>
-                    </optgroup>
-                    <optgroup label="Vocabulary Sets (Synonyms & Antonyms)" className="bg-[#16171A] text-[#8E8F94]">
-                      <option value="all" className="bg-[#1C1D21] text-white">All Datasets ({datasets.reduce((acc, d) => acc + d.count, 0)} MCQs)</option>
-                      {datasets.filter(d => d.id !== '1st A-H' && d.id !== '2nd I-Z' && d.id !== 'Spelling' && d.id !== 'Group Verbs').map((d) => (
-                        <option key={d.id} value={d.id} className="bg-[#1C1D21] text-white">
-                          {d.id} {d.count > 0 ? `(${d.count} MCQs)` : '(Ready for Data)'}
-                        </option>
-                      ))}
-                    </optgroup>
-                  </select>
-                </div>
-              </div>
-
-              <button
-                id="btn-add-dataset"
-                onClick={onOpenAddModal}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#E2E2E2] bg-[#1C1D21] hover:bg-[#23242A] border border-[#2A2B2F] hover:border-[#D4AF37]/50 rounded-xl transition-colors shadow-2xs cursor-pointer"
-                title="Add or import questions for sets"
-              >
-                <PlusCircle className="w-4 h-4 text-[#D4AF37]" />
-                <span>+ Add / Import Set</span>
-              </button>
-            </div>
-
-            {/* Desktop Navigation Tabs */}
-            <nav className="flex items-center gap-1 bg-[#121316] p-1 rounded-xl border border-[#2A2B2F]" aria-label="Main Navigation">
-              <button
-                id="nav-quiz-mode"
-                onClick={() => onViewChange('quiz')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  currentView === 'quiz'
-                    ? 'bg-[#D4AF37] text-[#0F1012] shadow-sm shadow-[#D4AF37]/20 font-black'
-                    : 'text-[#8E8F94] hover:text-white hover:bg-[#1C1D21]'
-                }`}
-              >
-                <HelpCircle className="w-4 h-4" />
-                <span>Quiz Mode</span>
-              </button>
-
-              <button
-                id="nav-question-bank"
-                onClick={() => onViewChange('bank')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  currentView === 'bank'
-                    ? 'bg-[#D4AF37] text-[#0F1012] shadow-sm shadow-[#D4AF37]/20 font-black'
-                    : 'text-[#8E8F94] hover:text-white hover:bg-[#1C1D21]'
-                }`}
-              >
-                <CheckCircle2 className="w-4 h-4" />
-                <span>Questions ({totalFilteredCount})</span>
-              </button>
-
-              <button
-                id="nav-flashcards"
-                onClick={() => onViewChange('flashcards')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  currentView === 'flashcards'
-                    ? 'bg-[#D4AF37] text-[#0F1012] shadow-sm shadow-[#D4AF37]/20 font-black'
-                    : 'text-[#8E8F94] hover:text-white hover:bg-[#1C1D21]'
-                }`}
-              >
-                <Layers className="w-4 h-4" />
-                <span>Flashcards</span>
-              </button>
-
-              <button
-                id="nav-json-view"
-                onClick={() => onViewChange('json')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  currentView === 'json'
-                    ? 'bg-[#D4AF37] text-[#0F1012] shadow-sm shadow-[#D4AF37]/20 font-black'
-                    : 'text-[#8E8F94] hover:text-white hover:bg-[#1C1D21]'
-                }`}
-              >
-                <FileJson className="w-4 h-4" />
-                <span>JSON View</span>
-              </button>
-            </nav>
-
-          </div>
-        </div>
-      </header>
-
-      {/* MOBILE STICKY BOTTOM NAVIGATION BAR (Never moves when scrolling on mobile) */}
-      <nav 
-        id="mobile-bottom-nav"
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#141518]/95 backdrop-blur-xl border-t border-[#2A2B2F] px-2 py-1.5 shadow-2xl pb-safe"
-        aria-label="Mobile Navigation"
-      >
-        <div className="grid grid-cols-4 gap-1 max-w-md mx-auto">
-          <button
-            id="mobile-nav-quiz"
-            onClick={() => {
-              onViewChange('quiz');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all ${
-              currentView === 'quiz'
-                ? 'bg-[#D4AF37]/15 text-[#D4AF37] font-black'
-                : 'text-[#8E8F94] hover:text-[#E2E2E2]'
-            }`}
-          >
-            <HelpCircle className={`w-5 h-5 mb-0.5 ${currentView === 'quiz' ? 'text-[#D4AF37]' : ''}`} />
-            <span className="text-[10px] tracking-tight">Quiz</span>
-          </button>
-
-          <button
-            id="mobile-nav-bank"
-            onClick={() => {
-              onViewChange('bank');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl relative transition-all ${
-              currentView === 'bank'
-                ? 'bg-[#D4AF37]/15 text-[#D4AF37] font-black'
-                : 'text-[#8E8F94] hover:text-[#E2E2E2]'
-            }`}
-          >
-            <div className="relative">
-              <CheckCircle2 className={`w-5 h-5 mb-0.5 ${currentView === 'bank' ? 'text-[#D4AF37]' : ''}`} />
-              {totalFilteredCount > 0 && (
-                <span className="absolute -top-1 -right-2 bg-[#D4AF37] text-[#0F1012] text-[9px] font-black rounded-full px-1 min-w-[14px] text-center leading-tight">
-                  {totalFilteredCount > 99 ? '99+' : totalFilteredCount}
+            <div className="flex items-center gap-1 text-[11px] text-slate-400">
+              {isOnline ? (
+                <span className="flex items-center gap-0.5 text-emerald-400">
+                  <Wifi className="w-3 h-3 inline" /> Offline-Ready
+                </span>
+              ) : (
+                <span className="flex items-center gap-0.5 text-amber-400">
+                  <WifiOff className="w-3 h-3 inline" /> Offline Mode
                 </span>
               )}
             </div>
-            <span className="text-[10px] tracking-tight">Questions</span>
-          </button>
+          </div>
+        </div>
 
-          <button
-            id="mobile-nav-flashcards"
-            onClick={() => {
-              onViewChange('flashcards');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all ${
-              currentView === 'flashcards'
-                ? 'bg-[#D4AF37]/15 text-[#D4AF37] font-black'
-                : 'text-[#8E8F94] hover:text-[#E2E2E2]'
+        {/* Real-time stats badges */}
+        <div className="flex items-center gap-2">
+          {/* Streak indicator */}
+          <div
+            title={`Current Streak: ${currentStreak}`}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all ${
+              currentStreak > 0
+                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm shadow-amber-500/20 animate-pulse'
+                : 'bg-slate-800/80 text-slate-400 border border-slate-700/50'
             }`}
           >
-            <Layers className={`w-5 h-5 mb-0.5 ${currentView === 'flashcards' ? 'text-[#D4AF37]' : ''}`} />
-            <span className="text-[10px] tracking-tight">Flashcards</span>
+            <Flame className={`w-3.5 h-3.5 ${currentStreak > 0 ? 'text-amber-400 fill-amber-400' : 'text-slate-500'}`} />
+            <span>{currentStreak}</span>
+          </div>
+
+          {/* Accuracy pill */}
+          <div
+            title="Overall Accuracy"
+            className="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full bg-violet-500/15 text-violet-300 border border-violet-500/30 text-xs font-semibold"
+          >
+            <span>{overallAccuracy}% Acc</span>
+          </div>
+
+          {/* Bookmarks shortcut */}
+          <button
+            onClick={onOpenBookmarks}
+            title="View Bookmarked Questions"
+            className="relative flex items-center justify-center p-2 rounded-xl bg-slate-800/70 hover:bg-slate-750 text-slate-300 hover:text-amber-300 transition-colors border border-slate-700/50 active:scale-95"
+          >
+            <Bookmark className="w-4 h-4" />
+            {bookmarkedCount > 0 && (
+              <span className="absolute -top-1 -right-1 min-w-[16px] h-4 px-1 rounded-full bg-amber-500 text-slate-950 text-[10px] font-black flex items-center justify-center">
+                {bookmarkedCount}
+              </span>
+            )}
           </button>
 
+          {/* Sound toggle */}
           <button
-            id="mobile-nav-json"
-            onClick={() => {
-              onViewChange('json');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all ${
-              currentView === 'json'
-                ? 'bg-[#D4AF37]/15 text-[#D4AF37] font-black'
-                : 'text-[#8E8F94] hover:text-[#E2E2E2]'
-            }`}
+            onClick={onToggleSound}
+            title={soundEnabled ? 'Mute Sounds' : 'Unmute Sounds'}
+            className="flex items-center justify-center p-2 rounded-xl bg-slate-800/70 hover:bg-slate-750 text-slate-300 hover:text-indigo-300 transition-colors border border-slate-700/50 active:scale-95"
           >
-            <FileJson className={`w-5 h-5 mb-0.5 ${currentView === 'json' ? 'text-[#D4AF37]' : ''}`} />
-            <span className="text-[10px] tracking-tight">JSON</span>
+            {soundEnabled ? (
+              <Volume2 className="w-4 h-4 text-indigo-400" />
+            ) : (
+              <VolumeX className="w-4 h-4 text-slate-500" />
+            )}
           </button>
         </div>
-      </nav>
-    </>
+      </div>
+    </header>
   );
 };
-
