@@ -4,12 +4,8 @@ import { BATCH_3 } from './questionsBatch3';
 import { BATCH_4 } from './questionsBatch4';
 import { BATCH_5 } from './questionsBatch5';
 import { BATCH_6 } from './questionsBatch6';
-import { BATCH_7 } from './questionsBatch7';
 import { BATCH_8 } from './questionsBatch8';
 import { BATCH_9 } from './questionsBatch9';
-import { BATCH_10 } from './questionsBatch10';
-import { BATCH_11 } from './questionsBatch11';
-import { BATCH_12 } from './questionsBatch12';
 import { BATCH_13 } from './questionsBatch13';
 import { BATCH_14 } from './questionsBatch14';
 import { BATCH_15 } from './questionsBatch15';
@@ -59,17 +55,13 @@ export const ALL_RAW_QUESTIONS: RawMCQ[] = [
   ...BATCH_4,
   ...BATCH_5,
   ...BATCH_6,
-  ...BATCH_7,
   ...BATCH_8,
   ...BATCH_9,
-  ...BATCH_10,
-  ...BATCH_11,
-  ...BATCH_12,
   ...BATCH_13,
   ...BATCH_14,
   ...BATCH_15,
   ...BATCH_16,
-];
+].sort((a, b) => a.id - b.id);
 
 // Clean category mapping for better UI filter badges
 export function resolveCategoryGroup(category?: string, type?: string): { category: string; categoryGroup: string } {
