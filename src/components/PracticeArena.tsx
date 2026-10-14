@@ -27,6 +27,7 @@ interface PracticeArenaProps {
   setUserProgress: React.Dispatch<React.SetStateAction<UserProgressData>>;
   initialFilterCategory?: string | null;
   onClearCategoryFilter?: () => void;
+  targetQuestionNumericId?: number | null;
 }
 
 export const PracticeArena: React.FC<PracticeArenaProps> = ({
@@ -35,6 +36,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
   setUserProgress,
   initialFilterCategory,
   onClearCategoryFilter,
+  targetQuestionNumericId,
 }) => {
   // Category filter state
   const [selectedCategory, setSelectedCategory] = React.useState<string>(
@@ -43,7 +45,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
 
   // Status filter state
   const [statusFilter, setStatusFilter] = React.useState<
-    'all' | 'unattempted' | 'mistakes' | 'bookmarked'
+    'all' | 'core265' | 'unattempted' | 'mistakes' | 'bookmarked'
   >('all');
 
   // Search query in current pool
@@ -75,9 +77,28 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
     }
   }, [initialFilterCategory]);
 
+  // Jump to specific question if requested from Explorer
+  React.useEffect(() => {
+    if (targetQuestionNumericId) {
+      setSelectedCategory('All');
+      setStatusFilter('all');
+      setSearchQuery('');
+      const targetIdx = questions.findIndex((q) => q.numericId === targetQuestionNumericId);
+      if (targetIdx !== -1) {
+        setCurrentIndex(targetIdx);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  }, [targetQuestionNumericId, questions]);
+
   // Compute filtered questions
   const filteredQuestions = React.useMemo(() => {
     return questions.filter((q) => {
+      // Core 265 question set filter
+      if (statusFilter === 'core265' && q.numericId > 265) {
+        return false;
+      }
+
       // Category match
       if (selectedCategory !== 'All' && q.category !== selectedCategory) {
         return false;
@@ -162,21 +183,63 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
     setUserProgress(next);
   };
 
+  const touchStartXRef = React.useRef<number | null>(null);
+  const touchStartYRef = React.useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
+    const diffX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const diffY = e.changedTouches[0].clientY - touchStartYRef.current;
+    // Horizontal swipe threshold 45px and dominant horizontal gesture
+    if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY) * 1.3) {
+      if (diffX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handlePrev = () => {
+    if (filteredQuestions.length === 0) return;
+    soundManager.playNav();
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
+    } else {
+      // Loop to last question
+      setCurrentIndex(filteredQuestions.length - 1);
     }
+    scrollToTop();
   };
 
   const handleNext = () => {
+    if (filteredQuestions.length === 0) return;
+    soundManager.playNav();
     if (currentIndex < filteredQuestions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
+    } else {
+      // Loop back to start
+      setCurrentIndex(0);
     }
+    scrollToTop();
   };
 
   const handleJumpTo = (index: number) => {
+    soundManager.playNav();
     setCurrentIndex(index);
     setIsPaletteOpen(false);
+    scrollToTop();
   };
 
   // Keyboard navigation support
@@ -185,8 +248,12 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
         return;
       }
-      if (e.key === 'ArrowRight') handleNext();
-      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N') {
+        handleNext();
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'p' || e.key === 'P') {
+        handlePrev();
+      }
       if (['a', 'b', 'c', 'd', 'e'].includes(e.key.toLowerCase()) && currentQ) {
         handleSelectOption(e.key.toLowerCase());
       }
@@ -224,10 +291,11 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
           </button>
         </div>
 
-        {/* Quick status tabs: All, Unattempted, Mistakes, Bookmarked */}
+        {/* Quick status tabs: All, Core 265, Unattempted, Mistakes, Bookmarked */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
           {[
-            { id: 'all', label: 'All' },
+            { id: 'all', label: `All (${questions.length})` },
+            { id: 'core265', label: '⭐ Core 265 Set' },
             { id: 'unattempted', label: 'Unattempted' },
             { id: 'mistakes', label: 'Mistakes' },
             { id: 'bookmarked', label: 'Starred' },
@@ -331,7 +399,11 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
           </button>
         </div>
       ) : currentQ ? (
-        <div className="space-y-4">
+        <div
+          className="space-y-4 touch-pan-y"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {/* Question Card Box */}
           <div className="bg-slate-900/90 border border-slate-800/90 rounded-3xl p-4 sm:p-5 shadow-xl relative overflow-hidden backdrop-blur-sm">
             {/* Top metadata row */}
@@ -502,6 +574,21 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
                     )}
                   </div>
                 )}
+
+                {/* Instant One-Tap Next Question in Explanation */}
+                <div className="pt-1">
+                  <button
+                    onClick={handleNext}
+                    className="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/25 active:scale-[0.98] transition-all hover:opacity-95"
+                  >
+                    <span>{currentIndex === filteredQuestions.length - 1 ? 'Start Over from Q1' : 'Next Question'}</span>
+                    {currentIndex === filteredQuestions.length - 1 ? (
+                      <RotateCcw className="w-4 h-4" />
+                    ) : (
+                      <ChevronRight className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
               </div>
             )}
 
@@ -520,31 +607,46 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
           </div>
 
           {/* Bottom Card Navigation Controls */}
-          <div className="flex items-center justify-between gap-2 px-1">
+          <div className="flex items-center justify-between gap-2 px-1 pt-1">
             <button
               onClick={handlePrev}
-              disabled={currentIndex === 0}
-              className="flex items-center gap-1 px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95 shadow-md"
+              title="Previous Question (Left Arrow)"
+              className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-slate-900 border border-slate-800 text-xs sm:text-sm font-bold text-slate-200 hover:text-white hover:border-slate-700 transition-all active:scale-95 shadow-md min-h-[48px]"
             >
-              <ChevronLeft className="w-4 h-4" />
-              <span>Previous</span>
+              <ChevronLeft className="w-4 h-4 shrink-0 text-slate-400" />
+              <span>{currentIndex === 0 ? 'Last Q' : 'Previous'}</span>
             </button>
 
-            {/* Question status counter */}
-            <div className="text-xs text-slate-400 font-medium">
-              <span>
+            {/* Question status counter with quick palette modal trigger */}
+            <button
+              onClick={() => setIsPaletteOpen(true)}
+              className="flex flex-col items-center justify-center px-3.5 py-1.5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition-colors min-h-[48px]"
+            >
+              <span className="text-xs font-black text-indigo-400">
                 {currentIndex + 1} / {filteredQuestions.length}
               </span>
-            </div>
+              <span className="text-[10px] text-slate-400 flex items-center gap-0.5">
+                <Grid className="w-3 h-3 text-violet-400" /> Grid
+              </span>
+            </button>
 
             <button
               onClick={handleNext}
-              disabled={currentIndex === filteredQuestions.length - 1}
-              className="flex items-center gap-1 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 text-xs font-bold text-white hover:from-indigo-500 hover:to-violet-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95 shadow-lg shadow-indigo-600/30"
+              title="Next Question (Right Arrow or Enter)"
+              className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 text-xs sm:text-sm font-extrabold text-white hover:from-indigo-500 hover:to-violet-500 transition-all active:scale-95 shadow-lg shadow-indigo-600/30 min-h-[48px]"
             >
-              <span>Next</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>{currentIndex === filteredQuestions.length - 1 ? 'Restart Set' : 'Next'}</span>
+              {currentIndex === filteredQuestions.length - 1 ? (
+                <RotateCcw className="w-4 h-4 shrink-0" />
+              ) : (
+                <ChevronRight className="w-4 h-4 shrink-0" />
+              )}
             </button>
+          </div>
+
+          {/* Touch swipe navigation hint */}
+          <div className="text-center text-[11px] text-slate-500 font-medium py-0.5 select-none flex items-center justify-center gap-1.5">
+            <span>👈 Swipe left for Next • Swipe right for Prev 👉</span>
           </div>
         </div>
       ) : null}

@@ -14,6 +14,7 @@ import {
   Zap,
   ArrowRight,
   Sparkles,
+  AlertCircle,
 } from 'lucide-react';
 import { NormalizedMCQ, CATEGORIES } from '../data/questionsData';
 import {
@@ -40,10 +41,10 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
   // Phase: 'setup' | 'active' | 'result'
   const [phase, setPhase] = React.useState<'setup' | 'active' | 'result'>('setup');
 
-  // Exam Setup options
-  const [questionCount, setQuestionCount] = React.useState<number>(15);
+  // Exam Setup options - Default 20 MCQ Mock Test
+  const [questionCount, setQuestionCount] = React.useState<number>(20);
   const [selectedTopic, setSelectedTopic] = React.useState<string>('All');
-  const [timeLimitMinutes, setTimeLimitMinutes] = React.useState<number>(10);
+  const [timeLimitMinutes, setTimeLimitMinutes] = React.useState<number>(15);
 
   // Active Exam State
   const [examQuestions, setExamQuestions] = React.useState<NormalizedMCQ[]>([]);
@@ -61,7 +62,9 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
   const handleStartExam = () => {
     // Filter questions
     let pool = allQuestions;
-    if (selectedTopic !== 'All') {
+    if (selectedTopic === 'core265') {
+      pool = pool.filter((q) => q.numericId <= 265);
+    } else if (selectedTopic !== 'All') {
       pool = pool.filter((q) => q.category === selectedTopic);
     }
 
@@ -196,7 +199,90 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
+  const [showSubmitModal, setShowSubmitModal] = React.useState<boolean>(false);
+
+  const touchStartXRef = React.useRef<number | null>(null);
+  const touchStartYRef = React.useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
+    const diffX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const diffY = e.changedTouches[0].clientY - touchStartYRef.current;
+    if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY) * 1.3) {
+      if (diffX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePrev = () => {
+    if (examQuestions.length === 0) return;
+    soundManager.playNav();
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    } else {
+      setCurrentIndex(examQuestions.length - 1);
+    }
+    scrollToTop();
+  };
+
+  const handleNext = () => {
+    if (examQuestions.length === 0) return;
+    soundManager.playNav();
+    if (currentIndex < examQuestions.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    } else {
+      setCurrentIndex(0);
+    }
+    scrollToTop();
+  };
+
+  const handleJumpTo = (index: number) => {
+    soundManager.playNav();
+    setCurrentIndex(index);
+    setIsPaletteOpen(false);
+    scrollToTop();
+  };
+
   const currentQ = examQuestions[currentIndex];
+
+  // Keyboard navigation support for active exam
+  React.useEffect(() => {
+    if (phase !== 'active') return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+        return;
+      }
+      if (e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N') {
+        handleNext();
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'p' || e.key === 'P') {
+        handlePrev();
+      }
+      if (['a', 'b', 'c', 'd', 'e'].includes(e.key.toLowerCase()) && currentQ) {
+        handleSelectOption(currentQ.id, e.key.toLowerCase());
+      }
+      if (['1', '2', '3', '4'].includes(e.key) && currentQ) {
+        const keyMap: Record<string, string> = { '1': 'a', '2': 'b', '3': 'c', '4': 'd' };
+        handleSelectOption(currentQ.id, keyMap[e.key]);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [phase, currentIndex, examQuestions.length, currentQ]);
 
   // -------------------------------------------------------------
   // PHASE: SETUP SCREEN
@@ -230,7 +316,7 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
               <span className="text-indigo-400 font-extrabold">{questionCount} Qs</span>
             </label>
             <div className="grid grid-cols-4 gap-2">
-              {[10, 15, 25, 50].map((count) => (
+              {[20, 10, 30, 50].map((count) => (
                 <button
                   key={count}
                   onClick={() => {
@@ -243,7 +329,7 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
                       : 'bg-slate-800/80 text-slate-300 hover:bg-slate-750 border border-slate-700/50'
                   }`}
                 >
-                  {count} Qs
+                  {count} Qs {count === 20 ? '⭐' : ''}
                 </button>
               ))}
             </div>
@@ -257,12 +343,16 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
               onChange={(e) => setSelectedTopic(e.target.value)}
               className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              <option value="All">Mixed All Topics (1,214 Questions)</option>
-              {CATEGORIES.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
+              <option value="All">Mixed All Topics ({allQuestions.length} Questions)</option>
+              <option value="core265">⭐ Core 265 Question Bank (Q1 - Q265)</option>
+              {CATEGORIES.map((cat) => {
+                const count = allQuestions.filter((q) => q.category === cat).length;
+                return (
+                  <option key={cat} value={cat}>
+                    {cat} ({count} Qs)
+                  </option>
+                );
+              })}
             </select>
           </div>
 
@@ -312,7 +402,11 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
     const isUrgentTime = timeRemainingSeconds < 60;
 
     return (
-      <div className="max-w-xl mx-auto px-3.5 pt-2 pb-24 space-y-3">
+      <div
+        className="max-w-xl mx-auto px-3.5 pt-2 pb-24 space-y-3 touch-pan-y"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Top Exam Status Bar */}
         <div className="flex items-center justify-between gap-2 p-3 rounded-2xl bg-slate-900 border border-slate-800 shadow-md">
           {/* Question Counter */}
@@ -414,37 +508,111 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
           </div>
         </div>
 
-        {/* Bottom Navigation */}
+        {/* Bottom Navigation Controls */}
         <div className="flex items-center justify-between gap-2 pt-1">
           <button
-            onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
-            disabled={currentIndex === 0}
-            className="flex items-center gap-1 px-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-300 disabled:opacity-40"
+            onClick={handlePrev}
+            title="Previous Question (Left Arrow)"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-slate-900 border border-slate-800 text-xs sm:text-sm font-bold text-slate-200 hover:text-white hover:border-slate-700 transition-all active:scale-95 shadow-md min-h-[48px]"
           >
-            <ChevronLeft className="w-4 h-4" />
-            <span>Prev</span>
+            <ChevronLeft className="w-4 h-4 shrink-0 text-slate-400" />
+            <span>{currentIndex === 0 ? 'Last Q' : 'Prev'}</span>
           </button>
 
-          {currentIndex === examQuestions.length - 1 ? (
-            <button
-              onClick={handleSubmitExam}
-              className="flex items-center gap-1.5 px-6 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-xs font-black text-white shadow-lg shadow-emerald-600/30 hover:opacity-95 active:scale-95"
-            >
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Submit Exam</span>
-            </button>
-          ) : (
-            <button
-              onClick={() =>
-                setCurrentIndex((prev) => Math.min(examQuestions.length - 1, prev + 1))
-              }
-              className="flex items-center gap-1 px-5 py-2.5 rounded-2xl bg-indigo-600 text-xs font-bold text-white hover:bg-indigo-500 active:scale-95"
-            >
-              <span>Next</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          )}
+          {/* Question overview indicator and trigger */}
+          <button
+            onClick={() => setIsPaletteOpen(true)}
+            className="flex flex-col items-center justify-center px-3.5 py-1.5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition-colors min-h-[48px]"
+          >
+            <span className="text-xs font-black text-indigo-400">
+              {currentIndex + 1} / {examQuestions.length}
+            </span>
+            <span className="text-[10px] text-slate-400 flex items-center gap-0.5">
+              <Grid className="w-3 h-3 text-violet-400" /> Overview
+            </span>
+          </button>
+
+          <button
+            onClick={handleNext}
+            title="Next Question (Right Arrow)"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 text-xs sm:text-sm font-extrabold text-white hover:from-indigo-500 hover:to-violet-500 transition-all active:scale-95 shadow-lg shadow-indigo-600/30 min-h-[48px]"
+          >
+            <span>{currentIndex === examQuestions.length - 1 ? 'Back to Q1' : 'Next'}</span>
+            {currentIndex === examQuestions.length - 1 ? (
+              <RotateCcw className="w-4 h-4 shrink-0" />
+            ) : (
+              <ChevronRight className="w-4 h-4 shrink-0" />
+            )}
+          </button>
         </div>
+
+        {/* Dedicated Submit Exam Action Button */}
+        <div className="pt-1">
+          <button
+            onClick={() => {
+              if (answeredCount < examQuestions.length) {
+                setShowSubmitModal(true);
+              } else {
+                handleSubmitExam();
+              }
+            }}
+            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 text-xs sm:text-sm font-black text-white shadow-xl shadow-emerald-600/25 hover:opacity-95 active:scale-95 transition-all min-h-[48px]"
+          >
+            <CheckCircle2 className="w-4 h-4" />
+            <span>Submit Exam ({answeredCount}/{examQuestions.length} Answered)</span>
+          </button>
+        </div>
+
+        {/* Mobile touch swipe hint */}
+        <div className="text-center text-[11px] text-slate-500 font-medium py-0.5 select-none flex items-center justify-center gap-1.5">
+          <span>👈 Swipe left for Next • Swipe right for Prev 👉</span>
+        </div>
+
+        {/* Submit Confirmation Modal */}
+        {showSubmitModal && (
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
+            <div className="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-3xl p-5 space-y-4 shadow-2xl">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
+                  <AlertCircle className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-extrabold text-white">Submit Exam?</h3>
+                  <p className="text-xs text-slate-400">
+                    You answered <span className="text-indigo-400 font-bold">{answeredCount}</span> of <span className="text-white font-bold">{examQuestions.length}</span> questions.
+                  </p>
+                </div>
+              </div>
+              <p className="text-xs text-amber-200/90 bg-amber-950/30 p-3 rounded-xl border border-amber-800/40 leading-relaxed">
+                ⚠️ You have <strong className="text-white">{examQuestions.length - answeredCount}</strong> unanswered questions. Unanswered questions will be scored as 0 marks.
+              </p>
+              <div className="flex items-center gap-2 pt-1">
+                <button
+                  onClick={() => {
+                    setShowSubmitModal(false);
+                    const firstUnansweredIdx = examQuestions.findIndex((q) => !selectedAnswers[q.id]);
+                    if (firstUnansweredIdx !== -1) {
+                      setCurrentIndex(firstUnansweredIdx);
+                      scrollToTop();
+                    }
+                  }}
+                  className="flex-1 py-3 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs font-bold transition-all"
+                >
+                  Review Missing
+                </button>
+                <button
+                  onClick={() => {
+                    setShowSubmitModal(false);
+                    handleSubmitExam();
+                  }}
+                  className="flex-1 py-3 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 text-white text-xs font-black shadow-lg shadow-emerald-600/30 transition-all"
+                >
+                  Yes, Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* In-exam question grid palette */}
         {isPaletteOpen && (

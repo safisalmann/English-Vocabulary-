@@ -2,7 +2,7 @@ import { RawMCQ } from './questionsData';
 
 export const BATCH_7: RawMCQ[] = [
   {
-    "id": 401,
+    "id": 1265,
     "question": "The word 'dilly-dally' means -",
     "targetWord": "dilly-dally",
     "type": "meaning",
@@ -13,7 +13,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "delude - প্রতারণা করা, repeat - পুনরাবৃত্তি, waste time - সময় অপচয় করা, wait - অধৈর্য অপেক্ষা"
   },
   {
-    "id": 402,
+    "id": 1266,
     "question": "What is the synonym of 'Delude'?",
     "targetWord": "delude",
     "type": "synonym",
@@ -24,7 +24,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Demand - দাবি করা, Permit - অনুমতি দেওয়া, Aggravate - উত্তেজিত করা, Deceive - প্রতারণা করা"
   },
   {
-    "id": 403,
+    "id": 1267,
     "question": "The experiment was a resounding success. 'Resounding' means-",
     "targetWord": "resounding",
     "type": "meaning",
@@ -35,7 +35,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "moderate - মাঝারি, somewhat - কিছুটা, huge - বিশাল/বিপুল, quick - দ্রুত"
   },
   {
-    "id": 404,
+    "id": 1268,
     "question": "Synonym of 'vend' is-",
     "targetWord": "vend",
     "type": "synonym",
@@ -46,7 +46,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Buy - কেনা, Lose - হারানো, Create - সৃষ্টি করা, Sell - বিক্রি করা"
   },
   {
-    "id": 405,
+    "id": 1269,
     "question": "The synonym of 'commemorate' is-",
     "targetWord": "commemorate",
     "type": "synonym",
@@ -57,7 +57,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "overlook - উপেক্ষা করা, memorize - মুখস্থ করা, observe - উদযাপন/পালন করা, assert - দাবি করা"
   },
   {
-    "id": 406,
+    "id": 1270,
     "question": "What is the synonym of the word 'abscond'?",
     "targetWord": "abscond",
     "type": "synonym",
@@ -68,7 +68,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "detest - চরম ঘৃণা করা, reduce - কমানো, absorb - শুষে নেওয়া, flee - পলায়ন করা"
   },
   {
-    "id": 407,
+    "id": 1271,
     "question": "It was an indiscreet action on their part. 'Indiscreet' means:",
     "targetWord": "indiscreet",
     "type": "synonym",
@@ -79,7 +79,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "unfair - অন্যায়, secret - গোপন, dishonest - অসৎ, imprudent - অবিচক্ষণ/হঠকারী"
   },
   {
-    "id": 408,
+    "id": 1272,
     "question": "When someone is 'introspective', she/he is -",
     "targetWord": "introspective",
     "type": "meaning",
@@ -90,7 +90,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "selfish - স্বার্থপর, thoughtful - চিন্তাশীল, rude - রূঢ়, reserved - চাপা স্বভাবের"
   },
   {
-    "id": 409,
+    "id": 1273,
     "question": "What is the synonym of 'sycophant'?",
     "targetWord": "sycophant",
     "type": "synonym",
@@ -101,7 +101,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Flatterer - চাটুকার, Phony - ভুয়া, Dishonour - অসম্মান, Dignified person - মর্যাদাবান ব্যক্তি"
   },
   {
-    "id": 410,
+    "id": 1274,
     "question": "Synonym for 'Temerity' is --",
     "targetWord": "temerity",
     "type": "synonym",
@@ -112,7 +112,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Sobriety - সংযম, Insolence - ঔদ্ধত্য, Propriety - শোভনতা, Lousy - খুব বাজে"
   },
   {
-    "id": 411,
+    "id": 1275,
     "question": "What is the meaning of 'economical'?",
     "targetWord": "economical",
     "type": "meaning",
@@ -123,7 +123,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "financial - আর্থিক, frugal - মিতব্যয়ী, prodigal - অপব্যয়ী, miserly - কৃপণ"
   },
   {
-    "id": 412,
+    "id": 1276,
     "question": "'Turbid' is most similar in meaning to -",
     "targetWord": "turbid",
     "type": "synonym",
@@ -134,7 +134,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "shiny - উজ্জ্বল, murky - ঘোলাটে/অন্ধকার, pellucid - স্বচ্ছ, agitated - বিক্ষুব্ধ"
   },
   {
-    "id": 413,
+    "id": 1277,
     "question": "Synonym of the word 'annoy' is -",
     "targetWord": "annoy",
     "type": "synonym",
@@ -145,7 +145,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "irritate - বিরক্ত করা, invest - বিনিয়োগ করা, fight - লড়াই করা, frighten - আতঙ্কিত করা"
   },
   {
-    "id": 414,
+    "id": 1278,
     "question": "'Kinship' means -",
     "targetWord": "kinship",
     "type": "meaning",
@@ -156,7 +156,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "telephone box - ফোন বুথ, bed - বিছানা, blood relation - রক্তের সম্পর্ক, strange - অদ্ভুত"
   },
   {
-    "id": 415,
+    "id": 1279,
     "question": "The synonym of 'regale' is -",
     "targetWord": "regale",
     "type": "synonym",
@@ -167,7 +167,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "bore - বিরক্ত করা, tire - ক্লান্ত করা, annoy - রাগানো, amuse - আনন্দ দেওয়া"
   },
   {
-    "id": 416,
+    "id": 1280,
     "question": "'Incredibly' means -",
     "targetWord": "incredibly",
     "type": "meaning",
@@ -178,7 +178,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "truly - প্রকৃতপক্ষে, slowly - ধীরে, undoubtedly - নিঃসন্দেহে, unbelievably - অবিশ্বাস্যভাবে"
   },
   {
-    "id": 417,
+    "id": 1281,
     "question": "The synonym of 'zealous' is-",
     "targetWord": "zealous",
     "type": "synonym",
@@ -189,7 +189,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "ardent - অতি উৎসাহী, envious - পরশ্রীকাতর, indifferent - উদাসীন, apathetic - অনীহ"
   },
   {
-    "id": 418,
+    "id": 1282,
     "question": "Death is the destiny of all. 'destiny' is-",
     "targetWord": "destiny",
     "type": "synonym",
@@ -200,7 +200,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "ill luck - দুর্ভাগ্য, ultimate - চূড়ান্ত, fate - ভাগ্য/নিয়তি, misfortune - দুর্ভাগ্য"
   },
   {
-    "id": 419,
+    "id": 1283,
     "question": "Submerge (synonym)",
     "targetWord": "submerge",
     "type": "synonym",
@@ -211,7 +211,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "walk on - হাঁটা, appear - দৃশ্যমান হওয়া, sink - ডুবে যাওয়া/নিমজ্জিত, join - যুক্ত করা"
   },
   {
-    "id": 420,
+    "id": 1284,
     "question": "The synonym of the word 'gruesome'?",
     "targetWord": "gruesome",
     "type": "synonym",
@@ -222,7 +222,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "dreadful - ভয়ানক, frightful - ভীতিকর, horrific - ভয়াবহ, All - সবগুলোই সমার্থক"
   },
   {
-    "id": 421,
+    "id": 1285,
     "question": "Choose the correct synonym of the word 'Deride'.",
     "targetWord": "deride",
     "type": "synonym",
@@ -233,7 +233,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "To jeer - উপহাস/টিটকারি, Demolish - ধ্বংস করা, Deck - সাজানো, Dent - দাগ ফেলা"
   },
   {
-    "id": 422,
+    "id": 1286,
     "question": "Synonym of Vituperate is",
     "targetWord": "vituperate",
     "type": "synonym",
@@ -244,7 +244,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Abuse - গালিগালাজ করা, Appreciate - প্রশংসা, Encourage - উৎসাহিত করা, Copy - নকল করা"
   },
   {
-    "id": 423,
+    "id": 1287,
     "question": "The word 'imbibe' means-",
     "targetWord": "imbibe",
     "type": "meaning",
@@ -255,7 +255,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "learn - শেখা, think - ভাবা, drink - পান করা/শুষে নেওয়া, acquire - অর্জন করা"
   },
   {
-    "id": 424,
+    "id": 1288,
     "question": "What is the synonym of 'famished'?",
     "targetWord": "famished",
     "type": "synonym",
@@ -266,7 +266,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Starving - ক্ষুধার্ত/অনাহারী, Distend - ফুলে যাওয়া, Congregation - সমাবেশ, Brevity - সংক্ষিপ্ততা"
   },
   {
-    "id": 425,
+    "id": 1289,
     "question": "The word 'Fallacy' is related to-",
     "targetWord": "fallacy",
     "type": "meaning",
@@ -277,7 +277,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "sense - বুদ্ধি/জ্ঞান, dream - অলীক কল্পনা/স্বপ্ন, erect - নির্মাণ করা, shock - সংঘাত"
   },
   {
-    "id": 426,
+    "id": 1290,
     "question": "What is the synonym of the word 'defraud'?",
     "targetWord": "defraud",
     "type": "synonym",
@@ -288,7 +288,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Defray - অর্থ যোগান দেওয়া, Cheat - প্রতারণা করা, Debunk - সত্য প্রকাশ, Fradently - ভুল শব্দ"
   },
   {
-    "id": 427,
+    "id": 1291,
     "question": "Synonym of 'nimble' is -",
     "targetWord": "nimble",
     "type": "synonym",
@@ -299,7 +299,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "agile - ক্ষিপ্র/চটপটে, rough - অমসৃণ, kind - দয়ালু, fresh - সতেজ"
   },
   {
-    "id": 428,
+    "id": 1292,
     "question": "The word 'corpulent' is similar in meaning to -",
     "targetWord": "corpulent",
     "type": "synonym",
@@ -310,7 +310,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "unhealthy - অস্বাস্থ্যকর, ugly - কুৎসিত, fat - মোটা/স্থূলকায়, decent - শালীন"
   },
   {
-    "id": 429,
+    "id": 1293,
     "question": "Unorganized guessing... Here 'haphazard' is synonymous with:",
     "targetWord": "haphazard",
     "type": "synonym",
@@ -321,7 +321,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Cryptic - গুপ্ত, Haphazard - এলোমেলো/বিশৃঙ্খল, Economical - মিতব্যয়ী, Subsequent - পরবর্তী"
   },
   {
-    "id": 430,
+    "id": 1294,
     "question": "The meaning of the word 'supportive' is-",
     "targetWord": "supportive",
     "type": "meaning",
@@ -332,7 +332,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "dangerous - বিপজ্জনক, active - সক্রিয়, hostile - বৈরী, helpful - সহায়ক/উপকারী"
   },
   {
-    "id": 431,
+    "id": 1295,
     "question": "The synonym of 'colloquial' is -",
     "targetWord": "colloquial",
     "type": "synonym",
@@ -343,7 +343,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Conversational - কথ্য/আলাপচারী, Practical - বাস্তবমুখী, Traditional - ঐতিহ্যবাহী, Contemporary - সমসাময়িক"
   },
   {
-    "id": 432,
+    "id": 1296,
     "question": "The word that is synonymous with 'authoritarian':",
     "targetWord": "authoritarian",
     "type": "synonym",
@@ -354,7 +354,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "autocratic - স্বৈরাচারী, senior - জ্যেষ্ঠ, elderly - বয়োবৃদ্ধ, potential - সম্ভাবনাময়"
   },
   {
-    "id": 433,
+    "id": 1297,
     "question": "The word 'permissive' implies--",
     "targetWord": "permissive",
     "type": "meaning",
@@ -365,7 +365,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "humble - বিনয়ী, law-abiding - আইন মান্যকারী, liberal - উদারমনা, submissive - বাধ্য"
   },
   {
-    "id": 434,
+    "id": 1298,
     "question": "The word 'precedence' means-",
     "targetWord": "precedence",
     "type": "meaning",
@@ -376,7 +376,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "example - উদাহরণ, priority - অগ্রাধিকার, elderly - বয়োবৃদ্ধ, case - ঘটনা/মামলা"
   },
   {
-    "id": 435,
+    "id": 1299,
     "question": "'Prior to' means:",
     "targetWord": "prior",
     "type": "meaning",
@@ -387,7 +387,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "after - পরে, before - পূর্বে/আগে, immediately - অবিলম্বে, during - চলাকালীন"
   },
   {
-    "id": 436,
+    "id": 1300,
     "question": "What is the synonym of the word 'dictionary'?",
     "targetWord": "dictionary",
     "type": "synonym",
@@ -398,7 +398,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "index book - নির্ঘণ্ট, lexicon - শব্দকোষ/অভিধান, legend book - কিংবদন্তি বই, big word book - বড় শব্দ বই"
   },
   {
-    "id": 437,
+    "id": 1301,
     "question": "What is the synonym of 'Incite'?",
     "targetWord": "incite",
     "type": "synonym",
@@ -409,7 +409,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Instigate - প্ররোচিত/উসকানি দেওয়া, Permit - অনুমতি, Urge - তাগিদ, Deceive - প্রতারণা"
   },
   {
-    "id": 438,
+    "id": 1302,
     "question": "What is the meaning of the word 'Intrepid'?",
     "targetWord": "intrepid",
     "type": "meaning",
@@ -420,7 +420,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "arrogant - উদ্ধত, belligerent - যুদ্ধংদেহী, questioning - প্রশ্নসূচক, fearless - নির্ভীক/ভয়হীন"
   },
   {
-    "id": 439,
+    "id": 1303,
     "question": "Synonym of 'cross-examine'?",
     "targetWord": "cross-examine",
     "type": "synonym",
@@ -431,7 +431,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "intervene - মধ্যস্থতা করা, interview - সাক্ষাৎকার, interrogate - জেরা করা/জিজ্ঞাসাবাদ, interrupt - বাধা দেওয়া"
   },
   {
-    "id": 440,
+    "id": 1304,
     "question": "The synonym of 'embellish' is-",
     "targetWord": "embellish",
     "type": "synonym",
@@ -442,7 +442,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "adorn - সাজানো/অলংকৃত করা, shock - মর্মাহত করা, impoverish - নিঃস্ব করা, destroy - ধ্বংস করা"
   },
   {
-    "id": 441,
+    "id": 1305,
     "question": "The synonym of 'pandemonium' is-",
     "targetWord": "pandemonium",
     "type": "synonym",
@@ -453,7 +453,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "order - শৃঙ্খলা, calm - শান্ত, commotion - তুমুল উত্তেজনা/হৈচৈ, peace - শান্তি"
   },
   {
-    "id": 442,
+    "id": 1306,
     "question": "The word 'amenable' means-",
     "targetWord": "amenable",
     "type": "meaning",
@@ -464,7 +464,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "moveable - গতিশীল, durable - স্থায়ী, agreeable - অনুগত/সহমত, answerable - জবাবদিহিমূলক"
   },
   {
-    "id": 443,
+    "id": 1307,
     "question": "'Proclaim' means --",
     "targetWord": "proclaim",
     "type": "meaning",
@@ -475,7 +475,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "pronounce - উচ্চারণ করা, declare - আনুষ্ঠানিকভাবে ঘোষণা করা, announce - প্রচার করা, circulate - বিতরণ করা"
   },
   {
-    "id": 444,
+    "id": 1308,
     "question": "The synonym of 'Bombastic' is --",
     "targetWord": "bombastic",
     "type": "synonym",
@@ -486,7 +486,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "Sensitive - সংবেদনশীল, Pompous - জাঁকালো/বাগাড়ম্বরপূর্ণ, Rapid - দ্রুত, Expensive - ব্যয়বহুল"
   },
   {
-    "id": 445,
+    "id": 1309,
     "question": "The synonym of 'Alacrity' is -",
     "targetWord": "alacrity",
     "type": "synonym",
@@ -497,7 +497,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "careful - সতর্ক, separate - পৃথক, eagerness - আগ্রহ/ব্যগ্রতা, criticism - সমালোচনা"
   },
   {
-    "id": 446,
+    "id": 1310,
     "question": "The synonym of 'surfeit' is -",
     "targetWord": "surfeit",
     "type": "synonym",
@@ -508,7 +508,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "shortage - স্বল্পতা, glut - অতিপ্রচুর্য/আধিক্য, dearth - অভাব, scarcity - ঘাটতি"
   },
   {
-    "id": 447,
+    "id": 1311,
     "question": "The word 'altitude' means -",
     "targetWord": "altitude",
     "type": "meaning",
@@ -519,7 +519,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "broad - প্রশস্ত, speed - গতি, great - বিরাট, height - উচ্চতা"
   },
   {
-    "id": 448,
+    "id": 1312,
     "question": "The synonym of 'serene' is -",
     "targetWord": "serene",
     "type": "synonym",
@@ -530,7 +530,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "severe - তীব্র, dark - অন্ধকার, calm - প্রশান্ত/স্থির, serious - গুরুগম্ভীর"
   },
   {
-    "id": 449,
+    "id": 1313,
     "question": "What is the synonym of 'Synergy'?",
     "targetWord": "synergy",
     "type": "synonym",
@@ -541,7 +541,7 @@ export const BATCH_7: RawMCQ[] = [
     "explanationBangla": "antagonism - বৈরিতা, energy - তেজ, alliance - মিত্রতা/যৌথশক্তি, conflict - সংঘাত"
   },
   {
-    "id": 450,
+    "id": 1314,
     "question": "The word 'Genocide' means:",
     "targetWord": "genocide",
     "type": "meaning",

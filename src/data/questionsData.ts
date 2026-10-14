@@ -4,8 +4,12 @@ import { BATCH_3 } from './questionsBatch3';
 import { BATCH_4 } from './questionsBatch4';
 import { BATCH_5 } from './questionsBatch5';
 import { BATCH_6 } from './questionsBatch6';
+import { BATCH_7 } from './questionsBatch7';
 import { BATCH_8 } from './questionsBatch8';
 import { BATCH_9 } from './questionsBatch9';
+import { BATCH_10 } from './questionsBatch10';
+import { BATCH_11 } from './questionsBatch11';
+import { BATCH_12 } from './questionsBatch12';
 import { BATCH_13 } from './questionsBatch13';
 import { BATCH_14 } from './questionsBatch14';
 import { BATCH_15 } from './questionsBatch15';
@@ -55,8 +59,12 @@ export const ALL_RAW_QUESTIONS: RawMCQ[] = [
   ...BATCH_4,
   ...BATCH_5,
   ...BATCH_6,
+  ...BATCH_7,
   ...BATCH_8,
   ...BATCH_9,
+  ...BATCH_10,
+  ...BATCH_11,
+  ...BATCH_12,
   ...BATCH_13,
   ...BATCH_14,
   ...BATCH_15,
@@ -68,11 +76,18 @@ export function resolveCategoryGroup(category?: string, type?: string): { catego
   const cat = (category || '').trim();
   const t = (type || '').trim().toLowerCase();
 
-  if (cat.includes('Adjective')) return { category: 'Adjective', categoryGroup: 'Grammar & Syntax' };
+  if (cat.includes('Adjective') || cat === 'Latin Adjectives') return { category: 'Adjectives', categoryGroup: 'Grammar & Syntax' };
   if (cat.includes('Pronoun')) return { category: 'Pronoun', categoryGroup: 'Grammar & Syntax' };
   if (cat.includes('Conjunction') || cat.includes('Linkers')) return { category: 'Conjunction & Linkers', categoryGroup: 'Grammar & Syntax' };
   if (cat.includes('Number')) return { category: 'Number (Singular/Plural)', categoryGroup: 'Grammar & Syntax' };
   if (cat.includes('Gender')) return { category: 'Gender Forms', categoryGroup: 'Grammar & Syntax' };
+  if (cat.includes('Noun')) return { category: 'Noun', categoryGroup: 'Grammar & Syntax' };
+  if (cat.includes('Verb')) return { category: 'Verb', categoryGroup: 'Grammar & Syntax' };
+  if (cat.includes('Adverb')) return { category: 'Adverb', categoryGroup: 'Grammar & Syntax' };
+  if (cat.includes('Degree')) return { category: 'Degrees of Comparison', categoryGroup: 'Grammar & Syntax' };
+  if (cat.includes('Article')) return { category: 'Articles', categoryGroup: 'Grammar & Syntax' };
+  if (cat.includes('Interjection')) return { category: 'Interjection', categoryGroup: 'Grammar & Syntax' };
+  if (cat.includes('Suffix') || cat.includes('Prefix') || cat.includes('Affix') || cat.includes('Derivatives')) return { category: 'Affixes & Word Formation', categoryGroup: 'Vocabulary & Semantics' };
   if (cat.includes('Id-POS')) return { category: 'Parts of Speech Identification', categoryGroup: 'Parts of Speech' };
   if (cat.includes('Int-POS')) return { category: 'Interchange of Parts of Speech', categoryGroup: 'Parts of Speech' };
   if (cat.includes('Pos-POS')) return { category: 'Positional Parts of Speech', categoryGroup: 'Parts of Speech' };

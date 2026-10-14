@@ -2,7 +2,7 @@ import { RawMCQ } from './questionsData';
 
 export const BATCH_10: RawMCQ[] = [
   {
-    "id": 551,
+    "id": 1315,
     "question": "Auspicious means:",
     "targetWord": "auspicious",
     "type": "meaning",
@@ -13,7 +13,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "supernatural - অতিপ্রাকৃতিক, suspicious - সন্দেহপ্রবণ, fortunate - সৌভাগ্যজনক/শুভ, fearful - ভীত"
   },
   {
-    "id": 552,
+    "id": 1316,
     "question": "The word 'irrevocable' means ----",
     "targetWord": "irrevocable",
     "type": "meaning",
@@ -24,7 +24,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "terrible - ভয়াবহ, unalterable - অপরিবর্তনীয়, disturbing - বিরক্তিকর, ugly - কুৎসিত"
   },
   {
-    "id": 553,
+    "id": 1317,
     "question": "The word 'audacious' means ----",
     "targetWord": "audacious",
     "type": "meaning",
@@ -35,7 +35,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "dangerous - বিপজ্জনক, caring - যত্নশীল, daring - দুঃসাহসী, serious - গুরুগম্ভীর"
   },
   {
-    "id": 554,
+    "id": 1318,
     "question": "Synonym of 'Defile' is --",
     "targetWord": "defile",
     "type": "synonym",
@@ -46,7 +46,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Certain - নির্দিষ্ট, Describe - বর্ণনা, Dirty - নোংরা/কলুষিত করা, Final - চূড়ান্ত"
   },
   {
-    "id": 555,
+    "id": 1319,
     "question": "The synonym of the word 'pecuniary' is ----",
     "targetWord": "pecuniary",
     "type": "synonym",
@@ -57,7 +57,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "peculiar - অদ্ভুত, financial - আর্থিক, fiscal - রাজস্ব সংক্রান্ত, penny-pinching - কৃপণ"
   },
   {
-    "id": 556,
+    "id": 1320,
     "question": "The synonym of 'sensual' is ----",
     "targetWord": "sensual",
     "type": "synonym",
@@ -68,7 +68,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "spiritual - আধ্যাত্মিক, carnal - শারীরিক/ইন্দ্রিয়গত, pious - ধার্মিক, religious - ধর্মপ্রাণ"
   },
   {
-    "id": 557,
+    "id": 1321,
     "question": "The synonym of 'cancel' is-",
     "targetWord": "cancel",
     "type": "synonym",
@@ -79,7 +79,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "reject - বাতিল/প্রত্যাখ্যান করা, discard - বর্জন করা, band - ব্যান্ড, refuse - মানা করা"
   },
   {
-    "id": 558,
+    "id": 1322,
     "question": "'Vacant' এর সমার্থক শব্দ?",
     "targetWord": "vacant",
     "type": "synonym",
@@ -90,7 +90,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Blank - ফাঁকা/শূন্য, Engaged - নিযুক্ত, Busy - ব্যস্ত, full - পূর্ণ"
   },
   {
-    "id": 559,
+    "id": 1323,
     "question": "Synonym of 'PROFUSION' is-",
     "targetWord": "profusion",
     "type": "synonym",
@@ -101,7 +101,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "certainty - নিশ্চয়তা, abundance - প্রাচুর্য, fervour - আবেগ, proliferation - বিস্তার"
   },
   {
-    "id": 560,
+    "id": 1324,
     "question": "The synonym of 'latent' is-",
     "targetWord": "latent",
     "type": "synonym",
@@ -112,7 +112,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "visible - দৃশ্যমান, concealed - লুক্কায়িত/সুপ্ত, evident - স্পষ্ট, conscious - সজ্ঞান"
   },
   {
-    "id": 561,
+    "id": 1325,
     "question": "'Contaminate' means-",
     "targetWord": "contaminate",
     "type": "meaning",
@@ -123,7 +123,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "purify - বিশুদ্ধ করা, pollute - দূষিত করা, corruption - দুর্নীতি, think - ভাবা"
   },
   {
-    "id": 562,
+    "id": 1326,
     "question": "Appropriate meaning of BIZARRE -",
     "targetWord": "bizarre",
     "type": "meaning",
@@ -134,7 +134,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Strange - অদ্ভুত/অস্বাভাবিক, Calamity - দুর্যোগ, Fatal - মারাত্মক, Naive - সরল"
   },
   {
-    "id": 563,
+    "id": 1327,
     "question": "The synonym for 'corrective' is --",
     "targetWord": "corrective",
     "type": "synonym",
@@ -145,7 +145,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "righteous - ন্যায়পরায়ণ, preventive - প্রতিরোধক, prohibitive - নিষেধমূলক, remedial - নিরাময়মূলক"
   },
   {
-    "id": 564,
+    "id": 1328,
     "question": "Gigantic এর synonym--",
     "targetWord": "gigantic",
     "type": "synonym",
@@ -156,7 +156,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Small - ছোট, Little - ক্ষুদ্র, Short - খাটো, Large - বিশাল/প্রকাণ্ড"
   },
   {
-    "id": 565,
+    "id": 1329,
     "question": "'Postulate' শব্দটির synonym হচ্ছে--",
     "targetWord": "postulate",
     "type": "synonym",
@@ -167,7 +167,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Assume - অনুমান করা, Prove - প্রমাণ করা, Supplement - পরিপূরক, Complain - নালিশ করা"
   },
   {
-    "id": 566,
+    "id": 1330,
     "question": "What is the synonym of 'Growth'?",
     "targetWord": "growth",
     "type": "synonym",
@@ -178,7 +178,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Development - উন্নয়ন, Uplift - সমৃদ্ধি, Raising - উত্তোলন, Increase - বৃদ্ধি"
   },
   {
-    "id": 567,
+    "id": 1331,
     "question": "Another word for prejudice is ---",
     "targetWord": "prejudice",
     "type": "synonym",
@@ -189,7 +189,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "fear - ভয়, disease - অসুখ, loneliness - নিঃসঙ্গতা, bigotry - গোঁড়ামি/ধর্মান্ধতা"
   },
   {
-    "id": 568,
+    "id": 1332,
     "question": "What does 'apartheid' refer to --",
     "targetWord": "apartheid",
     "type": "meaning",
@@ -200,7 +200,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Discrimination - বৈষম্য, Distance - দূরত্ব, Apart - আলাদা, Dialogue - কথোপকথন"
   },
   {
-    "id": 569,
+    "id": 1333,
     "question": "We have been able to disburse funds. 'disburse' means:",
     "targetWord": "disburse",
     "type": "meaning",
@@ -211,7 +211,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "procure - সংগ্রহ করা, distribute - অর্থ বণ্টন করা, collect - আদায় করা, spend - ব্যয় করা"
   },
   {
-    "id": 570,
+    "id": 1334,
     "question": "Bangladesh has made considerable progress. 'Considerable' means:",
     "targetWord": "considerable",
     "type": "synonym",
@@ -222,7 +222,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "trivial - তুচ্ছ, amazing - বিস্ময়কর, significant - উল্লেখযোগ্য, absolute - পূর্ণাঙ্গ"
   },
   {
-    "id": 571,
+    "id": 1335,
     "question": "The Taka has dropped after being steady. 'Steady' means:",
     "targetWord": "steady",
     "type": "synonym",
@@ -233,7 +233,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "strong - শক্তিশালী, fixed - অনড়, stable - স্থিতিশীল/স্থির, certain - নিশ্চিত"
   },
   {
-    "id": 572,
+    "id": 1336,
     "question": "The antonym of 'pure' is-",
     "targetWord": "pure",
     "type": "antonym",
@@ -244,7 +244,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "hard - শক্ত, rough - অমসৃণ, adulterated - ভেজালমিশ্রিত/দূষিত, acute - তীব্র"
   },
   {
-    "id": 573,
+    "id": 1337,
     "question": "The correct antonym of 'spurious' is-",
     "targetWord": "spurious",
     "type": "antonym",
@@ -255,7 +255,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "cautious - সতর্ক, fantastic - অদ্ভুত, modest - বিনয়ী, genuine - খাঁটি/প্রকৃত"
   },
   {
-    "id": 574,
+    "id": 1338,
     "question": "Select the antonym for 'pride':",
     "targetWord": "pride",
     "type": "antonym",
@@ -266,7 +266,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "ego - আত্মগরিমা, dignity - মর্যাদা, self-esteem - আত্মসম্মান, humility - বিনয়/নম্রতা"
   },
   {
-    "id": 575,
+    "id": 1339,
     "question": "She is indeed human. The opposite meaning of human is:",
     "targetWord": "human",
     "type": "antonym",
@@ -277,7 +277,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "universal - সর্বজনীন, devilish - শয়তানোচিত, divine - স্বর্গীয়/ঐশ্বরিক, terrestrial - পার্থিব"
   },
   {
-    "id": 576,
+    "id": 1340,
     "question": "The antonym of 'supernatural' is:",
     "targetWord": "supernatural",
     "type": "antonym",
@@ -288,7 +288,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "genuine - আসল, fake - নকল, false - মিথ্যা, ordinary - সাধারণ/স্বাভাবিক"
   },
   {
-    "id": 577,
+    "id": 1341,
     "question": "The antonym of the word 'withdraw' is-",
     "targetWord": "withdraw",
     "type": "antonym",
@@ -299,7 +299,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "draw - টানা, cut - কাটা, interfere - হস্তক্ষেপ করা, impose - আরোপ করা"
   },
   {
-    "id": 578,
+    "id": 1342,
     "question": "What is the antonym of 'relinquish'?",
     "targetWord": "relinquish",
     "type": "antonym",
@@ -310,7 +310,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "relax - শিথিল করা, retain - ধরে রাখা/বহাল রাখা, noble - মহৎ, close - বন্ধ করা"
   },
   {
-    "id": 579,
+    "id": 1343,
     "question": "Which one is the opposite word of 'cute'?",
     "targetWord": "cute",
     "type": "antonym",
@@ -321,7 +321,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "mute - নীরব, fair - সুন্দর, ugly - কুৎসিত/কদর্য, beautiful - সুন্দর"
   },
   {
-    "id": 580,
+    "id": 1344,
     "question": "An antonym of the word 'rebellious' is-",
     "targetWord": "rebellious",
     "type": "antonym",
@@ -332,7 +332,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Loyal - বিশ্বস্ত/অনুগত, Unruly - অবাধ্য, Frantic - ক্ষিপ্ত, Bold - সাহসী"
   },
   {
-    "id": 581,
+    "id": 1345,
     "question": "Which one means the opposite of 'bold'?",
     "targetWord": "bold",
     "type": "antonym",
@@ -343,7 +343,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "modest - বিনয়ী, meek - নম্র, mild - শান্ত, timid - ভীরু/লাজুক"
   },
   {
-    "id": 582,
+    "id": 1346,
     "question": "What is the antonym of the word 'Rigid'?",
     "targetWord": "rigid",
     "type": "antonym",
@@ -354,7 +354,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Flexible - নমনীয়, Hard - শক্ত, Inferiority - হীনতা, Short - খাটো"
   },
   {
-    "id": 583,
+    "id": 1347,
     "question": "Antonym of 'Obscure' is -",
     "targetWord": "obscure",
     "type": "antonym",
@@ -365,7 +365,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Hazy - ঘোলাটে, Gloomy - বিষণ্ণ, Lucid - স্পষ্ট/প্রাঞ্জল, Concealed - লুকানো"
   },
   {
-    "id": 584,
+    "id": 1348,
     "question": "The opposite of 'subsequent' is-",
     "targetWord": "subsequent",
     "type": "antonym",
@@ -376,7 +376,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "previous - পূর্ববর্তী, later - পরে, early - প্রারম্ভে, frequent - ঘনঘন"
   },
   {
-    "id": 585,
+    "id": 1349,
     "question": "Which of the following words means nearly opposite of 'shrewd'?",
     "targetWord": "shrewd",
     "type": "antonym",
@@ -387,7 +387,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "cunning - ধূর্ত, crafty - চতুর, stupid - নির্বোধ/বোকা, sagacious - প্রজ্ঞাবান"
   },
   {
-    "id": 586,
+    "id": 1350,
     "question": "The antonym of the word 'theoretical' is-",
     "targetWord": "theoretical",
     "type": "antonym",
@@ -398,7 +398,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "experimental - পরীক্ষণমূলক, bookish - পুথিগত, logical - যুক্তিযুক্ত, impractical - অবাস্তব"
   },
   {
-    "id": 587,
+    "id": 1351,
     "question": "Identify the correct antonym for the word 'peace'.",
     "targetWord": "peace",
     "type": "antonym",
@@ -409,7 +409,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "happiness - সুখ, contentment - তৃপ্তি, violence - সহিংসতা/উত্তেজনা, satisfaction - সন্তুষ্টি"
   },
   {
-    "id": 588,
+    "id": 1352,
     "question": "The antonym of the word 'Eternal' is --",
     "targetWord": "eternal",
     "type": "antonym",
@@ -420,7 +420,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Permanent - স্থায়ী, Essential - আবশ্যক, Temporary - অস্থায়ী/ক্ষণস্থায়ী, Unnecessary - অপ্রয়োজনীয়"
   },
   {
-    "id": 589,
+    "id": 1353,
     "question": "Antonym of 'fertile' is-",
     "targetWord": "fertile",
     "type": "antonym",
@@ -431,7 +431,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "useful - দরকারী, barren - অনুর্বর/বন্ধ্যা, strong - শক্তিশালী, unfavourable - প্রতিকূল"
   },
   {
-    "id": 590,
+    "id": 1354,
     "question": "The antonym of the word 'Private' is-",
     "targetWord": "private",
     "type": "antonym",
@@ -442,7 +442,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Covert - গোপন, Personal - ব্যক্তিগত, Public - সর্বজনীন/প্রকাশ্য, Concealed - লুক্কায়িত"
   },
   {
-    "id": 591,
+    "id": 1355,
     "question": "Which word is opposite to 'contraction'?",
     "targetWord": "contraction",
     "type": "antonym",
@@ -453,7 +453,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Connection - সংযোগ, Expansion - সম্প্রসারণ/প্রসারণ, Opposite - বিপরীত, Shrinking - সংকোচন"
   },
   {
-    "id": 592,
+    "id": 1356,
     "question": "Antonym of ALLY is-",
     "targetWord": "ally",
     "type": "antonym",
@@ -464,7 +464,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Friend - বন্ধু, Child - শিশু, Congested - ঘনবসতিপূর্ণ, Enemy - শত্রু/বৈরী"
   },
   {
-    "id": 593,
+    "id": 1357,
     "question": "Antonym for 'Prodigal' is:",
     "targetWord": "prodigal",
     "type": "antonym",
@@ -475,7 +475,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Lavish - অপব্যয়ী, Polite - ভদ্র, Economical - মিতব্যয়ী, Excited - উত্তেজিত"
   },
   {
-    "id": 594,
+    "id": 1358,
     "question": "What is the antonym of 'abduct'?",
     "targetWord": "abduct",
     "type": "antonym",
@@ -486,7 +486,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "unlawfully - বেআইনি নেওয়া, Kidnap - অপহরণ করা, Restore - ফেরত দেওয়া/পুনরুদ্ধার, None - কোনটি নয়"
   },
   {
-    "id": 595,
+    "id": 1359,
     "question": "What is the antonym of 'agile'?",
     "targetWord": "agile",
     "type": "antonym",
@@ -497,7 +497,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "active - সক্রিয়, nimble - চটপটে, lively - প্রাণবন্ত, lazy - অলস/মন্থর"
   },
   {
-    "id": 596,
+    "id": 1360,
     "question": "The opposite of accidental is --",
     "targetWord": "accidental",
     "type": "antonym",
@@ -508,7 +508,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "intentional - ইচ্ছাকৃত, occupational - পেশাগত, sensational - চাঞ্চল্যকর, chaotic - বিশৃঙ্খল"
   },
   {
-    "id": 597,
+    "id": 1361,
     "question": "The antonym of 'Elegant' is -",
     "targetWord": "elegant",
     "type": "antonym",
@@ -519,7 +519,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "Eulogy - প্রশংসাগীতি, Pendant - লকেট, Awkward - বেমানান/কদাকার, Egotistical - আত্মঅহংকারী"
   },
   {
-    "id": 598,
+    "id": 1362,
     "question": "The antonym of 'harmonious' is:",
     "targetWord": "harmonious",
     "type": "antonym",
@@ -530,7 +530,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "discordant - বেসুরো/অনৈক্য, disrespectful - অশ্রদ্ধাপূর্ণ, amicable - বন্ধুভাবাপন্ন, ruthless - নির্মম"
   },
   {
-    "id": 599,
+    "id": 1363,
     "question": "The antonym of 'superficial' is",
     "targetWord": "superficial",
     "type": "antonym",
@@ -541,7 +541,7 @@ export const BATCH_10: RawMCQ[] = [
     "explanationBangla": "careless - অসতর্ক, indifferent - উদাসীন, profound - গভীর/অগাধ, sufficient - পর্যাপ্ত"
   },
   {
-    "id": 600,
+    "id": 1364,
     "question": "The opposite word of 'virtuous' is:",
     "targetWord": "virtuous",
     "type": "antonym",

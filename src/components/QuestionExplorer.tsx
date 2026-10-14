@@ -19,10 +19,15 @@ export const QuestionExplorer: React.FC<QuestionExplorerProps> = ({
   const [searchTerm, setSearchTerm] = React.useState<string>('');
   const [selectedCat, setSelectedCat] = React.useState<string>('All');
   const [expandedId, setExpandedId] = React.useState<string | null>(null);
+  const [displayCount, setDisplayCount] = React.useState<number>(60);
 
   const filtered = React.useMemo(() => {
     return allQuestions.filter((q) => {
-      if (selectedCat !== 'All' && q.category !== selectedCat) return false;
+      if (selectedCat === 'core265') {
+        if (q.numericId > 265) return false;
+      } else if (selectedCat !== 'All' && q.category !== selectedCat) {
+        return false;
+      }
       if (!searchTerm.trim()) return true;
 
       const term = searchTerm.toLowerCase();
@@ -81,34 +86,56 @@ export const QuestionExplorer: React.FC<QuestionExplorerProps> = ({
         {/* Category Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
           <button
-            onClick={() => setSelectedCat('All')}
+            onClick={() => {
+              setSelectedCat('All');
+              setDisplayCount(60);
+            }}
             className={`text-xs px-2.5 py-1 rounded-xl font-medium whitespace-nowrap transition-all ${
               selectedCat === 'All'
                 ? 'bg-indigo-600 text-white font-bold'
                 : 'bg-slate-800 text-slate-400 hover:text-slate-200'
             }`}
           >
-            All Topics
+            All Topics ({allQuestions.length})
           </button>
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCat(cat)}
-              className={`text-xs px-2.5 py-1 rounded-xl font-medium whitespace-nowrap transition-all ${
-                selectedCat === cat
-                  ? 'bg-indigo-600 text-white font-bold'
-                  : 'bg-slate-800 text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          <button
+            onClick={() => {
+              setSelectedCat('core265');
+              setDisplayCount(60);
+            }}
+            className={`text-xs px-2.5 py-1 rounded-xl font-medium whitespace-nowrap transition-all ${
+              selectedCat === 'core265'
+                ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-black shadow-md shadow-indigo-500/25'
+                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            ⭐ Core 265 Set
+          </button>
+          {CATEGORIES.map((cat) => {
+            const count = allQuestions.filter((q) => q.category === cat).length;
+            return (
+              <button
+                key={cat}
+                onClick={() => {
+                  setSelectedCat(cat);
+                  setDisplayCount(60);
+                }}
+                className={`text-xs px-2.5 py-1 rounded-xl font-medium whitespace-nowrap transition-all ${
+                  selectedCat === cat
+                    ? 'bg-indigo-600 text-white font-bold'
+                    : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {cat} ({count})
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* Questions list */}
       <div className="space-y-2.5">
-        {filtered.slice(0, 80).map((q) => {
+        {filtered.slice(0, displayCount).map((q) => {
           const isExpanded = expandedId === q.id;
           const ans = userProgress.answers[q.id];
           const isBookmarked = userProgress.bookmarkedIds.includes(q.id);
@@ -247,9 +274,14 @@ export const QuestionExplorer: React.FC<QuestionExplorerProps> = ({
           );
         })}
 
-        {filtered.length > 80 && (
-          <div className="text-center py-2 text-xs text-slate-400">
-            Showing top 80 of {filtered.length} matches. Refine your search query to see more.
+        {filtered.length > displayCount && (
+          <div className="text-center pt-2 pb-4">
+            <button
+              onClick={() => setDisplayCount((prev) => prev + 60)}
+              className="py-2.5 px-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500 text-xs font-bold text-slate-200 hover:text-white transition-all shadow-md active:scale-95"
+            >
+              Show Next 60 (Showing {Math.min(displayCount, filtered.length)} of {filtered.length})
+            </button>
           </div>
         )}
       </div>

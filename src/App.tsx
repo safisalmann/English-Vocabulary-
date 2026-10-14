@@ -21,6 +21,7 @@ export default function App() {
   );
   const [activeTab, setActiveTab] = React.useState<NavTab>('practice');
   const [practiceCategoryFilter, setPracticeCategoryFilter] = React.useState<string | null>(null);
+  const [targetQuestionId, setTargetQuestionId] = React.useState<number | null>(null);
   const [deferredInstallPrompt, setDeferredInstallPrompt] = React.useState<any>(null);
 
   // Synchronize audio preference with soundManager
@@ -61,23 +62,28 @@ export default function App() {
 
   // Switch to Practice with specific category from analytics
   const handlePracticeCategory = (categoryName: string) => {
+    setTargetQuestionId(null);
     setPracticeCategoryFilter(categoryName);
     setActiveTab('practice');
   };
 
   // Switch to Practice for Mistakes
   const handlePracticeMistakes = () => {
+    setTargetQuestionId(null);
     setPracticeCategoryFilter('All');
     setActiveTab('practice');
   };
 
   // Switch to Practice for specific numeric ID
-  const handlePracticeSpecificQuestion = (_questionNumericId: number) => {
+  const handlePracticeSpecificQuestion = (questionNumericId: number) => {
+    setTargetQuestionId(questionNumericId);
+    setPracticeCategoryFilter('All');
     setActiveTab('practice');
   };
 
   // Header bookmark click
   const handleOpenBookmarks = () => {
+    setTargetQuestionId(null);
     setActiveTab('practice');
   };
 
@@ -103,6 +109,7 @@ export default function App() {
             setUserProgress={setUserProgress}
             initialFilterCategory={practiceCategoryFilter}
             onClearCategoryFilter={() => setPracticeCategoryFilter(null)}
+            targetQuestionNumericId={targetQuestionId}
           />
         )}
 

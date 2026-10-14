@@ -2,7 +2,7 @@ import { RawMCQ } from './questionsData';
 
 export const BATCH_11: RawMCQ[] = [
   {
-    "id": 601,
+    "id": 1365,
     "question": "The antonym of the word 'grit' is:",
     "targetWord": "grit",
     "type": "antonym",
@@ -13,7 +13,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "dust - ধূলি, sand - বালু, pebbles - পাথরকুচি, timidity - ভীরুতা"
   },
   {
-    "id": 602,
+    "id": 1366,
     "question": "The antonym of 'fatal' is:",
     "targetWord": "fatal",
     "type": "antonym",
@@ -24,7 +24,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Constructive - গঠনমূলক, Calamitous - মারাত্মক, Deadly - প্রাণঘাতী, Disgusting - বিরক্তিকর"
   },
   {
-    "id": 603,
+    "id": 1367,
     "question": "Antonym of the word 'Restrict' is:",
     "targetWord": "restrict",
     "type": "antonym",
@@ -35,7 +35,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Allow - অনুমতি দেওয়া, Follow - অনুসরণ করা, Protect - রক্ষা করা, Reject - বাতিল করা"
   },
   {
-    "id": 604,
+    "id": 1368,
     "question": "What is the correct antonym of 'Autocratic'?",
     "targetWord": "autocratic",
     "type": "antonym",
@@ -46,7 +46,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Authentic - খাঁটি, Democratic - গণতান্ত্রিক, Bureaucratic - আমলাতান্ত্রিক, Despotic - স্বৈরাচারী"
   },
   {
-    "id": 605,
+    "id": 1369,
     "question": "The word 'Hypocritical' is the antonym of:",
     "targetWord": "hypocritical",
     "type": "antonym",
@@ -57,7 +57,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Considerate - সুবিবেচক, Cunning - ধূর্ত, Sincere - আন্তরিক/অকপট, Wise - জ্ঞানী"
   },
   {
-    "id": 606,
+    "id": 1370,
     "question": "The antonym of the word 'sympathy' is—",
     "targetWord": "sympathy",
     "type": "antonym",
@@ -68,7 +68,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "empathy - সহমর্মিতা, feeling - অনুভূতি, hate - ঘৃণা, apathy - অনীহা/উদাসীনতা"
   },
   {
-    "id": 607,
+    "id": 1371,
     "question": "Write the antonym of 'hazy'.",
     "targetWord": "hazy",
     "type": "antonym",
@@ -79,7 +79,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Foggy - কুয়াশাচ্ছন্ন, Vague - অস্পষ্ট, Sunny - রৌদ্রোজ্জ্বল/পরিষ্কার, Misty - কুয়াশাময়"
   },
   {
-    "id": 608,
+    "id": 1372,
     "question": "Antonym of the word 'ratify' is-",
     "targetWord": "ratify",
     "type": "antonym",
@@ -90,7 +90,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "clean - পরিষ্কার, damage - ক্ষতি করা, negate - বাতিল/রদ করা, support - সমর্থন করা"
   },
   {
-    "id": 609,
+    "id": 1373,
     "question": "Antonym of 'create' is —",
     "targetWord": "create",
     "type": "antonym",
@@ -101,7 +101,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "dismantle - ভেঙে ফেলা, destroy - ধ্বংস করা, incapacity - অক্ষমতা, deform - বিকৃত করা"
   },
   {
-    "id": 610,
+    "id": 1374,
     "question": "What is the antonym of the word 'clarity'?",
     "targetWord": "clarity",
     "type": "antonym",
@@ -112,7 +112,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Confusion - বিভ্রান্তি/অস্পষ্টতা, Profusion - প্রাচুর্য, Fusion - গলন, Diffusion - বিস্তরণ"
   },
   {
-    "id": 611,
+    "id": 1375,
     "question": "An antonym for 'smart' is-",
     "targetWord": "smart",
     "type": "antonym",
@@ -123,7 +123,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "irrelevant - অপ্রাসঙ্গিক, boring - বিরক্তিকর, stupid - নির্বোধ/বোকা, difficult - কঠিন"
   },
   {
-    "id": 612,
+    "id": 1376,
     "question": "Antonym of 'humble' is-",
     "targetWord": "humble",
     "type": "antonym",
@@ -134,7 +134,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "arrogant - অহংকারী/উদ্ধত, modest - বিনয়ী, meek - শান্ত, honourable - সম্মাননীয়"
   },
   {
-    "id": 613,
+    "id": 1377,
     "question": "The antonym of REPEL is:",
     "targetWord": "repel",
     "type": "antonym",
@@ -145,7 +145,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "ATTEND - উপস্থিত থাকা, CONCRETE - বাস্তব, CONTINUE - চালিয়ে যাওয়া, ATTRACT - আকর্ষণ করা"
   },
   {
-    "id": 614,
+    "id": 1378,
     "question": "The antonym of the word 'repulsive' is —",
     "targetWord": "repulsive",
     "type": "antonym",
@@ -156,7 +156,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "refulgent - উজ্জ্বল, effulgent - দ্যুতিময়, alluring - আকর্ষণীয়/লোভনীয়, meek - নম্র"
   },
   {
-    "id": 615,
+    "id": 1379,
     "question": "The antonym of 'belittle' is-",
     "targetWord": "belittle",
     "type": "antonym",
@@ -167,7 +167,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "despise - ঘৃণা করা, glorify - মহিমান্বিত করা, pacify - শান্ত করা, undermine - দুর্বল করা"
   },
   {
-    "id": 616,
+    "id": 1380,
     "question": "The antonym of the word 'smooth' is —",
     "targetWord": "smooth",
     "type": "antonym",
@@ -178,7 +178,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "hard - শক্ত, rough - অমসৃণ/রুক্ষ, sharp - ধারালো, plain - সমতল"
   },
   {
-    "id": 617,
+    "id": 1381,
     "question": "The antonym of 'Dynamic' is-",
     "targetWord": "dynamic",
     "type": "antonym",
@@ -189,7 +189,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Stagnant - স্থবির/নিশ্চল, Alternating - পর্যায়ক্রমিক, Regressive - পশ্চাদগামী, Traditional - ঐতিহ্যবাহী"
   },
   {
-    "id": 618,
+    "id": 1382,
     "question": "The antonym of 'vulnerable' is:",
     "targetWord": "vulnerable",
     "type": "antonym",
@@ -200,7 +200,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "defenceless - প্রতিরক্ষাহীন, illiterate - নিরক্ষর, poor - দরিদ্র, guarded - সুরক্ষিত"
   },
   {
-    "id": 619,
+    "id": 1383,
     "question": "What is the antonym of 'assuage'?",
     "targetWord": "assuage",
     "type": "antonym",
@@ -211,7 +211,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "mitigate - প্রশমিত করা, inflame - উত্তেজিত/উস্কে দেওয়া, inhibit - বাধা দেওয়া, conciliate - শান্ত করা"
   },
   {
-    "id": 620,
+    "id": 1384,
     "question": "The opposite to 'solemn' is:",
     "targetWord": "solemn",
     "type": "antonym",
@@ -222,7 +222,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "deep - গভীর, dignified - মর্যাদাবান, festive - উৎসবমুখর/আনন্দঘন, somber - বিষণ্ণ"
   },
   {
-    "id": 621,
+    "id": 1385,
     "question": "The opposite of EXODUS is:",
     "targetWord": "exodus",
     "type": "antonym",
@@ -233,7 +233,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Influx - অন্তর্গমন/প্রবেশ, Return - প্রত্যাবর্তন, Restoration - পুনরুদ্ধার, Homecoming - ঘরে ফেরা"
   },
   {
-    "id": 622,
+    "id": 1386,
     "question": "The antonym of the word 'Thrive' is:",
     "targetWord": "thrive",
     "type": "antonym",
@@ -244,7 +244,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Accomplish - সম্পন্ন করা, Flourish - বিকশিত হওয়া, Plummet - দ্রুত নিচে নামা/পতন, Stagnate - স্থবির হওয়া"
   },
   {
-    "id": 623,
+    "id": 1387,
     "question": "What is the antonym of the word 'spinster'?",
     "targetWord": "spinster",
     "type": "antonym",
@@ -255,7 +255,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "married - বিবাহিত, twist - পাকানো, loyal - অনুগত, criminal - অপরাধী"
   },
   {
-    "id": 624,
+    "id": 1388,
     "question": "The antonym of the word 'Abandon' is-",
     "targetWord": "abandon",
     "type": "antonym",
@@ -266,7 +266,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Retain - বজায় রাখা, Abdicate - ত্যাগ করা, Detain - আটকে রাখা, Couture - পোশাক নকশা"
   },
   {
-    "id": 625,
+    "id": 1389,
     "question": "Opposite in meaning to DELETERIOUS:",
     "targetWord": "deleterious",
     "type": "antonym",
@@ -277,7 +277,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "toxic - বিষাক্ত, spurious - কৃত্রিম, harmless - ক্ষতিকর নয় এমন/নির্দোষ, lethal - প্রাণঘাতী"
   },
   {
-    "id": 626,
+    "id": 1390,
     "question": "What is the antonym of 'torpid'?",
     "targetWord": "torpid",
     "type": "antonym",
@@ -288,7 +288,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "idle - অলস, indolent - শ্রমবিমুখ, active - সক্রিয়/কর্মঠ, lazy - অলস"
   },
   {
-    "id": 627,
+    "id": 1391,
     "question": "Find out the antonym of 'assist':",
     "targetWord": "assist",
     "type": "antonym",
@@ -299,7 +299,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "hinder - বাধা দেওয়া, aid - সাহায্য, support - সমর্থন, co-operate - সহযোগিতা"
   },
   {
-    "id": 628,
+    "id": 1392,
     "question": "What is the antonym for 'turbulence'?",
     "targetWord": "turbulence",
     "type": "antonym",
@@ -310,7 +310,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "tranquility - শান্তি/স্থিরতা, disorder - বিশৃঙ্খলা, disturbance - গোলযোগ, rupture - ফাটল"
   },
   {
-    "id": 629,
+    "id": 1393,
     "question": "What is the antonym of 'gloomy'?",
     "targetWord": "gloomy",
     "type": "antonym",
@@ -321,7 +321,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Dark - অন্ধকার, Bright - উজ্জ্বল/আলোকোজ্জ্বল, Grey - ধূসর, Pale - ফ্যাকাসে"
   },
   {
-    "id": 630,
+    "id": 1394,
     "question": "An antonym of the word 'filthy' is:",
     "targetWord": "filthy",
     "type": "antonym",
@@ -332,7 +332,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "ugly - কুৎসিত, dirty - অপরিচ্ছন্ন, pretty - সুন্দর, clean - পরিষ্কার/নির্মল"
   },
   {
-    "id": 631,
+    "id": 1395,
     "question": "The antonym of 'divulge' is:",
     "targetWord": "divulge",
     "type": "antonym",
@@ -343,7 +343,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "reveal - উন্মোচন করা, reprimand - তিরস্কার, admonish - সতর্ক করা, conceal - গোপন রাখা"
   },
   {
-    "id": 632,
+    "id": 1396,
     "question": "The antonym of 'fake' is",
     "targetWord": "fake",
     "type": "antonym",
@@ -354,7 +354,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "authentic - আসল/খাঁটি, false - মিথ্যা, spurious - মেকি, unreal - অবাস্তব"
   },
   {
-    "id": 633,
+    "id": 1397,
     "question": "The antonym of 'order' is:",
     "targetWord": "order",
     "type": "antonym",
@@ -365,7 +365,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "regular - নিয়মিত, sequence - ক্রমপর্যায়, discipline - শৃঙ্খলা, disorder - বিশৃঙ্খলা"
   },
   {
-    "id": 634,
+    "id": 1398,
     "question": "The opposite of 'desirable' is:",
     "targetWord": "desirable",
     "type": "antonym",
@@ -376,7 +376,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "nondesirable - ভুল শব্দ, undesirable - অবাঞ্ছিত/অনাকাঙ্ক্ষিত, indesirable - ভুল রূপ, disdesirable - ভুল রূপ"
   },
   {
-    "id": 635,
+    "id": 1399,
     "question": "What is the antonym of 'degrade'?",
     "targetWord": "degrade",
     "type": "antonym",
@@ -387,7 +387,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "diminish - কমানো, improve - উন্নতি করা, good grade - ভালো গ্রেড, noisy - কোলাহলপূর্ণ"
   },
   {
-    "id": 636,
+    "id": 1400,
     "question": "The antonym of 'Foremost' is-",
     "targetWord": "foremost",
     "type": "antonym",
@@ -398,7 +398,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Hindmost - পেছনের, Unimportant - গুরুত্বহীন, Disposed - আগ্রহী, Mature - পরিপক্ব"
   },
   {
-    "id": 637,
+    "id": 1401,
     "question": "The antonym of the word 'benign' is-",
     "targetWord": "benign",
     "type": "antonym",
@@ -409,7 +409,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "beneficial - উপকারী, peaceful - শান্তিপূর্ণ, blessed - পবিত্র, malignant - মারাত্মক/ক্ষতিকর"
   },
   {
-    "id": 638,
+    "id": 1402,
     "question": "What is the antonym of 'malignant'?",
     "targetWord": "malignant",
     "type": "antonym",
@@ -420,7 +420,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Harmful - ক্ষতিকর, Vindictive - প্রতিহিংসাপরায়ণ, Benign - নিরীহ/ক্ষতিহীন, Morose - বিষণ্ণ"
   },
   {
-    "id": 639,
+    "id": 1403,
     "question": "The antonym of the word 'discreet' is:",
     "targetWord": "discreet",
     "type": "antonym",
@@ -431,7 +431,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "undiscreet - অশুদ্ধ শব্দ, nondiscreet - অশুদ্ধ, indiscreet - অবিচক্ষণ/হঠকারী, discreetless - অশুদ্ধ"
   },
   {
-    "id": 640,
+    "id": 1404,
     "question": "What is the antonym of 'affected'?",
     "targetWord": "affected",
     "type": "antonym",
@@ -442,7 +442,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "weary - ক্লান্ত, unfriendly - অবন্ধুত্বপূর্ণ, divine - স্বর্গীয়, unfeigned - অকৃত্রিম/খাঁটি"
   },
   {
-    "id": 641,
+    "id": 1405,
     "question": "Choose the correct antonym of the word 'Synthetic':",
     "targetWord": "synthetic",
     "type": "antonym",
@@ -453,7 +453,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Cosmetics - প্রসাধন, Affable - অমায়িক, Natural - প্রাকৃতিক/স্বাভাবিক, Apathetic - উদাসীন"
   },
   {
-    "id": 642,
+    "id": 1406,
     "question": "Amalgamate is the antonym of-",
     "targetWord": "amalgamate",
     "type": "antonym",
@@ -464,7 +464,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Generate - উৎপাদন, Repair - মেরামত, Materialize - রূপ দেওয়া, Separate - আলাদা/পৃথক করা"
   },
   {
-    "id": 643,
+    "id": 1407,
     "question": "Choose the correct antonym of 'Nomad':",
     "targetWord": "nomad",
     "type": "antonym",
@@ -475,7 +475,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Bachelor - অবিবাহিত, Victim - শিকার, Inhuman - অমানবিক, Settled - স্থায়ী/প্রতিষ্ঠিত"
   },
   {
-    "id": 644,
+    "id": 1408,
     "question": "An antonym of 'Precursor' is:",
     "targetWord": "precursor",
     "type": "antonym",
@@ -486,7 +486,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "pioneer - পথপ্রদর্শক, predecessor - পূর্বসূরী, forerunner - অগ্রদূত, successor - উত্তরসূরী"
   },
   {
-    "id": 645,
+    "id": 1409,
     "question": "The antonym of 'frequently' is:",
     "targetWord": "frequently",
     "type": "antonym",
@@ -497,7 +497,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "habitually - নিয়মিত, seldom - কদাচিৎ/খুব কম, usually - সাধারণত, typically - স্বভাবসিদ্ধভাবে"
   },
   {
-    "id": 646,
+    "id": 1410,
     "question": "The antonym of 'indulge' is:",
     "targetWord": "indulge",
     "type": "antonym",
@@ -508,7 +508,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Entertain - বিনোদন দেওয়া, Nourish - লালন করা, Pamper - অতিআদর দেওয়া, Abstain - বিরত থাকা"
   },
   {
-    "id": 647,
+    "id": 1411,
     "question": "Antonym of 'Consume' is-",
     "targetWord": "consume",
     "type": "antonym",
@@ -519,7 +519,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "spend - খরচ করা, preserve - সংরক্ষণ করা, loss - ক্ষতি, extinct - বিলুপ্ত"
   },
   {
-    "id": 648,
+    "id": 1412,
     "question": "The antonym of 'dunce' is-",
     "targetWord": "dunce",
     "type": "antonym",
@@ -530,7 +530,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "intelligent - বুদ্ধিমান, stupid - বোকা, freedom - স্বাধীনতা, wonder - বিস্ময়"
   },
   {
-    "id": 649,
+    "id": 1413,
     "question": "The antonym of the word 'sombre/somber' is -",
     "targetWord": "somber",
     "type": "antonym",
@@ -541,7 +541,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "sleepy - ঘুমন্ত, dismal - বিষণ্ণ, drab - বর্ণহীন, bright - উজ্জ্বল/আলোকোজ্জ্বল"
   },
   {
-    "id": 650,
+    "id": 1414,
     "question": "Find the antonym of the word 'Infatuation'.",
     "targetWord": "infatuation",
     "type": "antonym",
@@ -552,7 +552,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Apathy - অনীহা/উদাসীনতা, Fascination - মুগ্ধতা, Love - প্রেম, Interest - আগ্রহ"
   },
   {
-    "id": 651,
+    "id": 1415,
     "question": "Antonym of the word 'urbane':",
     "targetWord": "urbane",
     "type": "antonym",
@@ -563,7 +563,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "rural - গ্রাম্য, shave - দাড়ি কামানো, sophisticated - আধুনিক, uncouth - অমার্জিত/অভদ্র"
   },
   {
-    "id": 652,
+    "id": 1416,
     "question": "Insert is opposite to --",
     "targetWord": "insert",
     "type": "antonym",
@@ -574,7 +574,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Error - ভুল, Delete - মুছে ফেলা/বাদ দেওয়া, Discrete - আলাদা, Dull - নিস্তেজ"
   },
   {
-    "id": 653,
+    "id": 1417,
     "question": "Antonym for the word 'abundant' is -",
     "targetWord": "abundant",
     "type": "antonym",
@@ -585,7 +585,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "wrong - ভুল, accidental - আকস্মিক, wide - চওড়া, scarce - দুষ্প্রাপ্য/অপ্রতুল"
   },
   {
-    "id": 654,
+    "id": 1418,
     "question": "Antonym of 'Desolate' is--",
     "targetWord": "desolate",
     "type": "antonym",
@@ -596,7 +596,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Populous - জনবহুল, Isolated - বিচ্ছিন্ন, Abandoned - পরিত্যক্ত, Disfigured - বিকৃত"
   },
   {
-    "id": 655,
+    "id": 1419,
     "question": "What is the antonym of 'Repulsion'?",
     "targetWord": "repulsion",
     "type": "antonym",
@@ -607,7 +607,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "aversion - বিতৃষ্ণা, attraction - আকর্ষণ, destitution - নিঃস্বতা, petulance - খিটখিটে ভাব"
   },
   {
-    "id": 656,
+    "id": 1420,
     "question": "The antonym of 'Harbinger' is -",
     "targetWord": "harbinger",
     "type": "antonym",
@@ -618,7 +618,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Leader - নেতা, Educator - শিক্ষক, Messenger - বার্তাবাহক, Follower - অনুসারী"
   },
   {
-    "id": 657,
+    "id": 1421,
     "question": "What is the antonym of 'Prior'?",
     "targetWord": "prior",
     "type": "antonym",
@@ -629,7 +629,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Posterior - পরবর্তী, Precedence - অগ্রাধিকার, Next one - পরেরটি, None - কোনটি নয়"
   },
   {
-    "id": 658,
+    "id": 1422,
     "question": "Antonym of 'epilogue':",
     "targetWord": "epilogue",
     "type": "antonym",
@@ -640,7 +640,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "analogue - অনুরূপ, monologue - স্বগতোক্তি, dialogue - সংলাপ, prologue - প্রস্তাবনা/প্রারম্ভ"
   },
   {
-    "id": 659,
+    "id": 1423,
     "question": "What is the antonym of 'Prelude'?",
     "targetWord": "prelude",
     "type": "antonym",
@@ -651,7 +651,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "epilogue - সমাপ্তি/উপসংহার, coda - শেষাংশ, scene - দৃশ্য, prologue - প্রস্তাবনা"
   },
   {
-    "id": 660,
+    "id": 1424,
     "question": "COMPLIANCE (Antonym)",
     "targetWord": "compliance",
     "type": "antonym",
@@ -662,7 +662,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "disobedience - অবাধ্যতা, disturbance - বিশৃঙ্খলা, curse - অভিশাপ, power - ক্ষমতা"
   },
   {
-    "id": 661,
+    "id": 1425,
     "question": "ANNIHILATE (Antonym)",
     "targetWord": "annihilate",
     "type": "antonym",
@@ -673,7 +673,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "arrive - পৌঁছানো, establish - প্রতিষ্ঠা করা, elicit - প্রকাশ করা, deprive - বঞ্চিত করা"
   },
   {
-    "id": 662,
+    "id": 1426,
     "question": "BIASED (Antonym)",
     "targetWord": "biased",
     "type": "antonym",
@@ -684,7 +684,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "nefarious - দুশ্চরিত্র, neutral - নিরপেক্ষ, nepotism - স্বজনপ্রীতি, depressed - বিষণ্ণ"
   },
   {
-    "id": 663,
+    "id": 1427,
     "question": "Antonym of 'facilitate' is ----",
     "targetWord": "facilitate",
     "type": "antonym",
@@ -695,7 +695,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "hallow - পবিত্র করা, hide - লুকানো, hamper - ব্যাহত করা/বাধা, hold - ধরে রাখা"
   },
   {
-    "id": 664,
+    "id": 1428,
     "question": "The antonym of 'booming' is --",
     "targetWord": "booming",
     "type": "antonym",
@@ -706,7 +706,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Explosive - বিস্ফোরক, Shrinking - হ্রাসপ্রাপ্ত/সংকোচনশীল, Peaking - শীর্ষে ওঠা, Sliming - পিচ্ছিল"
   },
   {
-    "id": 665,
+    "id": 1429,
     "question": "The opposite of 'inflation' is-",
     "targetWord": "inflation",
     "type": "antonym",
@@ -717,7 +717,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "strangulation - শ্বাসরোধ, stagflation - নিশ্চল মুদ্রাস্ফীতি, depression - মন্দা, deflation - মুদ্রাসংকোচন"
   },
   {
-    "id": 666,
+    "id": 1430,
     "question": "Choose the antonym of the word 'gentle'?",
     "targetWord": "gentle",
     "type": "antonym",
@@ -728,7 +728,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Harsh - কর্কশ, Clever - চতুর, Modest - বিনয়ী, Rude - অভদ্র/রূঢ়"
   },
   {
-    "id": 667,
+    "id": 1431,
     "question": "What is the antonym of the word 'monotonous' is -",
     "targetWord": "monotonous",
     "type": "antonym",
@@ -739,7 +739,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Excess - অতিরিক্ত, Interesting - মজাদার/আকর্ষণীয়, Monopoly - একচেটিয়া, Critical - জটিল"
   },
   {
-    "id": 668,
+    "id": 1432,
     "question": "What would be the right antonym for 'hibernate'?",
     "targetWord": "hibernate",
     "type": "antonym",
@@ -750,7 +750,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "dormancy - সুপ্তাবস্থা, sluggishness - মন্থরতা, liveliness - প্রাণবন্ততা/সক্রিয়তা, democracy - গণতন্ত্র"
   },
   {
-    "id": 669,
+    "id": 1433,
     "question": "An antonym of 'efficacy' is -",
     "targetWord": "efficacy",
     "type": "antonym",
@@ -761,7 +761,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "uselessness - নিষ্ফলতা, efficiency - দক্ষতা, reproduction - প্রজনন, representation - প্রতিনিধিত্ব"
   },
   {
-    "id": 670,
+    "id": 1434,
     "question": "The antonym of 'central' is -",
     "targetWord": "central",
     "type": "antonym",
@@ -772,7 +772,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "essential - আবশ্যক, fundamental - মৌলিক, peripheral - প্রান্তিক, centripetal - কেন্দ্রাভিমুখী"
   },
   {
-    "id": 671,
+    "id": 1435,
     "question": "Perilous (Antonym) is:",
     "targetWord": "perilous",
     "type": "antonym",
@@ -783,7 +783,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Risky - ঝুঁকিপূর্ণ, Greedy - লোভী, Curative - নিরাময়ক, Secure - নিরাপদ"
   },
   {
-    "id": 672,
+    "id": 1436,
     "question": "Perfect (Antonym) is:",
     "targetWord": "perfect",
     "type": "antonym",
@@ -794,7 +794,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Spotless - দাগহীন, Immaculate - নিষ্কলঙ্ক, Sheer - খাঁটি, Flawed - ত্রুটিপূর্ণ"
   },
   {
-    "id": 673,
+    "id": 1437,
     "question": "What is a proper antonym for 'waver'?",
     "targetWord": "waver",
     "type": "antonym",
@@ -805,7 +805,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "determine - সংকল্পবদ্ধ হওয়া, sway - দোলা, vary - বদলানো, develop - উন্নতি করা"
   },
   {
-    "id": 674,
+    "id": 1438,
     "question": "Which one is the antonym of 'Precise'?",
     "targetWord": "precise",
     "type": "antonym",
@@ -816,7 +816,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Incorrect - ভুল, Indecent - অশোভন, Indistinct - আবছা, Vague - অস্পষ্ট"
   },
   {
-    "id": 675,
+    "id": 1439,
     "question": "The antonym of 'Dissolve' is -",
     "targetWord": "dissolve",
     "type": "antonym",
@@ -827,7 +827,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Hidden - লুক্কায়িত, Easy - সহজ, Expose - প্রকাশ করা, Tough - শক্ত"
   },
   {
-    "id": 676,
+    "id": 1440,
     "question": "The antonym of MEEK is:",
     "targetWord": "meek",
     "type": "antonym",
@@ -838,7 +838,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "mild - মৃদু, gentle - ভদ্র, savage - বর্বর/হিংস্র, domesticated - গৃহপালিত"
   },
   {
-    "id": 677,
+    "id": 1441,
     "question": "The antonym of OBSOLETE is:",
     "targetWord": "obsolete",
     "type": "antonym",
@@ -849,7 +849,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "venerable - শ্রদ্ধেয়, modern - আধুনিক, out of date - সেকেলে, antiquated - প্রাচীন"
   },
   {
-    "id": 678,
+    "id": 1442,
     "question": "What is the antonym of 'Quiescent'?",
     "targetWord": "quiescent",
     "type": "antonym",
@@ -860,7 +860,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "active - সক্রিয়/কর্মচঞ্চল, asleep - ঘুমন্ত, deactivated - নিষ্ক্রিয়, fallow - পতিত"
   },
   {
-    "id": 679,
+    "id": 1443,
     "question": "Find the antonym of 'earnest':",
     "targetWord": "earnest",
     "type": "antonym",
@@ -871,7 +871,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "ardent - অতিউৎসাহী, serious - গম্ভীর, flippant - চপল/দায়িত্বহীন, sincere - আন্তরিক"
   },
   {
-    "id": 680,
+    "id": 1444,
     "question": "What is the antonym of 'awful'?",
     "targetWord": "awful",
     "type": "antonym",
@@ -882,7 +882,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "unpleasant - অপ্রীতিকর, awake - জাগ্রত, wonderful - চমৎকার, terrible - ভয়াবহ"
   },
   {
-    "id": 681,
+    "id": 1445,
     "question": "The antonym of the word 'Expel' is-",
     "targetWord": "expel",
     "type": "antonym",
@@ -893,7 +893,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Banish - নির্বাসন, Dismiss - বরখাস্ত, Admit - ভর্তি করা/স্বীকার, Eject - নিক্ষেপ করা"
   },
   {
-    "id": 682,
+    "id": 1446,
     "question": "The antonym of 'indifference' is:",
     "targetWord": "indifference",
     "type": "antonym",
@@ -904,7 +904,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "ardour - ব্যাকুলতা/উদ্দীপনা, compassion - করুণা, anxiety - উদ্বেগ, concern - সজাগ দৃষ্টি"
   },
   {
-    "id": 683,
+    "id": 1447,
     "question": "What is the antonym of 'weal'?",
     "targetWord": "weal",
     "type": "antonym",
@@ -915,7 +915,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "wary - সতর্ক, woe - দুঃখ/দুর্দশা, war - যুদ্ধ, wither - শুকিয়ে যাওয়া"
   },
   {
-    "id": 684,
+    "id": 1448,
     "question": "The antonym of a 'philanthropist' is:",
     "targetWord": "philanthropist",
     "type": "antonym",
@@ -926,7 +926,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "misanthrope - মানববিদ্বেষী, misogynist - নারীবিদ্বেষী, patriot - দেশপ্রেমিক, selfless lover - নিঃস্বার্থ প্রেমিক"
   },
   {
-    "id": 685,
+    "id": 1449,
     "question": "The antonym of 'Patriot' is-",
     "targetWord": "patriot",
     "type": "antonym",
@@ -937,7 +937,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Treacherous - বিশ্বাসঘাতক, Tout - দালাল, Traitor - দেশদ্রোহী, Criminal - অপরাধী"
   },
   {
-    "id": 686,
+    "id": 1450,
     "question": "Repeal (Antonym)",
     "targetWord": "repeal",
     "type": "antonym",
@@ -948,7 +948,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Abolish - বাতিল করা, Enact - আইন প্রণয়ন করা, Annul - রদ করা, Nullify - অকার্যকর করা"
   },
   {
-    "id": 687,
+    "id": 1451,
     "question": "Cynical (Antonym)",
     "targetWord": "cynical",
     "type": "antonym",
@@ -959,7 +959,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Pessimistic - হতাশাবাদী, Gullible - সহজে বিশ্বাসপ্রবণ, Equivocal - দ্ব্যর্থক, Liberal - উদার"
   },
   {
-    "id": 688,
+    "id": 1452,
     "question": "The antonym of 'assail' is -",
     "targetWord": "assail",
     "type": "antonym",
@@ -970,7 +970,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "attack - হামলা করা, befriend - বন্ধু হওয়া, prevail - জয়ী হওয়া, fly - ওড়া"
   },
   {
-    "id": 689,
+    "id": 1453,
     "question": "'Prolix' is most nearly opposite in meaning to -",
     "targetWord": "prolix",
     "type": "antonym",
@@ -981,7 +981,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "terse - সংক্ষিপ্ত/সারগর্ভ, awkward - বেমানান, belligerent - যুদ্ধংদেহী, forward - অগ্রসর"
   },
   {
-    "id": 690,
+    "id": 1454,
     "question": "'Castigate' is most nearly opposite in meaning to -",
     "targetWord": "castigate",
     "type": "antonym",
@@ -992,7 +992,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "incarcerate - কারারুদ্ধ, extol - উচ্চ প্রশংসা করা, flatter - তোষামোদ, change - বদলানো"
   },
   {
-    "id": 691,
+    "id": 1455,
     "question": "'Sloth' is the antonym of -",
     "targetWord": "sloth",
     "type": "antonym",
@@ -1003,7 +1003,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Activity - কর্মতৎপরতা, Idleness - অলসতা, Laziness - আলস্য, Indolence - শ্রমবিমুখতা"
   },
   {
-    "id": 692,
+    "id": 1456,
     "question": "The antonym of 'Colossal' is -",
     "targetWord": "colossal",
     "type": "antonym",
@@ -1014,7 +1014,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Great - মহান, Gigantic - বিশাল, Tiny - অতি ক্ষুদ্র, Poor - দরিদ্র"
   },
   {
-    "id": 693,
+    "id": 1457,
     "question": "Choose the antonym of 'myriad'.",
     "targetWord": "myriad",
     "type": "antonym",
@@ -1025,7 +1025,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "endless - অসীম, dialect - উপভাষা, limited - সীমিত/নির্দিষ্ট, rural - গ্রামীণ"
   },
   {
-    "id": 694,
+    "id": 1458,
     "question": "The antonym of 'prosperity' is -",
     "targetWord": "prosperity",
     "type": "antonym",
@@ -1036,7 +1036,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "diversity - বৈচিত্র্য, adversity - দুর্দশা/দুর্ভাগ্য, property - সম্পত্তি, posterity - উত্তরসূরী"
   },
   {
-    "id": 695,
+    "id": 1459,
     "question": "The opposite of 'copious' is -",
     "targetWord": "copious",
     "type": "antonym",
@@ -1047,7 +1047,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "scarce - দুষ্প্রাপ্য/স্বল্প, plentiful - প্রচুর, sufficient - পর্যাপ্ত, enough - যথেষ্ট"
   },
   {
-    "id": 696,
+    "id": 1460,
     "question": "The opposite of 'optimism' is-",
     "targetWord": "optimism",
     "type": "antonym",
@@ -1058,7 +1058,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "pessimism - হতাশাবাদ, opulence - প্রাচুর্য, pestilence - মহামারী, opportunities - সুযোগ"
   },
   {
-    "id": 697,
+    "id": 1461,
     "question": "Antonym of 'dogma' is:",
     "targetWord": "dogma",
     "type": "antonym",
@@ -1069,7 +1069,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "doctrine - মতবাদ, principle - নীতি, tenet - বিশ্বাস, unbelief - অবিশ্বাস"
   },
   {
-    "id": 698,
+    "id": 1462,
     "question": "The antonym of 'robust' is",
     "targetWord": "robust",
     "type": "antonym",
@@ -1080,7 +1080,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "weak - দুর্বল, pleasant - মনোরম, quiet - শান্ত, vigorous - তেজস্বী"
   },
   {
-    "id": 699,
+    "id": 1463,
     "question": "The antonym of 'utopia' is",
     "targetWord": "utopia",
     "type": "antonym",
@@ -1091,7 +1091,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "dystopia - নরকতুল্য সমাজ, systopia - অপ্রাসঙ্গিক, anarchy - অরাজকতা, Eden - স্বর্গোদ্যান"
   },
   {
-    "id": 700,
+    "id": 1464,
     "question": "LIABILITY (Antonym)",
     "targetWord": "liability",
     "type": "antonym",
@@ -1102,7 +1102,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Treasure - ধনভাণ্ডার, Debt - ঋণ, Assets - পরিসম্পদ, Property - স্থাবর সম্পত্তি"
   },
   {
-    "id": 701,
+    "id": 1465,
     "question": "The antonym of 'abhor' is -",
     "targetWord": "abhor",
     "type": "antonym",
@@ -1113,7 +1113,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "detest - ঘৃণা করা, loathe - অপছন্দ করা, love - ভালোবাসা, despise - তুচ্ছ করা"
   },
   {
-    "id": 702,
+    "id": 1466,
     "question": "Correct antonym of AMELIORATE-",
     "targetWord": "ameliorate",
     "type": "antonym",
@@ -1124,7 +1124,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "strengthen - শক্তিশালী করা, relieve - উপশম করা, aggravate - অবনতি ঘটানো, subside - কমা"
   },
   {
-    "id": 703,
+    "id": 1467,
     "question": "The antonym of 'omniscient' is-",
     "targetWord": "omniscient",
     "type": "antonym",
@@ -1135,7 +1135,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "unscientific - অবৈজ্ঞানিক, insensible - সংবেদনহীন, ignorant - অজ্ঞ/জ্ঞানহীন, unscholarly - অপাণ্ডিত্যপূর্ণ"
   },
   {
-    "id": 704,
+    "id": 1468,
     "question": "Find the antonym: DESICCATE",
     "targetWord": "desiccate",
     "type": "antonym",
@@ -1146,7 +1146,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Lengthen - দীর্ঘ করা, Hallow - পবিত্র করা, Exonerate - দায়মুক্ত করা, Saturate - সম্পূর্ণ ভিজানো/সিক্ত করা"
   },
   {
-    "id": 705,
+    "id": 1469,
     "question": "The antonym of 'nefarious' is -",
     "targetWord": "nefarious",
     "type": "antonym",
@@ -1157,7 +1157,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "lackadaisical - অলস, eccentric - খামখেয়ালী, exemplary - অনুকরণীয়/উত্তম, corrigible - সংশোধনযোগ্য"
   },
   {
-    "id": 706,
+    "id": 1470,
     "question": "The antonym for 'cacophony' is-",
     "targetWord": "cacophony",
     "type": "antonym",
@@ -1168,7 +1168,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "irony - পরিহাস, euphony - সুমধুর ধ্বনি, telephony - টেলিফোন যোগাযোগ, symphony - সুরসঙ্গতি"
   },
   {
-    "id": 707,
+    "id": 1471,
     "question": "An antonym of CONCRETE is -",
     "targetWord": "concrete",
     "type": "antonym",
@@ -1179,7 +1179,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "Cement - জমাটবদ্ধ করা, Abstract - বিমূর্ত/ভাববাচক, Alloy - সংকর ধাতু, Refrain - বিরত থাকা"
   },
   {
-    "id": 708,
+    "id": 1472,
     "question": "The antonym of 'opaque' is-",
     "targetWord": "opaque",
     "type": "antonym",
@@ -1190,7 +1190,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "transparent - স্বচ্ছ/পরিষ্কার, dark - অন্ধকার, hazy - কুয়াশাচ্ছন্ন, obscure - অস্পষ্ট"
   },
   {
-    "id": 709,
+    "id": 1473,
     "question": "The antonym of 'obsolete' is-",
     "targetWord": "obsolete",
     "type": "antonym",
@@ -1201,7 +1201,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "contemporary - সমসাময়িক/আধুনিক, outdated - সেকেলে, remote - দূরবর্তী, ancient - প্রাচীন"
   },
   {
-    "id": 710,
+    "id": 1474,
     "question": "What is the antonym of 'perilous'?",
     "targetWord": "perilous",
     "type": "antonym",
@@ -1212,7 +1212,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "hazardous - বিপজ্জনক, risky - ঝুঁকিপূর্ণ, safe - নিরাপদ, fatal - প্রাণঘাতী"
   },
   {
-    "id": 711,
+    "id": 1475,
     "question": "The antonym of 'prodigal' is-",
     "targetWord": "prodigal",
     "type": "antonym",
@@ -1223,7 +1223,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "thrifty - মিতব্যয়ী, extravagant - অপব্যয়ী, wasteful - ক্ষতিকর অপচয়, reckless - বেপরোয়া"
   },
   {
-    "id": 712,
+    "id": 1476,
     "question": "The word 'indolent' is opposite in meaning to-",
     "targetWord": "indolent",
     "type": "antonym",
@@ -1234,7 +1234,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "sluggish - মন্থর, diligent - পরিশ্রমী/উদ্যমী, lazy - অলস, inactive - নিষ্ক্রিয়"
   },
   {
-    "id": 713,
+    "id": 1477,
     "question": "The antonym of 'mitigate' is-",
     "targetWord": "mitigate",
     "type": "antonym",
@@ -1245,7 +1245,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "soothe - শান্ত করা, alleviate - উপশম করা, aggravate - তীব্র করা/বাড়ানো, lessen - কমানো"
   },
   {
-    "id": 714,
+    "id": 1478,
     "question": "What is the antonym of 'ephemeral'?",
     "targetWord": "ephemeral",
     "type": "antonym",
@@ -1256,7 +1256,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "transient - ক্ষণস্থায়ী, fleeting - ক্ষণিক, eternal - চিরন্তন/অনন্ত, short-lived - স্বল্পায়ু"
   },
   {
-    "id": 715,
+    "id": 1479,
     "question": "The opposite word of 'lucid' is-",
     "targetWord": "lucid",
     "type": "antonym",
@@ -1267,7 +1267,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "clear - পরিষ্কার, obscure - অস্পষ্ট/দুর্বোধ্য, bright - উজ্জ্বল, transparent - স্বচ্ছ"
   },
   {
-    "id": 716,
+    "id": 1480,
     "question": "The antonym of 'nadir' is-",
     "targetWord": "nadir",
     "type": "antonym",
@@ -1278,7 +1278,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "depth - গভীরতা, zenith - শীর্ষবিন্দু/চূড়া, bottom - তলদেশ, base - ভিত্তি"
   },
   {
-    "id": 717,
+    "id": 1481,
     "question": "The antonym of 'hostile' is-",
     "targetWord": "hostile",
     "type": "antonym",
@@ -1289,7 +1289,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "friendly - বন্ধুত্বপূর্ণ, antagonistic - বিরোধী, violent - হিংস্র, bitter - তিক্ত"
   },
   {
-    "id": 718,
+    "id": 1482,
     "question": "The antonym of 'turbulent' is-",
     "targetWord": "turbulent",
     "type": "antonym",
@@ -1300,7 +1300,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "stormy - ঝড়ো, chaotic - বিশৃঙ্খল, peaceful - শান্ত/স্থির, violent - তীব্র"
   },
   {
-    "id": 719,
+    "id": 1483,
     "question": "Antonym of 'affluent' is-",
     "targetWord": "affluent",
     "type": "antonym",
@@ -1311,7 +1311,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "wealthy - সম্পদশালী, rich - ধনী, poor - দরিদ্র/নিঃস্ব, prosperous - সমৃদ্ধিশালী"
   },
   {
-    "id": 720,
+    "id": 1484,
     "question": "The word 'dormant' has the opposite meaning of-",
     "targetWord": "dormant",
     "type": "antonym",
@@ -1322,7 +1322,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "active - সক্রিয়/জাগ্রত, latent - সুপ্ত, sleeping - ঘুমন্ত, hidden - লুক্কায়িত"
   },
   {
-    "id": 721,
+    "id": 1485,
     "question": "The antonym of 'candid' is-",
     "targetWord": "candid",
     "type": "antonym",
@@ -1333,7 +1333,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "frank - অকপট, honest - সৎ, deceitful - কপট/প্রতারণামূলক, open - উন্মুক্ত"
   },
   {
-    "id": 722,
+    "id": 1486,
     "question": "The antonym of 'tenacious' is-",
     "targetWord": "tenacious",
     "type": "antonym",
@@ -1344,7 +1344,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "stubborn - একগুঁয়ে, yielding - নমনীয়/বশ্যতাপ্রবণ, firm - দৃঢ়, persistent - অবিচল"
   },
   {
-    "id": 723,
+    "id": 1487,
     "question": "The antonym of 'sublime' is-",
     "targetWord": "sublime",
     "type": "antonym",
@@ -1355,7 +1355,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "lofty - উচ্চ, noble - মহৎ, ridiculous - হাস্যকর/তুচ্ছ, grand - জাঁকজমকপূর্ণ"
   },
   {
-    "id": 724,
+    "id": 1488,
     "question": "What is the antonym of 'fickle'?",
     "targetWord": "fickle",
     "type": "antonym",
@@ -1366,7 +1366,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "variable - পরিবর্তনশীল, constant - স্থির/অবিচল, unstable - অস্থির, changeable - পরিবর্তনীয়"
   },
   {
-    "id": 725,
+    "id": 1489,
     "question": "The antonym of 'gregarious' is-",
     "targetWord": "gregarious",
     "type": "antonym",
@@ -1377,7 +1377,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "sociable - মিশুক, solitary - একাকী/নিঃসঙ্গ, outgoing - অমায়িক, friendly - বন্ধুবৎসল"
   },
   {
-    "id": 726,
+    "id": 1490,
     "question": "The antonym of 'loquacious' is-",
     "targetWord": "loquacious",
     "type": "antonym",
@@ -1388,7 +1388,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "talkative - বাচাল, garrulous - বাচাল, reticent - স্বল্পভাষী/চাপা, verbose - শব্দবহুল"
   },
   {
-    "id": 727,
+    "id": 1491,
     "question": "The word 'obstinate' is opposite in meaning to-",
     "targetWord": "obstinate",
     "type": "antonym",
@@ -1399,7 +1399,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "stubborn - একগুঁয়ে, flexible - নমনীয়/সহজসাধ্য, rigid - অনমনীয়, inflexible - দৃঢ়"
   },
   {
-    "id": 728,
+    "id": 1492,
     "question": "The antonym of 'parsimonious' is-",
     "targetWord": "parsimonious",
     "type": "antonym",
@@ -1410,7 +1410,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "stingy - কৃপণ, frugal - মিতব্যয়ী, extravagant - অমিতব্যয়ী/উদার, miserly - কৃপণ"
   },
   {
-    "id": 729,
+    "id": 1493,
     "question": "What is the antonym of 'meticulous'?",
     "targetWord": "meticulous",
     "type": "antonym",
@@ -1421,7 +1421,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "careful - সতর্ক, punctilious - শিষ্টাচারী, careless - অসতর্ক/উদাসীন, precise - সুনির্দিষ্ট"
   },
   {
-    "id": 730,
+    "id": 1494,
     "question": "The antonym of 'audacious' is-",
     "targetWord": "audacious",
     "type": "antonym",
@@ -1432,7 +1432,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "bold - সাহসী, daring - দুঃসাহসী, timid - ভীতু/লাজুক, fearless - নির্ভীক"
   },
   {
-    "id": 731,
+    "id": 1495,
     "question": "The antonym of 'chide' is-",
     "targetWord": "chide",
     "type": "antonym",
@@ -1443,7 +1443,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "rebuke - তিরস্কার করা, scold - গালি দেওয়া, praise - প্রশংসা করা, reprimand - তিরস্কার করা"
   },
   {
-    "id": 732,
+    "id": 1496,
     "question": "The antonym of 'condone' is-",
     "targetWord": "condone",
     "type": "antonym",
@@ -1454,7 +1454,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "overlook - উপেক্ষা করা, forgive - ক্ষমা করা, condemn - নিন্দা/দণ্ড দেওয়া, pardon - ক্ষমা করা"
   },
   {
-    "id": 733,
+    "id": 1497,
     "question": "The antonym of 'dexterous' is-",
     "targetWord": "dexterous",
     "type": "antonym",
@@ -1465,7 +1465,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "skillful - দক্ষ, expert - বিশেষজ্ঞ, clumsy - আনাড়ি/অদক্ষ, adroit - নিপুণ"
   },
   {
-    "id": 734,
+    "id": 1498,
     "question": "The antonym of 'emancipate' is-",
     "targetWord": "emancipate",
     "type": "antonym",
@@ -1476,7 +1476,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "free - মুক্ত করা, enslave - দাস বানানো/বন্দি করা, liberate - স্বাধীন করা, release - মুক্তি দেওয়া"
   },
   {
-    "id": 735,
+    "id": 1499,
     "question": "The antonym of 'exodus' is-",
     "targetWord": "exodus",
     "type": "antonym",
@@ -1487,7 +1487,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "departure - প্রস্থান, influx - অন্তর্গমন/প্রবেশ, migration - দেশান্তর, evacuation - খালি করা"
   },
   {
-    "id": 736,
+    "id": 1500,
     "question": "The antonym of 'fallacious' is-",
     "targetWord": "fallacious",
     "type": "antonym",
@@ -1498,7 +1498,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "misleading - বিভ্রান্তিকর, false - মিথ্যা, truthful - সত্যবাদী/সঠিক, deceptive - প্রতারক"
   },
   {
-    "id": 737,
+    "id": 1501,
     "question": "The antonym of 'impetuous' is-",
     "targetWord": "impetuous",
     "type": "antonym",
@@ -1509,7 +1509,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "rash - অপরিণামদর্শী, hasty - তাড়াহুড়োকারী, cautious - সতর্ক/বিচক্ষণ, impulsive - আবেগপ্রবণ"
   },
   {
-    "id": 738,
+    "id": 1502,
     "question": "The antonym of 'insolent' is-",
     "targetWord": "insolent",
     "type": "antonym",
@@ -1520,7 +1520,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "rude - অভদ্র, impolite - অশিষ্ট, respectful - শ্রদ্ধাশীল/ভদ্র, arrogant - অহংকারী"
   },
   {
-    "id": 739,
+    "id": 1503,
     "question": "The antonym of 'lethargic' is-",
     "targetWord": "lethargic",
     "type": "antonym",
@@ -1531,7 +1531,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "drowsy - তন্দ্রাচ্ছন্ন, sluggish - মন্থর, energetic - কর্মচঞ্চল/উদ্যমী, sleepy - নিদ্রালু"
   },
   {
-    "id": 740,
+    "id": 1504,
     "question": "The antonym of 'nebulous' is-",
     "targetWord": "nebulous",
     "type": "antonym",
@@ -1542,7 +1542,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "vague - অস্পষ্ট, cloudy - মেঘাচ্ছন্ন, clear - সুস্পষ্ট/পরিষ্কার, indistinct - অস্পষ্ট"
   },
   {
-    "id": 741,
+    "id": 1505,
     "question": "The antonym of 'quell' is-",
     "targetWord": "quell",
     "type": "antonym",
@@ -1553,7 +1553,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "suppress - দমন করা, subdue - বশীভূত করা, incite - উসকানি দেওয়া, crush - চূর্ণ করা"
   },
   {
-    "id": 742,
+    "id": 1506,
     "question": "The antonym of 'tacit' is-",
     "targetWord": "tacit",
     "type": "antonym",
@@ -1564,7 +1564,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "silent - নীরব, implicit - অন্তর্নিহিত, explicit - সুস্পষ্ট/প্রকাশ্য, unspoken - না বলা"
   },
   {
-    "id": 743,
+    "id": 1507,
     "question": "The antonym of 'ubiquitous' is-",
     "targetWord": "ubiquitous",
     "type": "antonym",
@@ -1575,7 +1575,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "omnipresent - সর্বব্যাপী, everywhere - সর্বত্র, rare - বিরল/দুষ্প্রাপ্য, universal - সার্বজনীন"
   },
   {
-    "id": 744,
+    "id": 1508,
     "question": "The antonym of 'vacillate' is-",
     "targetWord": "vacillate",
     "type": "antonym",
@@ -1586,7 +1586,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "waver - দোলাচল করা, hesitate - দ্বিধা করা, decide - স্থির/সিদ্ধান্ত নেওয়া, fluctuate - উঠানামা করা"
   },
   {
-    "id": 745,
+    "id": 1509,
     "question": "The antonym of 'abhor' is-",
     "targetWord": "abhor",
     "type": "antonym",
@@ -1597,7 +1597,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "hate - ঘৃণা করা, detest - ঘৃণা করা, love - ভালোবাসা/পছন্দ করা, loathe - তীব্র ঘৃণা করা"
   },
   {
-    "id": 746,
+    "id": 1510,
     "question": "The antonym of 'capricious' is-",
     "targetWord": "capricious",
     "type": "antonym",
@@ -1608,7 +1608,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "fickle - চঞ্চল, whimsical - খামখেয়ালী, steadfast - দৃঢ়/অটল, erratic - খামখেয়ালী"
   },
   {
-    "id": 747,
+    "id": 1511,
     "question": "The antonym of 'morose' is-",
     "targetWord": "morose",
     "type": "antonym",
@@ -1619,7 +1619,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "gloomy - বিষণ্ণ, sullen - গোমড়ামুখো, cheerful - প্রফুল্ল/হাসিখুশি, sour - খিটখিটে"
   },
   {
-    "id": 748,
+    "id": 1512,
     "question": "The antonym of 'torpor' is-",
     "targetWord": "torpor",
     "type": "antonym",
@@ -1630,7 +1630,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "lethargy - অসাড়তা, inactivity - নিষ্ক্রিয়তা, activity - সক্রিয়তা/উদ্যম, sloth - অলসতা"
   },
   {
-    "id": 749,
+    "id": 1513,
     "question": "What is the antonym of 'fastidious'?",
     "targetWord": "fastidious",
     "type": "antonym",
@@ -1641,7 +1641,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "fussy - খুঁতখুঁতে, particular - নিখুঁতপ্রিয়, carefree - নিশ্চিন্ত/সহজতুষ্ট, dainty - সুস্বাদু"
   },
   {
-    "id": 750,
+    "id": 1514,
     "question": "The antonym of 'bellicose' is-",
     "targetWord": "bellicose",
     "type": "antonym",
@@ -1652,7 +1652,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "warlike - যুদ্ধপ্রিয়, aggressive - আক্রমণাত্মক, peaceful - শান্তিকামী, hostile - শত্রুতাপূর্ণ"
   },
   {
-    "id": 751,
+    "id": 1515,
     "question": "The antonym of 'chaste' is-",
     "targetWord": "chaste",
     "type": "antonym",
@@ -1663,7 +1663,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "pure - বিশুদ্ধ, virtuous - ধার্মিক, immoral - নীতিহীন/কলুষিত, modest - বিনয়ী"
   },
   {
-    "id": 752,
+    "id": 1516,
     "question": "The antonym of 'ingenuous' is-",
     "targetWord": "ingenuous",
     "type": "antonym",
@@ -1674,7 +1674,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "innocent - নিষ্পাপ, naive - সরল, cunning - ধূর্ত/কপট, simple - সাধারণ"
   },
   {
-    "id": 753,
+    "id": 1517,
     "question": "The antonym of 'panegyric' is-",
     "targetWord": "panegyric",
     "type": "antonym",
@@ -1685,7 +1685,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "eulogy - প্রশংসা, tribute - শ্রদ্ধার্ঘ্য, criticism - কঠোর সমালোচনা, praise - গুণকীর্তন"
   },
   {
-    "id": 754,
+    "id": 1518,
     "question": "The antonym of 'wan' is-",
     "targetWord": "wan",
     "type": "antonym",
@@ -1696,7 +1696,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "pale - ফ্যাকাশে, faint - দুর্বল, ruddy - লালচে/সতেজ, weak - দুর্বল"
   },
   {
-    "id": 755,
+    "id": 1519,
     "question": "The antonym of 'zealot' is-",
     "targetWord": "zealot",
     "type": "antonym",
@@ -1707,7 +1707,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "fanatic - গোঁড়া, extremist - চরমপন্থী, moderate - মধ্যপন্থী/উদার, partisan - অন্ধ সমর্থক"
   },
   {
-    "id": 756,
+    "id": 1520,
     "question": "The antonym of 'abstemious' is-",
     "targetWord": "abstemious",
     "type": "antonym",
@@ -1718,7 +1718,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "temperate - পরিমিত, sparing - মিতব্যয়ী, gluttonous - পেটুক/অসংযমী, sober - সংযমী"
   },
   {
-    "id": 757,
+    "id": 1521,
     "question": "The antonym of 'enigma' is-",
     "targetWord": "enigma",
     "type": "antonym",
@@ -1729,7 +1729,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "puzzle - ধাঁধা, mystery - রহস্য, clarity - স্পষ্টতা/সহজ সমাধান, riddle - ধাঁধা"
   },
   {
-    "id": 758,
+    "id": 1522,
     "question": "The antonym of 'altruistic' is-",
     "targetWord": "altruistic",
     "type": "antonym",
@@ -1740,7 +1740,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "benevolent - দয়ালু, selfless - স্বার্থহীন, selfish - স্বার্থপর, generous - উদার"
   },
   {
-    "id": 759,
+    "id": 1523,
     "question": "The antonym of 'gullible' is-",
     "targetWord": "gullible",
     "type": "antonym",
@@ -1751,7 +1751,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "naive - সহজ-সরল, credulous - সহজে বিশ্বাসী, cynical - সন্দেহবাদী/সতর্ক, trusting - বিশ্বাসপ্রবণ"
   },
   {
-    "id": 760,
+    "id": 1524,
     "question": "The antonym of 'lucrative' is-",
     "targetWord": "lucrative",
     "type": "antonym",
@@ -1762,7 +1762,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "profitable - লাভজনক, rewarding - পুরস্কৃত, unprofitable - অলাভজনক/লোকসানকারী, gainful - লাভদায়ক"
   },
   {
-    "id": 761,
+    "id": 1525,
     "question": "The antonym of 'somber' is-",
     "targetWord": "somber",
     "type": "antonym",
@@ -1773,7 +1773,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "gloomy - বিষণ্ণ, dark - অন্ধকার, bright - উজ্জ্বল/আনন্দময়, melancholy - মনমরা"
   },
   {
-    "id": 762,
+    "id": 1526,
     "question": "The antonym of 'profane' is-",
     "targetWord": "profane",
     "type": "antonym",
@@ -1784,7 +1784,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "secular - ধর্মনিরপেক্ষ, unholy - অপবিত্র, sacred - পবিত্র/ধার্মিক, blasphemous - ঈশ্বরনিন্দুক"
   },
   {
-    "id": 763,
+    "id": 1527,
     "question": "The antonym of 'scanty' is-",
     "targetWord": "scanty",
     "type": "antonym",
@@ -1795,7 +1795,7 @@ export const BATCH_11: RawMCQ[] = [
     "explanationBangla": "meager - অপর্যাপ্ত, sparse - বিরল, abundant - প্রচুর/প্রাচুর্যময়, scarce - অপ্রতুল"
   },
   {
-    "id": 764,
+    "id": 1528,
     "question": "The antonym of 'zenith' is-",
     "targetWord": "zenith",
     "type": "antonym",
