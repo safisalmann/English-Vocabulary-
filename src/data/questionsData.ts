@@ -14,6 +14,7 @@ import { BATCH_13 } from './questionsBatch13';
 import { BATCH_14 } from './questionsBatch14';
 import { BATCH_15 } from './questionsBatch15';
 import { BATCH_16 } from './questionsBatch16';
+import { BATCH_PREPOSITIONS } from './questionsPrepositions';
 
 export interface RawMCQ {
   id: number;
@@ -69,6 +70,7 @@ export const ALL_RAW_QUESTIONS: RawMCQ[] = [
   ...BATCH_14,
   ...BATCH_15,
   ...BATCH_16,
+  ...BATCH_PREPOSITIONS,
 ].sort((a, b) => a.id - b.id);
 
 // Clean category mapping for better UI filter badges
@@ -76,6 +78,9 @@ export function resolveCategoryGroup(category?: string, type?: string): { catego
   const cat = (category || '').trim();
   const t = (type || '').trim().toLowerCase();
 
+  if (cat.includes('Preposition') || t.includes('prep') || cat.includes('Prep')) {
+    return { category: 'Prepositions', categoryGroup: 'Grammar & Syntax' };
+  }
   if (cat.includes('Adjective') || cat === 'Latin Adjectives') return { category: 'Adjectives', categoryGroup: 'Grammar & Syntax' };
   if (cat.includes('Pronoun')) return { category: 'Pronoun', categoryGroup: 'Grammar & Syntax' };
   if (cat.includes('Conjunction') || cat.includes('Linkers')) return { category: 'Conjunction & Linkers', categoryGroup: 'Grammar & Syntax' };
@@ -145,6 +150,7 @@ export function normalizeQuestion(raw: RawMCQ): NormalizedMCQ {
   if (raw.type === 'synonym') typeDisplay = 'Synonym';
   else if (raw.type === 'antonym') typeDisplay = 'Antonym';
   else if (raw.type === 'meaning') typeDisplay = 'Meaning';
+  else if (raw.type === 'preposition' || category.includes('Prep')) typeDisplay = 'Appropriate Preposition';
   else if (category.includes('POS') || category.includes('Parts of Speech')) typeDisplay = 'Grammar Rule';
 
   return {
