@@ -1,5 +1,16 @@
 import React from 'react';
-import { Volume2, VolumeX, Flame, Bookmark, Sparkles, Wifi, WifiOff } from 'lucide-react';
+import {
+  Volume2,
+  VolumeX,
+  Flame,
+  Bookmark,
+  Sparkles,
+  Wifi,
+  WifiOff,
+  Target,
+  Eye,
+  EyeOff,
+} from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
 interface HeaderProps {
@@ -10,6 +21,9 @@ interface HeaderProps {
   onOpenBookmarks: () => void;
   soundEnabled: boolean;
   onToggleSound: () => void;
+  showTargetSection: boolean;
+  onToggleTargetSection: () => void;
+  totalQuestions?: number;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -19,6 +33,9 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenBookmarks,
   soundEnabled,
   onToggleSound,
+  showTargetSection,
+  onToggleTargetSection,
+  totalQuestions = 2093,
 }) => {
   const [isOnline, setIsOnline] = React.useState(navigator.onLine);
 
@@ -48,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
                 PulseMCQ
               </span>
               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                1,214 Qs
+                {totalQuestions.toLocaleString()} Qs
               </span>
             </div>
             <div className="flex items-center gap-1 text-[11px] text-slate-400">
@@ -65,12 +82,44 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Real-time stats badges */}
-        <div className="flex items-center gap-2">
+        {/* Real-time stats badges & action controls */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Target Section Hide/Show Button */}
+          <button
+            onClick={onToggleTargetSection}
+            title={
+              showTargetSection
+                ? 'Target Section: Visible (Click to Hide target clues/words)'
+                : 'Target Section: Hidden (Click to Show target clues/words)'
+            }
+            className={`flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-xl border text-xs font-bold transition-all active:scale-95 ${
+              showTargetSection
+                ? 'bg-gradient-to-r from-indigo-600/30 to-violet-600/30 text-indigo-200 border-indigo-500/50 shadow-sm shadow-indigo-500/25 ring-1 ring-indigo-500/30'
+                : 'bg-slate-800/80 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border-slate-700/60'
+            }`}
+          >
+            <Target className={`w-3.5 h-3.5 ${showTargetSection ? 'text-indigo-400' : 'text-slate-500'}`} />
+            <span className="hidden xs:inline text-[11px]">Target:</span>
+            <span
+              className={`text-[10px] font-black px-1.5 py-0.2 rounded ${
+                showTargetSection
+                  ? 'text-emerald-300 bg-emerald-950/70 border border-emerald-500/30'
+                  : 'text-slate-400 bg-slate-900 border border-slate-800'
+              }`}
+            >
+              {showTargetSection ? 'SHOW' : 'HIDE'}
+            </span>
+            {showTargetSection ? (
+              <Eye className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+            ) : (
+              <EyeOff className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+            )}
+          </button>
+
           {/* Streak indicator */}
           <div
             title={`Current Streak: ${currentStreak}`}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all ${
+            className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-full text-xs font-bold transition-all ${
               currentStreak > 0
                 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm shadow-amber-500/20 animate-pulse'
                 : 'bg-slate-800/80 text-slate-400 border border-slate-700/50'

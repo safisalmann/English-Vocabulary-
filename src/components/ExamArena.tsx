@@ -30,6 +30,7 @@ interface ExamArenaProps {
   userProgress: UserProgressData;
   setUserProgress: React.Dispatch<React.SetStateAction<UserProgressData>>;
   onGoToAnalytics: () => void;
+  showTargetSection?: boolean;
 }
 
 export const ExamArena: React.FC<ExamArenaProps> = ({
@@ -37,6 +38,7 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
   userProgress,
   setUserProgress,
   onGoToAnalytics,
+  showTargetSection = true,
 }) => {
   // Phase: 'setup' | 'active' | 'result'
   const [phase, setPhase] = React.useState<'setup' | 'active' | 'result'>('setup');
@@ -473,8 +475,8 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
             {currentQ.question}
           </h2>
 
-          {/* Target Word if present */}
-          {currentQ.targetWord && (
+          {/* Target Word if present and enabled */}
+          {currentQ.targetWord && showTargetSection && (
             <div className="inline-block px-2.5 py-1 rounded-lg bg-indigo-950/40 border border-indigo-800/40 text-xs text-indigo-300 font-semibold">
               Word: <span className="text-white font-bold">{currentQ.targetWord}</span>
             </div>

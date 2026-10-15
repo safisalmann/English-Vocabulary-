@@ -9,6 +9,7 @@ import {
   Sparkles,
   CheckCircle,
   HelpCircle,
+  Target,
 } from 'lucide-react';
 import { UserProgressData, saveUserProgress, resetAllProgress } from '../utils/storage';
 import { soundManager } from '../utils/audio';
@@ -31,6 +32,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   const toggleSound = () => {
     const nextVal = soundManager.toggle();
     const updated = { ...userProgress, soundEnabled: nextVal };
+    saveUserProgress(updated);
+    setUserProgress(updated);
+  };
+
+  const toggleTargetSection = () => {
+    const nextVal = !userProgress.showTargetSection;
+    const updated = { ...userProgress, showTargetSection: nextVal };
     saveUserProgress(updated);
     setUserProgress(updated);
   };
@@ -117,6 +125,34 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           <span
             className={`absolute top-0.5 w-5 h-5 rounded-full bg-white transition-transform ${
               userProgress.soundEnabled ? 'right-0.5' : 'left-0.5'
+            }`}
+          />
+        </button>
+      </div>
+
+      {/* Target Section Setting */}
+      <div className="p-4 rounded-3xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-slate-800 text-indigo-400">
+            <Target className="w-5 h-5 text-indigo-400" />
+          </div>
+          <div>
+            <span className="font-bold text-xs text-white block">Target Section & Word Clues</span>
+            <span className="text-[11px] text-slate-400">
+              Show or hide target words and Bengali meanings during practice
+            </span>
+          </div>
+        </div>
+
+        <button
+          onClick={toggleTargetSection}
+          className={`w-12 h-6 rounded-full transition-colors relative ${
+            userProgress.showTargetSection ? 'bg-indigo-600' : 'bg-slate-700'
+          }`}
+        >
+          <span
+            className={`absolute top-0.5 w-5 h-5 rounded-full bg-white transition-transform ${
+              userProgress.showTargetSection ? 'right-0.5' : 'left-0.5'
             }`}
           />
         </button>

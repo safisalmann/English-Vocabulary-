@@ -12,6 +12,9 @@ import {
   Check,
   Award,
   Zap,
+  Target,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { NormalizedMCQ, CATEGORIES } from '../data/questionsData';
 import {
@@ -28,6 +31,8 @@ interface PracticeArenaProps {
   initialFilterCategory?: string | null;
   onClearCategoryFilter?: () => void;
   targetQuestionNumericId?: number | null;
+  showTargetSection?: boolean;
+  onToggleTargetSection?: () => void;
 }
 
 export const PracticeArena: React.FC<PracticeArenaProps> = ({
@@ -37,6 +42,8 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
   initialFilterCategory,
   onClearCategoryFilter,
   targetQuestionNumericId,
+  showTargetSection = true,
+  onToggleTargetSection,
 }) => {
   // Category filter state
   const [selectedCategory, setSelectedCategory] = React.useState<string>(
@@ -297,14 +304,39 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
             </span>
           </button>
 
-          {/* Jump Palette button */}
-          <button
-            onClick={() => setIsPaletteOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-medium text-slate-300 hover:text-white transition-all active:scale-95"
-          >
-            <Grid className="w-3.5 h-3.5 text-violet-400" />
-            <span>Question #{currentIndex + 1}</span>
-          </button>
+          <div className="flex items-center gap-1.5">
+            {/* Target Section Toggle Button */}
+            <button
+              onClick={onToggleTargetSection}
+              title={
+                showTargetSection
+                  ? 'Target Section is Visible (Click to Hide)'
+                  : 'Target Section is Hidden (Click to Show)'
+              }
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border text-xs font-semibold transition-all active:scale-95 shadow-sm ${
+                showTargetSection
+                  ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40 hover:bg-indigo-600/30'
+                  : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Target className="w-3.5 h-3.5 text-indigo-400" />
+              <span className="hidden sm:inline">Target</span>
+              {showTargetSection ? (
+                <Eye className="w-3.5 h-3.5 text-emerald-400" />
+              ) : (
+                <EyeOff className="w-3.5 h-3.5 text-slate-500" />
+              )}
+            </button>
+
+            {/* Jump Palette button */}
+            <button
+              onClick={() => setIsPaletteOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-medium text-slate-300 hover:text-white transition-all active:scale-95"
+            >
+              <Grid className="w-3.5 h-3.5 text-violet-400" />
+              <span>Question #{currentIndex + 1}</span>
+            </button>
+          </div>
         </div>
 
         {/* Quick status tabs: All, Verbs, Prepositions, Core 265, Unattempted, Mistakes, Bookmarked */}
@@ -440,8 +472,26 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
                 )}
               </div>
 
-              {/* Bookmark & ID badge */}
-              <div className="flex items-center gap-2">
+              {/* Target & Bookmark controls */}
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={onToggleTargetSection}
+                  title={showTargetSection ? "Hide Target Section (tap to conceal word/meaning clues)" : "Show Target Section (tap to show clues)"}
+                  className={`flex items-center gap-1 px-2 py-1 rounded-xl text-xs font-semibold transition-all active:scale-90 border ${
+                    showTargetSection
+                      ? 'bg-indigo-950/60 text-indigo-300 border-indigo-700/50'
+                      : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border-slate-700/50'
+                  }`}
+                >
+                  <Target className="w-3.5 h-3.5 text-indigo-400" />
+                  <span className="text-[10px] hidden xs:inline">{showTargetSection ? 'Target ON' : 'Target OFF'}</span>
+                  {showTargetSection ? (
+                    <Eye className="w-3 h-3 text-emerald-400" />
+                  ) : (
+                    <EyeOff className="w-3 h-3 text-slate-500" />
+                  )}
+                </button>
+
                 <button
                   onClick={handleToggleBookmark}
                   title={isBookmarked ? 'Remove Bookmark' : 'Bookmark this question'}
@@ -472,17 +522,29 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
                 {currentQ.question}
               </h2>
 
-              {/* Target word highlighted pill if present */}
+              {/* Target word section (respects showTargetSection) */}
               {currentQ.targetWord && (
-                <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-gradient-to-r from-indigo-500/15 to-violet-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
-                  <span className="text-slate-400 font-normal">Target:</span>
-                  <span className="font-bold text-white">{currentQ.targetWord}</span>
-                  {currentQ.wordMeaningBangla && (
-                    <span className="text-pink-300 ml-1">
-                      ({currentQ.wordMeaningBangla})
-                    </span>
-                  )}
-                </div>
+                showTargetSection ? (
+                  <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-gradient-to-r from-indigo-500/15 to-violet-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-semibold animate-in fade-in duration-150">
+                    <span className="text-slate-400 font-normal">Target:</span>
+                    <span className="font-bold text-white">{currentQ.targetWord}</span>
+                    {currentQ.wordMeaningBangla && (
+                      <span className="text-pink-300 ml-1">
+                        ({currentQ.wordMeaningBangla})
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="mt-2">
+                    <button
+                      onClick={onToggleTargetSection}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-800/50 hover:bg-slate-800 border border-dashed border-slate-700 text-[11px] text-slate-400 hover:text-indigo-300 transition-all active:scale-95"
+                    >
+                      <EyeOff className="w-3 h-3 text-slate-500" />
+                      <span>Target clue hidden (tap to reveal)</span>
+                    </button>
+                  </div>
+                )
               )}
             </div>
 

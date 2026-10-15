@@ -55,6 +55,13 @@ export default function App() {
     setUserProgress(updated);
   };
 
+  const handleToggleTargetSection = () => {
+    const nextVal = !userProgress.showTargetSection;
+    const updated = { ...userProgress, showTargetSection: nextVal };
+    saveUserProgress(updated);
+    setUserProgress(updated);
+  };
+
   const analytics = React.useMemo(
     () => computeAnalytics(userProgress, NORMALIZED_QUESTIONS),
     [userProgress]
@@ -98,6 +105,9 @@ export default function App() {
         onOpenBookmarks={handleOpenBookmarks}
         soundEnabled={userProgress.soundEnabled}
         onToggleSound={handleToggleSound}
+        showTargetSection={userProgress.showTargetSection}
+        onToggleTargetSection={handleToggleTargetSection}
+        totalQuestions={NORMALIZED_QUESTIONS.length}
       />
 
       {/* Main Tab Content */}
@@ -110,6 +120,8 @@ export default function App() {
             initialFilterCategory={practiceCategoryFilter}
             onClearCategoryFilter={() => setPracticeCategoryFilter(null)}
             targetQuestionNumericId={targetQuestionId}
+            showTargetSection={userProgress.showTargetSection}
+            onToggleTargetSection={handleToggleTargetSection}
           />
         )}
 
@@ -119,6 +131,7 @@ export default function App() {
             userProgress={userProgress}
             setUserProgress={setUserProgress}
             onGoToAnalytics={() => setActiveTab('analytics')}
+            showTargetSection={userProgress.showTargetSection}
           />
         )}
 

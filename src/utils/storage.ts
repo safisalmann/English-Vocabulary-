@@ -40,6 +40,7 @@ export interface UserProgressData {
   quizHistory: QuizSessionResult[];
   soundEnabled: boolean;
   autoShowExplanation: boolean;
+  showTargetSection: boolean;
   theme: 'neon-indigo' | 'cyber-emerald' | 'sunset-rose';
 }
 
@@ -55,6 +56,7 @@ const DEFAULT_DATA: UserProgressData = {
   quizHistory: [],
   soundEnabled: true,
   autoShowExplanation: true,
+  showTargetSection: true,
   theme: 'neon-indigo',
 };
 
@@ -69,6 +71,7 @@ export function loadUserProgress(): UserProgressData {
       answers: parsed.answers || {},
       bookmarkedIds: parsed.bookmarkedIds || [],
       quizHistory: parsed.quizHistory || [],
+      showTargetSection: parsed.showTargetSection !== undefined ? parsed.showTargetSection : true,
     };
   } catch (e) {
     console.error('Failed to load user progress:', e);
