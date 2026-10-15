@@ -15,6 +15,7 @@ import { BATCH_14 } from './questionsBatch14';
 import { BATCH_15 } from './questionsBatch15';
 import { BATCH_16 } from './questionsBatch16';
 import { BATCH_PREPOSITIONS } from './questionsPrepositions';
+import { BATCH_VERBS } from './questionsVerbs';
 
 export interface RawMCQ {
   id: number;
@@ -71,6 +72,7 @@ export const ALL_RAW_QUESTIONS: RawMCQ[] = [
   ...BATCH_15,
   ...BATCH_16,
   ...BATCH_PREPOSITIONS,
+  ...BATCH_VERBS,
 ].sort((a, b) => a.id - b.id);
 
 // Clean category mapping for better UI filter badges
@@ -151,6 +153,7 @@ export function normalizeQuestion(raw: RawMCQ): NormalizedMCQ {
   else if (raw.type === 'antonym') typeDisplay = 'Antonym';
   else if (raw.type === 'meaning') typeDisplay = 'Meaning';
   else if (raw.type === 'preposition' || category.includes('Prep')) typeDisplay = 'Appropriate Preposition';
+  else if (raw.type === 'verb' || category.includes('Verb')) typeDisplay = 'Verb & Verbal Form';
   else if (category.includes('POS') || category.includes('Parts of Speech')) typeDisplay = 'Grammar Rule';
 
   return {

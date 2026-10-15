@@ -34,7 +34,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
     },
     {
       id: 'explorer' as NavTab,
-      label: 'Bank (1.2k)',
+      label: 'Bank (2.1k)',
       icon: Search,
       badge: null,
     },

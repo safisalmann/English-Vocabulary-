@@ -344,8 +344,10 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
               className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option value="All">Mixed All Topics ({allQuestions.length} Questions)</option>
+              <option value="Verb">🎯 Verbs Special Focus ({allQuestions.filter((q) => q.category === 'Verb').length} Qs)</option>
+              <option value="Prepositions">🎯 Appropriate Prepositions Focus ({allQuestions.filter((q) => q.category === 'Prepositions').length} Qs)</option>
               <option value="core265">⭐ Core 265 Question Bank (Q1 - Q265)</option>
-              {CATEGORIES.map((cat) => {
+              {CATEGORIES.filter((cat) => cat !== 'Verb' && cat !== 'Prepositions').map((cat) => {
                 const count = allQuestions.filter((q) => q.category === cat).length;
                 return (
                   <option key={cat} value={cat}>

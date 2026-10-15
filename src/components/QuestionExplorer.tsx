@@ -100,6 +100,32 @@ export const QuestionExplorer: React.FC<QuestionExplorerProps> = ({
           </button>
           <button
             onClick={() => {
+              setSelectedCat('Verb');
+              setDisplayCount(60);
+            }}
+            className={`text-xs px-2.5 py-1 rounded-xl font-medium whitespace-nowrap transition-all ${
+              selectedCat === 'Verb'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black shadow-md shadow-emerald-500/25'
+                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            🎯 Verbs ({allQuestions.filter((q) => q.category === 'Verb').length})
+          </button>
+          <button
+            onClick={() => {
+              setSelectedCat('Prepositions');
+              setDisplayCount(60);
+            }}
+            className={`text-xs px-2.5 py-1 rounded-xl font-medium whitespace-nowrap transition-all ${
+              selectedCat === 'Prepositions'
+                ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white font-black shadow-md shadow-amber-500/25'
+                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            🎯 Prepositions ({allQuestions.filter((q) => q.category === 'Prepositions').length})
+          </button>
+          <button
+            onClick={() => {
               setSelectedCat('core265');
               setDisplayCount(60);
             }}
@@ -111,7 +137,7 @@ export const QuestionExplorer: React.FC<QuestionExplorerProps> = ({
           >
             ⭐ Core 265 Set
           </button>
-          {CATEGORIES.map((cat) => {
+          {CATEGORIES.filter((cat) => cat !== 'Verb' && cat !== 'Prepositions').map((cat) => {
             const count = allQuestions.filter((q) => q.category === cat).length;
             return (
               <button

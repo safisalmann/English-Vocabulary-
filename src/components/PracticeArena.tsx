@@ -45,7 +45,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
 
   // Status filter state
   const [statusFilter, setStatusFilter] = React.useState<
-    'all' | 'core265' | 'unattempted' | 'mistakes' | 'bookmarked'
+    'all' | 'verbs300' | 'prepositions265' | 'core265' | 'unattempted' | 'mistakes' | 'bookmarked'
   >('all');
 
   // Search query in current pool
@@ -56,6 +56,12 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
 
   // Show explanation toggle override
   const [forceShowExplanation, setForceShowExplanation] = React.useState<boolean>(false);
+
+  // Reset explanation and timer on question change
+  React.useEffect(() => {
+    setForceShowExplanation(false);
+    questionStartTimeRef.current = Date.now();
+  }, [currentIndex]);
 
   // Palette drawer modal open
   const [isPaletteOpen, setIsPaletteOpen] = React.useState<boolean>(false);
@@ -94,6 +100,16 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
   // Compute filtered questions
   const filteredQuestions = React.useMemo(() => {
     return questions.filter((q) => {
+      // 300 Verbs Filter
+      if (statusFilter === 'verbs300' && q.category !== 'Verb') {
+        return false;
+      }
+
+      // 265 Prepositions Filter
+      if (statusFilter === 'prepositions265' && q.category !== 'Prepositions') {
+        return false;
+      }
+
       // Core 265 question set filter
       if (statusFilter === 'core265' && q.numericId > 265) {
         return false;
@@ -291,10 +307,12 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
           </button>
         </div>
 
-        {/* Quick status tabs: All, Core 265, Unattempted, Mistakes, Bookmarked */}
+        {/* Quick status tabs: All, Verbs, Prepositions, Core 265, Unattempted, Mistakes, Bookmarked */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
           {[
             { id: 'all', label: `All (${questions.length})` },
+            { id: 'verbs300', label: '🎯 Verbs (300+ Qs)' },
+            { id: 'prepositions265', label: '🎯 Prepositions (265 Qs)' },
             { id: 'core265', label: '⭐ Core 265 Set' },
             { id: 'unattempted', label: 'Unattempted' },
             { id: 'mistakes', label: 'Mistakes' },
