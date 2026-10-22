@@ -538,12 +538,6 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
             {/* 5. Explanation Section with Target Word Meaning */}
             {(currentRecord || forceShowExplanation) && (
               <div className="shrink-0 max-h-[82px] sm:max-h-[105px] overflow-y-auto rounded-xl bg-[#0c1327] border border-[#1b2545] p-2 sm:p-2.5 space-y-1 animate-in fade-in duration-150">
-                <div className="text-[#4f70f4] text-[10px] sm:text-[11px] font-bold flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    <span className="text-sm leading-none">•</span>
-                    <span>বাংলা অর্থ (EXPLANATION)</span>
-                  </div>
-                </div>
 
                 {/* Target Word Meaning in Bangla */}
                 {getTargetMeaningDisplay() && (
