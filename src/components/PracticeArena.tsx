@@ -275,6 +275,22 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
     return <span>{text}</span>;
   };
 
+  // Helper to extract clean Target Word Meaning
+  const getTargetMeaningDisplay = () => {
+    if (!currentQ) return null;
+    const meaning = (currentQ.wordMeaningBangla || '').trim();
+    const target = (currentQ.targetWord || '').trim();
+
+    if (!meaning && !target) return null;
+    if (!meaning) return target;
+    if (!target) return meaning;
+
+    if (meaning.toLowerCase().startsWith(target.toLowerCase())) {
+      return meaning;
+    }
+    return `${target} — ${meaning}`;
+  };
+
   return (
     <div className="h-full max-h-full w-full max-w-xl mx-auto flex flex-col justify-between overflow-hidden px-2 sm:px-3.5 pt-1.5 pb-1 text-slate-100 font-sans select-none">
       {/* Top Fixed Section: Header Bar & Category Scrubber */}
@@ -519,16 +535,30 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
               })}
             </div>
 
-            {/* 5. Explanation Section (Compact scrollable if long, zero page scroll) */}
+            {/* 5. Explanation Section with Target Word Meaning */}
             {(currentRecord || forceShowExplanation) && (
-              <div className="shrink-0 max-h-[72px] sm:max-h-[96px] overflow-y-auto rounded-xl bg-[#0c1327] border border-[#1b2545] p-2 sm:p-2.5 space-y-0.5 animate-in fade-in duration-150">
-                <div className="text-[#4f70f4] text-[10px] sm:text-[11px] font-bold flex items-center gap-1">
-                  <span className="text-sm leading-none">•</span>
-                  <span>বাংলা অর্থ (EXPLANATION)</span>
+              <div className="shrink-0 max-h-[82px] sm:max-h-[105px] overflow-y-auto rounded-xl bg-[#0c1327] border border-[#1b2545] p-2 sm:p-2.5 space-y-1 animate-in fade-in duration-150">
+                <div className="text-[#4f70f4] text-[10px] sm:text-[11px] font-bold flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    <span className="text-sm leading-none">•</span>
+                    <span>বাংলা অর্থ (EXPLANATION)</span>
+                  </div>
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-200 leading-snug font-normal whitespace-pre-line">
-                  {currentQ.explanationBangla || currentQ.wordMeaningBangla || 'সঠিক উত্তরটি উপরে নির্দেশ করা হয়েছে।'}
-                </p>
+
+                {/* Target Word Meaning in Bangla */}
+                {getTargetMeaningDisplay() && (
+                  <div className="text-[11px] sm:text-xs text-amber-300 font-bold bg-amber-950/40 px-2 py-0.5 rounded border border-amber-500/30 flex items-baseline gap-1">
+                    <span className="text-amber-400 font-extrabold shrink-0">🎯 Target:</span>
+                    <span className="text-amber-200">{getTargetMeaningDisplay()}</span>
+                  </div>
+                )}
+
+                {/* Full Explanation text */}
+                {currentQ.explanationBangla && (
+                  <p className="text-[11px] sm:text-xs text-slate-200 leading-snug font-normal whitespace-pre-line pt-0.5">
+                    {currentQ.explanationBangla}
+                  </p>
+                )}
               </div>
             )}
           </>
