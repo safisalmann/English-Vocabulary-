@@ -96,19 +96,21 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
-      {/* Fixed Header */}
-      <Header
-        currentStreak={userProgress.currentStreak}
-        bestStreak={userProgress.bestStreak}
-        bookmarkedCount={userProgress.bookmarkedIds.length}
-        overallAccuracy={analytics.overallAccuracy}
-        onOpenBookmarks={handleOpenBookmarks}
-        soundEnabled={userProgress.soundEnabled}
-        onToggleSound={handleToggleSound}
-        showTargetSection={userProgress.showTargetSection}
-        onToggleTargetSection={handleToggleTargetSection}
-        totalQuestions={NORMALIZED_QUESTIONS.length}
-      />
+      {/* Fixed Header - rendered on non-practice tabs so Practice page matches exact screenshot */}
+      {activeTab !== 'practice' && (
+        <Header
+          currentStreak={userProgress.currentStreak}
+          bestStreak={userProgress.bestStreak}
+          bookmarkedCount={userProgress.bookmarkedIds.length}
+          overallAccuracy={analytics.overallAccuracy}
+          onOpenBookmarks={handleOpenBookmarks}
+          soundEnabled={userProgress.soundEnabled}
+          onToggleSound={handleToggleSound}
+          showTargetSection={userProgress.showTargetSection}
+          onToggleTargetSection={handleToggleTargetSection}
+          totalQuestions={NORMALIZED_QUESTIONS.length}
+        />
+      )}
 
       {/* Main Tab Content */}
       <main className="flex-1 w-full max-w-2xl mx-auto">
@@ -122,6 +124,9 @@ export default function App() {
             targetQuestionNumericId={targetQuestionId}
             showTargetSection={userProgress.showTargetSection}
             onToggleTargetSection={handleToggleTargetSection}
+            soundEnabled={userProgress.soundEnabled}
+            onToggleSound={handleToggleSound}
+            onOpenAnalytics={() => setActiveTab('analytics')}
           />
         )}
 

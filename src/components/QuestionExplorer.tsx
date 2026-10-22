@@ -23,9 +23,7 @@ export const QuestionExplorer: React.FC<QuestionExplorerProps> = ({
 
   const filtered = React.useMemo(() => {
     return allQuestions.filter((q) => {
-      if (selectedCat === 'core265') {
-        if (q.numericId > 265) return false;
-      } else if (selectedCat !== 'All' && q.category !== selectedCat) {
+      if (selectedCat !== 'All' && q.category !== selectedCat) {
         return false;
       }
       if (!searchTerm.trim()) return true;
@@ -123,19 +121,6 @@ export const QuestionExplorer: React.FC<QuestionExplorerProps> = ({
             }`}
           >
             🎯 Prepositions ({allQuestions.filter((q) => q.category === 'Prepositions').length})
-          </button>
-          <button
-            onClick={() => {
-              setSelectedCat('core265');
-              setDisplayCount(60);
-            }}
-            className={`text-xs px-2.5 py-1 rounded-xl font-medium whitespace-nowrap transition-all ${
-              selectedCat === 'core265'
-                ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-black shadow-md shadow-indigo-500/25'
-                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            ⭐ Core 265 Set
           </button>
           {CATEGORIES.filter((cat) => cat !== 'Verb' && cat !== 'Prepositions').map((cat) => {
             const count = allQuestions.filter((q) => q.category === cat).length;

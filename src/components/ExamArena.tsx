@@ -64,9 +64,7 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
   const handleStartExam = () => {
     // Filter questions
     let pool = allQuestions;
-    if (selectedTopic === 'core265') {
-      pool = pool.filter((q) => q.numericId <= 265);
-    } else if (selectedTopic !== 'All') {
+    if (selectedTopic !== 'All') {
       pool = pool.filter((q) => q.category === selectedTopic);
     }
 
@@ -348,7 +346,6 @@ export const ExamArena: React.FC<ExamArenaProps> = ({
               <option value="All">Mixed All Topics ({allQuestions.length} Questions)</option>
               <option value="Verb">🎯 Verbs Special Focus ({allQuestions.filter((q) => q.category === 'Verb').length} Qs)</option>
               <option value="Prepositions">🎯 Appropriate Prepositions Focus ({allQuestions.filter((q) => q.category === 'Prepositions').length} Qs)</option>
-              <option value="core265">⭐ Core 265 Question Bank (Q1 - Q265)</option>
               {CATEGORIES.filter((cat) => cat !== 'Verb' && cat !== 'Prepositions').map((cat) => {
                 const count = allQuestions.filter((q) => q.category === cat).length;
                 return (
