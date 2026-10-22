@@ -90,7 +90,6 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
       const targetIdx = questions.findIndex((q) => q.numericId === targetQuestionNumericId);
       if (targetIdx !== -1) {
         setCurrentIndex(targetIdx);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   }, [targetQuestionNumericId, questions]);
@@ -114,7 +113,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
     if (isAutoAdvance && currentRecord) {
       const timer = setTimeout(() => {
         handleNext();
-      }, 1200);
+      }, 1100);
       return () => clearTimeout(timer);
     }
   }, [currentRecord, isAutoAdvance]);
@@ -182,11 +181,6 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
     }
   };
 
-  // Navigation
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const handlePrev = () => {
     if (filteredQuestions.length === 0) return;
     soundManager.playNav();
@@ -195,7 +189,6 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
     } else {
       setCurrentIndex(filteredQuestions.length - 1);
     }
-    scrollToTop();
   };
 
   const handleNext = () => {
@@ -206,14 +199,12 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
     } else {
       setCurrentIndex(0);
     }
-    scrollToTop();
   };
 
   const handleJumpTo = (index: number) => {
     soundManager.playNav();
     setCurrentIndex(index);
     setIsPaletteOpen(false);
-    scrollToTop();
   };
 
   // Keyboard navigation
@@ -245,7 +236,6 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
       return <span>{text}</span>;
     }
 
-    // When Target is ON: highlight quoted words like ' river ' or 'word' or targetWord
     const targetWord = (currentQ.targetWord || '').trim();
 
     // Check if question has single quotes around a word/phrase
@@ -258,7 +248,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
       return (
         <span>
           {parts[0]}
-          ' <span className="inline-block border border-[#d97706]/90 bg-[#291b05] text-[#fbbf24] px-2 py-0.5 rounded-md font-bold mx-0.5 shadow-sm">
+          ' <span className="inline-block border border-[#d97706]/90 bg-[#291b05] text-[#fbbf24] px-1.5 py-0.5 rounded font-bold mx-0.5 shadow-sm">
             {quoted.trim()}
           </span> '
           {parts.slice(1).join(match[0])}
@@ -274,7 +264,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
       return (
         <span>
           {before}
-          <span className="inline-block border border-[#d97706]/90 bg-[#291b05] text-[#fbbf24] px-2 py-0.5 rounded-md font-bold mx-0.5 shadow-sm">
+          <span className="inline-block border border-[#d97706]/90 bg-[#291b05] text-[#fbbf24] px-1.5 py-0.5 rounded font-bold mx-0.5 shadow-sm">
             {matched}
           </span>
           {after}
@@ -286,334 +276,323 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-3 sm:px-4 pt-3 pb-24 text-slate-100 font-sans">
-      {/* 1. Very Top Header Bar (Matching Screenshot with MATQUIZ and Single Target Button) */}
-      <div className="flex items-center justify-between gap-2 mb-3 bg-[#0c1327]/80 backdrop-blur-md px-3 py-2 rounded-2xl border border-[#1b2545]/80 shadow-md">
-        {/* Left: MATQUIZ | # 1/1655 */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#090f20] border border-[#1d2a4d] text-xs font-bold shadow-inner">
-            <span className="text-[#6875f5] tracking-wider font-extrabold text-xs uppercase">
-              MATQUIZ
-            </span>
-            <span className="text-slate-600">|</span>
-            <span className="text-slate-300 font-semibold">
-              # {currentIndex + 1}/{filteredQuestions.length}
-            </span>
-          </div>
-
-          {/* Target on/off button at very top (ONLY ONE on the entire page) */}
-          <button
-            onClick={onToggleTargetSection}
-            title={showTargetSection ? 'Target Clues: ON (Click to turn OFF)' : 'Target Clues: OFF (Click to turn ON)'}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border text-xs font-bold transition-all active:scale-95 ${
-              showTargetSection
-                ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-sm shadow-amber-500/20'
-                : 'bg-[#090f20] text-slate-400 border-slate-700/60 hover:text-slate-200'
-            }`}
-          >
-            <Target className={`w-3.5 h-3.5 ${showTargetSection ? 'text-amber-400' : 'text-slate-500'}`} />
-            <span className="text-[11px] font-bold">
-              Target {showTargetSection ? 'ON' : 'OFF'}
-            </span>
-          </button>
-        </div>
-
-        {/* Right Action Icons (TTS Speaker, Bookmark, Sound FX, Analytics/Grid) */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          {/* TTS Read Aloud */}
-          <button
-            onClick={handleSpeakQuestion}
-            title="Read Question Aloud"
-            className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors active:scale-90"
-          >
-            <Volume2 className="w-4 h-4" />
-          </button>
-
-          {/* Bookmark */}
-          <button
-            onClick={handleToggleBookmark}
-            title={isBookmarked ? 'Remove Bookmark' : 'Bookmark this question'}
-            className="p-2 rounded-xl text-slate-300 hover:text-amber-300 hover:bg-slate-800/60 transition-colors active:scale-90"
-          >
-            <Bookmark
-              className={`w-4 h-4 ${isBookmarked ? 'text-amber-400 fill-amber-400' : 'text-slate-300'}`}
-            />
-          </button>
-
-          {/* Sound FX Toggle (Green speaker) */}
-          <button
-            onClick={onToggleSound}
-            title={soundEnabled ? 'Sound Effects: Enabled' : 'Sound Effects: Muted'}
-            className="p-2 rounded-xl hover:bg-slate-800/60 transition-colors active:scale-90"
-          >
-            {soundEnabled ? (
-              <Volume2 className="w-4 h-4 text-emerald-400" />
-            ) : (
-              <VolumeX className="w-4 h-4 text-slate-500" />
-            )}
-          </button>
-
-          {/* Question Grid / Analytics */}
-          <button
-            onClick={() => setIsPaletteOpen(true)}
-            title="Question Palette Grid"
-            className="p-2 rounded-xl text-slate-300 hover:text-indigo-400 hover:bg-slate-800/60 transition-colors active:scale-90"
-          >
-            <BarChart2 className="w-4 h-4 rotate-90" />
-          </button>
-        </div>
-      </div>
-
-      {/* 2. Category Selector & Scroll Bar (Core 265 Set Removed) */}
-      <div className="mb-4 space-y-1.5">
-        <div
-          ref={categoryScrollRef}
-          onScroll={handleCategoryScroll}
-          className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 scroll-smooth"
-        >
-          {/* All Questions Chip */}
-          <button
-            onClick={() => {
-              setSelectedCategory('All');
-              setCurrentIndex(0);
-            }}
-            className={`text-xs px-3.5 py-1.5 rounded-full font-bold whitespace-nowrap transition-all select-none ${
-              selectedCategory === 'All'
-                ? 'bg-[#3d4ee7] text-white shadow-md shadow-indigo-600/30'
-                : 'bg-[#0c1327] text-slate-400 hover:text-slate-200 border border-[#1b2545]'
-            }`}
-          >
-            All ({questions.length})
-          </button>
-
-          {/* Category Chips (Core 265 Set Removed) */}
-          {CATEGORIES.map((cat) => {
-            const count = questions.filter((q) => q.category === cat).length;
-            const isSelected = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  setCurrentIndex(0);
-                }}
-                className={`text-xs px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition-all select-none ${
-                  isSelected
-                    ? 'bg-[#3d4ee7] text-white font-bold shadow-md shadow-indigo-600/30'
-                    : 'bg-[#0c1327] text-slate-400 hover:text-slate-200 border border-[#1b2545]'
-                }`}
-              >
-                {cat} ({count})
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Horizontal Category Scrollbar Track */}
-        <div className="flex items-center gap-2 px-1">
-          <button
-            onClick={() => scrollCategories(-180)}
-            className="text-slate-500 hover:text-slate-300 p-0.5 transition-colors"
-            title="Scroll categories left"
-          >
-            <ChevronLeft className="w-3.5 h-3.5" />
-          </button>
-          <div className="flex-1 h-1.5 bg-[#090f20] rounded-full overflow-hidden border border-[#1b2545]/50 relative">
-            <div
-              className="h-full bg-slate-500/80 rounded-full transition-all duration-150"
-              style={{
-                width: '28%',
-                transform: `translateX(${scrollProgress * 2.4}%)`,
-              }}
-            />
-          </div>
-          <button
-            onClick={() => scrollCategories(180)}
-            className="text-slate-500 hover:text-slate-300 p-0.5 transition-colors"
-            title="Scroll categories right"
-          >
-            <ChevronRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      </div>
-
-      {/* 3. Main Question Card (Matching Screenshot layout & style) */}
-      {filteredQuestions.length === 0 ? (
-        <div className="p-8 text-center bg-[#0c1327] border border-[#1b2545] rounded-2xl space-y-3">
-          <p className="text-slate-300 font-bold">No questions found in this category.</p>
-          <button
-            onClick={() => setSelectedCategory('All')}
-            className="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold"
-          >
-            Show All Questions
-          </button>
-        </div>
-      ) : currentQ ? (
-        <div className="space-y-4">
-          <div className="bg-[#0c1327] border border-[#1b2545] rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3">
-            {/* Top row inside card: Category Badge + Exam Tag */}
-            <div className="flex items-center justify-between gap-2">
-              <span className="bg-[#182552] text-[#6d8aff] text-xs font-black px-2.5 py-0.5 rounded tracking-wider uppercase">
-                {currentQ.category}
+    <div className="h-full max-h-full w-full max-w-xl mx-auto flex flex-col justify-between overflow-hidden px-2 sm:px-3.5 pt-1.5 pb-1 text-slate-100 font-sans select-none">
+      {/* Top Fixed Section: Header Bar & Category Scrubber */}
+      <div className="shrink-0 space-y-1">
+        {/* 1. Header Bar: MATQUIZ + Single Target Button + Top Icons */}
+        <div className="flex items-center justify-between gap-1.5 bg-[#0c1327]/90 px-2 sm:px-3 py-1 rounded-xl border border-[#1b2545]/80 shadow-sm">
+          {/* Left: MATQUIZ | # 1/1655 */}
+          <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#090f20] border border-[#1d2a4d] text-xs font-bold shadow-inner">
+              <span className="text-[#6875f5] tracking-wider font-extrabold text-[11px] uppercase">
+                MATQUIZ
               </span>
-              {currentQ.examTag && (
-                <span className="text-slate-400 text-xs font-normal truncate max-w-[280px]">
-                  {currentQ.examTag}
-                </span>
-              )}
+              <span className="text-slate-600 text-[10px]">|</span>
+              <span className="text-slate-300 font-semibold text-[11px]">
+                # {currentIndex + 1}/{filteredQuestions.length}
+              </span>
             </div>
 
-            {/* Question Text with Target Clue highlight */}
-            <div className="pt-1 pb-1">
-              <h2 className="text-base sm:text-lg font-bold text-white leading-relaxed tracking-tight">
-                {renderFormattedQuestion()}
-              </h2>
-            </div>
+            {/* Target on/off button at very top (ONLY ONE on the entire page) */}
+            <button
+              onClick={onToggleTargetSection}
+              title={showTargetSection ? 'Target Clues: ON (Click to turn OFF)' : 'Target Clues: OFF (Click to turn ON)'}
+              className={`flex items-center gap-1 px-2 py-0.5 rounded-lg border text-[11px] font-bold transition-all active:scale-95 ${
+                showTargetSection
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-sm shadow-amber-500/20'
+                  : 'bg-[#090f20] text-slate-400 border-slate-700/60 hover:text-slate-200'
+              }`}
+            >
+              <Target className={`w-3 h-3 ${showTargetSection ? 'text-amber-400' : 'text-slate-500'}`} />
+              <span>Target {showTargetSection ? 'ON' : 'OFF'}</span>
+            </button>
           </div>
 
-          {/* 4. MCQ Options (Matching red-wrong / green-correct screenshot style) */}
-          <div className="space-y-2.5 pt-1">
-            {currentQ.options.map((opt) => {
-              const isSelected = currentRecord?.selectedOptionKey === opt.id;
-              const isTheCorrectOption =
-                opt.id.toLowerCase() === currentQ.correctAnswerKey.toLowerCase();
-              const hasAnswered = !!currentRecord;
+          {/* Right Action Icons (TTS Speaker, Bookmark, Sound FX, Analytics/Grid) */}
+          <div className="flex items-center gap-0.5 sm:gap-1">
+            <button
+              onClick={handleSpeakQuestion}
+              title="Read Question Aloud"
+              className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors active:scale-90"
+            >
+              <Volume2 className="w-3.5 h-3.5" />
+            </button>
 
-              // Default styles before answering
-              let cardStyle =
-                'bg-[#0c1327] hover:bg-[#121c3b] border-[#1b2545] text-slate-200';
-              let badgeStyle =
-                'bg-[#141d3b] text-slate-400 font-bold';
+            <button
+              onClick={handleToggleBookmark}
+              title={isBookmarked ? 'Remove Bookmark' : 'Bookmark this question'}
+              className="p-1.5 rounded-lg text-slate-300 hover:text-amber-300 hover:bg-slate-800/60 transition-colors active:scale-90"
+            >
+              <Bookmark
+                className={`w-3.5 h-3.5 ${isBookmarked ? 'text-amber-400 fill-amber-400' : 'text-slate-300'}`}
+              />
+            </button>
 
-              if (hasAnswered) {
-                if (isTheCorrectOption) {
-                  // Correct option: Green border, green background, checkmark on right
-                  cardStyle =
-                    'bg-[#061e18] border-2 border-[#10b981] text-white shadow-md shadow-emerald-950/40';
-                  badgeStyle =
-                    'bg-[#10b981] text-white font-bold';
-                } else if (isSelected && !isTheCorrectOption) {
-                  // Incorrect selected option: Red border, red background, X mark on right
-                  cardStyle =
-                    'bg-[#1f0d18] border-2 border-[#e11d48] text-white shadow-md shadow-rose-950/40';
-                  badgeStyle =
-                    'bg-[#e11d48] text-white font-bold';
-                } else {
-                  // Other unselected options: Dimmed
-                  cardStyle =
-                    'bg-[#0c1327]/60 border-[#17203d] text-slate-500 opacity-60';
-                  badgeStyle =
-                    'bg-[#121a36] text-slate-600 font-semibold';
-                }
-              }
+            <button
+              onClick={onToggleSound}
+              title={soundEnabled ? 'Sound Effects: Enabled' : 'Sound Effects: Muted'}
+              className="p-1.5 rounded-lg hover:bg-slate-800/60 transition-colors active:scale-90"
+            >
+              {soundEnabled ? (
+                <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
+              ) : (
+                <VolumeX className="w-3.5 h-3.5 text-slate-500" />
+              )}
+            </button>
 
+            <button
+              onClick={() => setIsPaletteOpen(true)}
+              title="Question Palette Grid"
+              className="p-1.5 rounded-lg text-slate-300 hover:text-indigo-400 hover:bg-slate-800/60 transition-colors active:scale-90"
+            >
+              <BarChart2 className="w-3.5 h-3.5 rotate-90" />
+            </button>
+          </div>
+        </div>
+
+        {/* 2. Category Selector & Scroll Bar (Core 265 Set Removed) */}
+        <div className="space-y-0.5">
+          <div
+            ref={categoryScrollRef}
+            onScroll={handleCategoryScroll}
+            className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 scroll-smooth"
+          >
+            <button
+              onClick={() => {
+                setSelectedCategory('All');
+                setCurrentIndex(0);
+              }}
+              className={`text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-full font-bold whitespace-nowrap transition-all select-none ${
+                selectedCategory === 'All'
+                  ? 'bg-[#3d4ee7] text-white shadow-sm shadow-indigo-600/30'
+                  : 'bg-[#0c1327] text-slate-400 hover:text-slate-200 border border-[#1b2545]'
+              }`}
+            >
+              All ({questions.length})
+            </button>
+
+            {CATEGORIES.map((cat) => {
+              const count = questions.filter((q) => q.category === cat).length;
+              const isSelected = selectedCategory === cat;
               return (
                 <button
-                  key={opt.id}
-                  onClick={() => handleSelectOption(opt.id)}
-                  disabled={hasAnswered}
-                  className={`w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl border text-left transition-all active:scale-[0.99] select-none min-h-[52px] ${cardStyle}`}
+                  key={cat}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    setCurrentIndex(0);
+                  }}
+                  className={`text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-full font-medium whitespace-nowrap transition-all select-none ${
+                    isSelected
+                      ? 'bg-[#3d4ee7] text-white font-bold shadow-sm shadow-indigo-600/30'
+                      : 'bg-[#0c1327] text-slate-400 hover:text-slate-200 border border-[#1b2545]'
+                  }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <span
-                      className={`w-6 h-6 shrink-0 rounded flex items-center justify-center text-xs uppercase transition-colors ${badgeStyle}`}
-                    >
-                      {opt.label}
-                    </span>
-                    <span className="text-sm font-semibold tracking-tight">
-                      {opt.text}
-                    </span>
-                  </div>
-
-                  {/* Right Status Feedback Icon */}
-                  {hasAnswered && (
-                    <div className="shrink-0 ml-2">
-                      {isTheCorrectOption && (
-                        <Check className="w-4 h-4 text-emerald-400 stroke-[3]" />
-                      )}
-                      {isSelected && !isTheCorrectOption && (
-                        <X className="w-4 h-4 text-rose-400 stroke-[3]" />
-                      )}
-                    </div>
-                  )}
+                  {cat} ({count})
                 </button>
               );
             })}
           </div>
 
-          {/* 5. Explanation Section (Matching screenshot • বাংলা অর্থ (EXPLANATION)) */}
-          {(currentRecord || forceShowExplanation) && (
-            <div className="mt-5 p-4 sm:p-5 rounded-2xl bg-[#0c1327] border border-[#1b2545] space-y-2 animate-in fade-in duration-200">
-              <div className="text-[#4f70f4] text-xs font-bold flex items-center gap-1.5">
-                <span className="text-base leading-none">•</span>
-                <span>বাংলা অর্থ (EXPLANATION)</span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal whitespace-pre-line">
-                {currentQ.explanationBangla || currentQ.wordMeaningBangla || 'সঠিক উত্তরটি উপরে নির্দেশ করা হয়েছে।'}
-              </p>
-            </div>
-          )}
-
-          {/* 6. Bottom Navigation Controls (Prev, পুনরায়, স্বয়ংক্রিয়, Next) */}
-          <div className="flex items-center justify-between gap-2.5 pt-5 max-w-xl mx-auto select-none">
-            {/* Prev Button */}
+          {/* Horizontal Category Scrollbar Track */}
+          <div className="flex items-center gap-1.5 px-0.5">
             <button
-              onClick={handlePrev}
-              title="Previous Question"
-              className="px-5 py-2.5 rounded-xl bg-[#0c1327] border border-[#1b2545] text-slate-300 hover:text-white font-bold text-xs flex items-center gap-1.5 transition-all active:scale-95 shadow-md"
+              onClick={() => scrollCategories(-180)}
+              className="text-slate-500 hover:text-slate-300 p-0.5 transition-colors"
+              title="Scroll categories left"
             >
-              <ChevronLeft className="w-4 h-4" />
-              <span>Prev</span>
+              <ChevronLeft className="w-3 h-3" />
             </button>
-
-            {/* Center Controls: পুনরায় (Retry) and স্বয়ংক্রিয় (Auto-Advance) */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleRetryCurrentQuestion}
-                title="Reset this question and try again"
-                className="px-3.5 py-2.5 rounded-xl bg-[#0c1327] border border-[#1b2545] text-slate-300 hover:text-white font-semibold text-xs flex items-center gap-1.5 transition-all active:scale-95 shadow-md"
-              >
-                <RotateCcw className="w-3.5 h-3.5 text-indigo-400" />
-                <span>পুনরায়</span>
-              </button>
-
-              <button
-                onClick={() => setIsAutoAdvance((prev) => !prev)}
-                title={isAutoAdvance ? 'Auto-advance is ON' : 'Auto-advance is OFF'}
-                className={`px-3.5 py-2.5 rounded-xl bg-[#0c1327] border font-semibold text-xs flex items-center gap-1.5 transition-all active:scale-95 shadow-md ${
-                  isAutoAdvance
-                    ? 'text-emerald-400 border-emerald-500/50 bg-emerald-950/20'
-                    : 'text-slate-300 hover:text-white border-[#1b2545]'
-                }`}
-              >
-                <span
-                  className={`w-2 h-2 rounded-full ${
-                    isAutoAdvance ? 'bg-emerald-400 animate-pulse' : 'bg-slate-600'
-                  }`}
-                />
-                <span>স্বয়ংক্রিয়</span>
-              </button>
+            <div className="flex-1 h-1 bg-[#090f20] rounded-full overflow-hidden border border-[#1b2545]/50 relative">
+              <div
+                className="h-full bg-slate-500/80 rounded-full transition-all duration-150"
+                style={{
+                  width: '28%',
+                  transform: `translateX(${scrollProgress * 2.4}%)`,
+                }}
+              />
             </div>
-
-            {/* Next Button */}
             <button
-              onClick={handleNext}
-              title="Next Question"
-              className="px-6 py-2.5 rounded-xl bg-[#4353ff] hover:bg-[#3444f0] text-white font-extrabold text-xs flex items-center gap-1.5 transition-all active:scale-95 shadow-lg shadow-indigo-600/30"
+              onClick={() => scrollCategories(180)}
+              className="text-slate-500 hover:text-slate-300 p-0.5 transition-colors"
+              title="Scroll categories right"
             >
-              <span>Next</span>
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3 h-3" />
             </button>
           </div>
         </div>
-      ) : null}
+      </div>
+
+      {/* Middle Flexible Section: Question Card + Options + Explanation (Fits exactly without scrolling) */}
+      <div className="flex-1 min-h-0 flex flex-col justify-center space-y-1.5 sm:space-y-2 overflow-hidden my-auto py-1">
+        {filteredQuestions.length === 0 ? (
+          <div className="p-4 text-center bg-[#0c1327] border border-[#1b2545] rounded-xl space-y-2">
+            <p className="text-slate-300 font-bold text-xs">No questions found in this category.</p>
+            <button
+              onClick={() => setSelectedCategory('All')}
+              className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-bold"
+            >
+              Show All Questions
+            </button>
+          </div>
+        ) : currentQ ? (
+          <>
+            {/* 3. Question Card */}
+            <div className="shrink-0 bg-[#0c1327] border border-[#1b2545] rounded-xl sm:rounded-2xl p-2.5 sm:p-3 shadow-lg space-y-1">
+              <div className="flex items-center justify-between gap-2">
+                <span className="bg-[#182552] text-[#6d8aff] text-[10px] sm:text-[11px] font-black px-2 py-0.5 rounded tracking-wider uppercase">
+                  {currentQ.category}
+                </span>
+                {currentQ.examTag && (
+                  <span className="text-slate-400 text-[10px] sm:text-[11px] font-normal truncate max-w-[200px] sm:max-w-[260px]">
+                    {currentQ.examTag}
+                  </span>
+                )}
+              </div>
+
+              <h2 className="text-xs sm:text-base font-bold text-white leading-snug tracking-tight pt-0.5">
+                {renderFormattedQuestion()}
+              </h2>
+            </div>
+
+            {/* 4. MCQ Options List */}
+            <div className="shrink-0 space-y-1 sm:space-y-1.5">
+              {currentQ.options.map((opt) => {
+                const isSelected = currentRecord?.selectedOptionKey === opt.id;
+                const isTheCorrectOption =
+                  opt.id.toLowerCase() === currentQ.correctAnswerKey.toLowerCase();
+                const hasAnswered = !!currentRecord;
+
+                let cardStyle =
+                  'bg-[#0c1327] hover:bg-[#121c3b] border-[#1b2545] text-slate-200';
+                let badgeStyle =
+                  'bg-[#141d3b] text-slate-400 font-bold';
+
+                if (hasAnswered) {
+                  if (isTheCorrectOption) {
+                    cardStyle =
+                      'bg-[#061e18] border-2 border-[#10b981] text-white shadow-md shadow-emerald-950/40';
+                    badgeStyle =
+                      'bg-[#10b981] text-white font-bold';
+                  } else if (isSelected && !isTheCorrectOption) {
+                    cardStyle =
+                      'bg-[#1f0d18] border-2 border-[#e11d48] text-white shadow-md shadow-rose-950/40';
+                    badgeStyle =
+                      'bg-[#e11d48] text-white font-bold';
+                  } else {
+                    cardStyle =
+                      'bg-[#0c1327]/60 border-[#17203d] text-slate-500 opacity-60';
+                    badgeStyle =
+                      'bg-[#121a36] text-slate-600 font-semibold';
+                  }
+                }
+
+                return (
+                  <button
+                    key={opt.id}
+                    onClick={() => handleSelectOption(opt.id)}
+                    disabled={hasAnswered}
+                    className={`w-full flex items-center justify-between py-1.5 px-3 sm:py-2.5 sm:px-3.5 rounded-xl border text-left transition-all active:scale-[0.99] select-none min-h-[38px] sm:min-h-[44px] ${cardStyle}`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span
+                        className={`w-5 h-5 shrink-0 rounded flex items-center justify-center text-[10px] sm:text-xs uppercase transition-colors ${badgeStyle}`}
+                      >
+                        {opt.label}
+                      </span>
+                      <span className="text-xs sm:text-sm font-semibold tracking-tight">
+                        {opt.text}
+                      </span>
+                    </div>
+
+                    {hasAnswered && (
+                      <div className="shrink-0 ml-1.5">
+                        {isTheCorrectOption && (
+                          <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" />
+                        )}
+                        {isSelected && !isTheCorrectOption && (
+                          <X className="w-3.5 h-3.5 text-rose-400 stroke-[3]" />
+                        )}
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 5. Explanation Section (Compact scrollable if long, zero page scroll) */}
+            {(currentRecord || forceShowExplanation) && (
+              <div className="shrink-0 max-h-[72px] sm:max-h-[96px] overflow-y-auto rounded-xl bg-[#0c1327] border border-[#1b2545] p-2 sm:p-2.5 space-y-0.5 animate-in fade-in duration-150">
+                <div className="text-[#4f70f4] text-[10px] sm:text-[11px] font-bold flex items-center gap-1">
+                  <span className="text-sm leading-none">•</span>
+                  <span>বাংলা অর্থ (EXPLANATION)</span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-200 leading-snug font-normal whitespace-pre-line">
+                  {currentQ.explanationBangla || currentQ.wordMeaningBangla || 'সঠিক উত্তরটি উপরে নির্দেশ করা হয়েছে।'}
+                </p>
+              </div>
+            )}
+          </>
+        ) : null}
+      </div>
+
+      {/* 6. Bottom Navigation Controls (Prev, পুনরায়, স্বয়ংক্রিয়, Next) */}
+      <div className="shrink-0 flex items-center justify-between gap-1.5 sm:gap-2 pt-1 pb-0.5 max-w-xl mx-auto w-full select-none">
+        {/* Prev Button */}
+        <button
+          onClick={handlePrev}
+          title="Previous Question"
+          className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-[#0c1327] border border-[#1b2545] text-slate-300 hover:text-white font-bold text-xs flex items-center gap-1 transition-all active:scale-95 shadow-md"
+        >
+          <ChevronLeft className="w-3.5 h-3.5" />
+          <span>Prev</span>
+        </button>
+
+        {/* Center Controls: পুনরায় (Retry) and স্বয়ংক্রিয় (Auto-Advance) */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <button
+            onClick={handleRetryCurrentQuestion}
+            title="Reset this question and try again"
+            className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-[#0c1327] border border-[#1b2545] text-slate-300 hover:text-white font-semibold text-[11px] sm:text-xs flex items-center gap-1 transition-all active:scale-95 shadow-md"
+          >
+            <RotateCcw className="w-3 h-3 text-indigo-400" />
+            <span>পুনরায়</span>
+          </button>
+
+          <button
+            onClick={() => setIsAutoAdvance((prev) => !prev)}
+            title={isAutoAdvance ? 'Auto-advance is ON' : 'Auto-advance is OFF'}
+            className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl border font-semibold text-[11px] sm:text-xs flex items-center gap-1 transition-all active:scale-95 shadow-md ${
+              isAutoAdvance
+                ? 'text-emerald-400 border-emerald-500/50 bg-emerald-950/20'
+                : 'text-slate-300 hover:text-white border-[#1b2545] bg-[#0c1327]'
+            }`}
+          >
+            <span
+              className={`w-1.5 h-1.5 rounded-full ${
+                isAutoAdvance ? 'bg-emerald-400 animate-pulse' : 'bg-slate-600'
+              }`}
+            />
+            <span>স্বয়ংক্রিয়</span>
+          </button>
+        </div>
+
+        {/* Next Button */}
+        <button
+          onClick={handleNext}
+          title="Next Question"
+          className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-xl bg-[#4353ff] hover:bg-[#3444f0] text-white font-extrabold text-xs flex items-center gap-1 transition-all active:scale-95 shadow-lg shadow-indigo-600/30"
+        >
+          <span>Next</span>
+          <ChevronRight className="w-3.5 h-3.5" />
+        </button>
+      </div>
 
       {/* Question Grid Palette Modal */}
       {isPaletteOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
-          <div className="bg-[#0c1327] border border-[#1b2545] rounded-3xl max-w-md w-full max-h-[80vh] flex flex-col p-4 shadow-2xl">
-            <div className="flex items-center justify-between pb-3 border-b border-[#1b2545]">
-              <h3 className="font-bold text-sm text-white">
+        <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-150">
+          <div className="bg-[#0c1327] border border-[#1b2545] rounded-3xl max-w-md w-full max-h-[82vh] flex flex-col p-4 shadow-2xl">
+            <div className="flex items-center justify-between pb-2.5 border-b border-[#1b2545]">
+              <h3 className="font-bold text-xs sm:text-sm text-white">
                 Question Navigator ({filteredQuestions.length} Questions)
               </h3>
               <button
@@ -644,7 +623,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
                   <button
                     key={q.id}
                     onClick={() => handleJumpTo(idx)}
-                    className={`py-2 rounded-xl text-xs font-bold border transition-transform active:scale-90 flex items-center justify-center ${bg}`}
+                    className={`py-1.5 rounded-xl text-xs font-bold border transition-transform active:scale-90 flex items-center justify-center ${bg}`}
                   >
                     {idx + 1}
                   </button>

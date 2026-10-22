@@ -95,7 +95,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+    <div
+      className={`bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white ${
+        activeTab === 'practice'
+          ? 'h-[100dvh] max-h-[100dvh] overflow-hidden'
+          : 'min-h-screen'
+      }`}
+    >
       {/* Fixed Header - rendered on non-practice tabs so Practice page matches exact screenshot */}
       {activeTab !== 'practice' && (
         <Header
@@ -113,7 +119,13 @@ export default function App() {
       )}
 
       {/* Main Tab Content */}
-      <main className="flex-1 w-full max-w-2xl mx-auto">
+      <main
+        className={`w-full max-w-2xl mx-auto ${
+          activeTab === 'practice'
+            ? 'flex-1 h-[calc(100dvh-54px)] max-h-[calc(100dvh-54px)] overflow-hidden flex flex-col'
+            : 'flex-1'
+        }`}
+      >
         {activeTab === 'practice' && (
           <PracticeArena
             questions={NORMALIZED_QUESTIONS}
