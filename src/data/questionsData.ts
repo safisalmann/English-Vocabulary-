@@ -54,7 +54,7 @@ export interface NormalizedMCQ {
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
-export const ALL_RAW_QUESTIONS: RawMCQ[] = [
+export const RAW_COMBINED_QUESTIONS: RawMCQ[] = [
   ...BATCH_1,
   ...BATCH_2,
   ...BATCH_3,
@@ -74,6 +74,53 @@ export const ALL_RAW_QUESTIONS: RawMCQ[] = [
   ...BATCH_PREPOSITIONS,
   ...BATCH_VERBS,
 ].sort((a, b) => a.id - b.id);
+
+/**
+ * Deduplicate questions by normalized question text and options.
+ * Merges exam tags, retains richer explanations, and removes 267 duplicate questions.
+ */
+export function deduplicateRawQuestions(rawList: RawMCQ[]): RawMCQ[] {
+  const seenMap = new Map<string, RawMCQ>();
+  const result: RawMCQ[] = [];
+
+  for (const q of rawList) {
+    const normText = q.question.trim().toLowerCase().replace(/\s+/g, ' ');
+    const optsKey = (q.options || []).map((o) => String(o).trim().toLowerCase()).sort().join('|');
+    const key = `${normText}::${optsKey}`;
+
+    if (seenMap.has(key)) {
+      const existing = seenMap.get(key)!;
+
+      // Merge exam tags so past paper info from both exams is preserved
+      if (q.examTag && existing.examTag && !existing.examTag.includes(q.examTag)) {
+        existing.examTag = `${existing.examTag}, ${q.examTag}`;
+      }
+
+      // Preserve longer / more descriptive Bengali explanation
+      if ((q.explanationBangla || '').length > (existing.explanationBangla || '').length) {
+        existing.explanationBangla = q.explanationBangla;
+      }
+
+      // Preserve Bengali word meaning if existing was missing
+      if (!existing.wordMeaningBangla && q.wordMeaningBangla) {
+        existing.wordMeaningBangla = q.wordMeaningBangla;
+      }
+
+      // Preserve target word if existing was missing
+      if (!existing.targetWord && q.targetWord) {
+        existing.targetWord = q.targetWord;
+      }
+    } else {
+      const cloned = { ...q };
+      seenMap.set(key, cloned);
+      result.push(cloned);
+    }
+  }
+
+  return result;
+}
+
+export const ALL_RAW_QUESTIONS: RawMCQ[] = deduplicateRawQuestions(RAW_COMBINED_QUESTIONS);
 
 // Clean category mapping for better UI filter badges
 export function resolveCategoryGroup(category?: string, type?: string): { category: string; categoryGroup: string } {

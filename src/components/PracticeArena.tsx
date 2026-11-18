@@ -10,6 +10,9 @@ import {
   Target,
   Volume2,
   VolumeX,
+  ChevronDown,
+  Search,
+  Filter,
 } from 'lucide-react';
 import { NormalizedMCQ, CATEGORIES } from '../data/questionsData';
 import {
@@ -61,6 +64,77 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
 
   // Palette drawer modal open
   const [isPaletteOpen, setIsPaletteOpen] = React.useState<boolean>(false);
+
+  // Type / topic selector modal open
+  const [isTypeSelectorOpen, setIsTypeSelectorOpen] = React.useState<boolean>(false);
+  const [typeSearchQuery, setTypeSearchQuery] = React.useState<string>('');
+
+  // Priority order: Put popular/fundamental types first (Noun, Pronoun, Verb, Adjectives, Synonyms, etc.)
+  const sortedCategories = React.useMemo(() => {
+    const priorityOrder = [
+      'Noun',
+      'Pronoun',
+      'Verb',
+      'Adjectives',
+      'Adverb',
+      'Prepositions',
+      'Synonyms',
+      'Antonyms',
+      'Word Meanings',
+      'Conjunction & Linkers',
+      'Articles',
+      'Number (Singular/Plural)',
+      'Gender Forms',
+      'Degrees of Comparison',
+      'Interjection',
+      'Affixes & Word Formation',
+      'Parts of Speech Identification',
+      'Interchange of Parts of Speech',
+      'Positional Parts of Speech',
+      'Same Word Used as Different POS',
+      'Spelling Mastery',
+    ];
+
+    const allCats = [...CATEGORIES];
+    return allCats.sort((a, b) => {
+      const idxA = priorityOrder.indexOf(a);
+      const idxB = priorityOrder.indexOf(b);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return a.localeCompare(b);
+    });
+  }, []);
+
+  const filteredCategoryList = React.useMemo(() => {
+    if (!typeSearchQuery.trim()) return sortedCategories;
+    const q = typeSearchQuery.toLowerCase().trim();
+    return sortedCategories.filter((cat) => cat.toLowerCase().includes(q));
+  }, [sortedCategories, typeSearchQuery]);
+
+  const handleSelectCategoryFromModal = (cat: string) => {
+    setSelectedCategory(cat);
+    setCurrentIndex(0);
+    setIsTypeSelectorOpen(false);
+    setTypeSearchQuery('');
+    soundManager.playNav();
+
+    // Smooth scroll the category chip into view in the horizontal scrubber
+    setTimeout(() => {
+      if (categoryScrollRef.current) {
+        if (cat === 'All') {
+          categoryScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          const targetBtn = categoryScrollRef.current.querySelector(
+            `button[data-category="${cat}"]`
+          ) as HTMLElement;
+          if (targetBtn) {
+            targetBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
+        }
+      }
+    }, 60);
+  };
 
   // Question start time tracking for speed metrics
   const questionStartTimeRef = React.useRef<number>(Date.now());
@@ -210,7 +284,17 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
   // Keyboard navigation
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      if (e.key === 'Escape') {
+        setIsTypeSelectorOpen(false);
+        setIsPaletteOpen(false);
+        return;
+      }
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement ||
+        isTypeSelectorOpen ||
+        isPaletteOpen
+      ) {
         return;
       }
       if (e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N') {
@@ -225,7 +309,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, filteredQuestions.length, currentQ, currentRecord]);
+  }, [currentIndex, filteredQuestions.length, currentQ, currentRecord, isTypeSelectorOpen, isPaletteOpen]);
 
   // Helper to format question text with gold target box when Target is ON
   const renderFormattedQuestion = () => {
@@ -299,15 +383,21 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
         <div className="flex items-center justify-between gap-1.5 bg-[#0c1327]/90 px-2 sm:px-3 py-1 rounded-xl border border-[#1b2545]/80 shadow-sm">
           {/* Left: MATQUIZ | # 1/1655 */}
           <div className="flex items-center gap-1.5">
-            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#090f20] border border-[#1d2a4d] text-xs font-bold shadow-inner">
-              <span className="text-[#6875f5] tracking-wider font-extrabold text-[11px] uppercase">
+            {/* Clickable Topic/Type Selector: MATQUIZ | # 1/2093 */}
+            <button
+              onClick={() => setIsTypeSelectorOpen(true)}
+              title="Click to select question type (Noun, Pronoun, Synonym, Verb...)"
+              className="group flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#090f20] hover:bg-[#121c38] border border-[#1d2a4d] hover:border-[#4f60f4]/80 text-xs font-bold shadow-inner transition-all active:scale-95 cursor-pointer"
+            >
+              <span className="text-[#6875f5] group-hover:text-[#8894ff] tracking-wider font-extrabold text-[11px] uppercase">
                 MATQUIZ
               </span>
               <span className="text-slate-600 text-[10px]">|</span>
-              <span className="text-slate-300 font-semibold text-[11px]">
+              <span className="text-slate-300 group-hover:text-white font-semibold text-[11px]">
                 # {currentIndex + 1}/{filteredQuestions.length}
               </span>
-            </div>
+              <ChevronDown className="w-2.5 h-2.5 text-indigo-400 group-hover:text-indigo-300 transition-transform group-hover:translate-y-0.5" />
+            </button>
 
             {/* Target on/off button at very top (ONLY ONE on the entire page) */}
             <button
@@ -374,6 +464,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
             className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 scroll-smooth"
           >
             <button
+              data-category="All"
               onClick={() => {
                 setSelectedCategory('All');
                 setCurrentIndex(0);
@@ -393,6 +484,7 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
               return (
                 <button
                   key={cat}
+                  data-category={cat}
                   onClick={() => {
                     setSelectedCategory(cat);
                     setCurrentIndex(0);
@@ -653,6 +745,197 @@ export const PracticeArena: React.FC<PracticeArenaProps> = ({
                   </button>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Type / Topic Selector Modal (Noun, Pronoun, Synonym, Verb...) */}
+      {isTypeSelectorOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-150"
+          onClick={() => setIsTypeSelectorOpen(false)}
+        >
+          <div
+            className="bg-[#0c1327] border border-[#1b2545] rounded-3xl max-w-lg w-full max-h-[86vh] flex flex-col shadow-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[#1b2545] bg-[#090f20]">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 shrink-0">
+                  <Filter className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-xs sm:text-sm text-white flex items-center gap-2">
+                    <span>Select Question Type / Topic</span>
+                  </h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-400">
+                    Noun, Pronoun, Synonym, Antonym, Verb & More
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsTypeSelectorOpen(false)}
+                className="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800 text-xs transition-colors"
+                title="Close selector"
+              >
+                ✕ Close
+              </button>
+            </div>
+
+            {/* Search Input Box */}
+            <div className="p-3 border-b border-[#1b2545]/70 bg-[#0a1024]">
+              <div className="relative">
+                <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  type="text"
+                  value={typeSearchQuery}
+                  onChange={(e) => setTypeSearchQuery(e.target.value)}
+                  placeholder="Search types (e.g. Noun, Synonym, Verb, Pronoun)..."
+                  className="w-full bg-[#050a17] border border-[#1b2545] focus:border-indigo-500 rounded-xl pl-9 pr-8 py-2 text-xs text-white placeholder-slate-500 outline-none transition-colors"
+                  autoFocus
+                />
+                {typeSearchQuery && (
+                  <button
+                    onClick={() => setTypeSearchQuery('')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs px-1"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+
+              {/* Popular quick-tap chips */}
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-2">
+                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider shrink-0 pr-0.5">
+                  Popular:
+                </span>
+                {['Noun', 'Pronoun', 'Synonyms', 'Antonyms', 'Verb', 'Prepositions', 'Adjectives'].map(
+                  (popType) => {
+                    const isSelected = selectedCategory === popType;
+                    return (
+                      <button
+                        key={popType}
+                        onClick={() => handleSelectCategoryFromModal(popType)}
+                        className={`text-[10px] px-2 py-0.5 rounded-lg font-bold whitespace-nowrap transition-all border active:scale-95 shrink-0 ${
+                          isSelected
+                            ? 'bg-indigo-600 text-white border-indigo-400 shadow-sm'
+                            : 'bg-[#121c38] text-slate-300 border-[#1e2a4d] hover:bg-[#1c2c58]'
+                        }`}
+                      >
+                        {popType}
+                      </button>
+                    );
+                  }
+                )}
+              </div>
+            </div>
+
+            {/* Quick Action: "All Types" Button */}
+            <div className="px-3 pt-2 pb-1 bg-[#090f20]/60">
+              <button
+                onClick={() => handleSelectCategoryFromModal('All')}
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-xl border text-xs font-bold transition-all ${
+                  selectedCategory === 'All'
+                    ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/30'
+                    : 'bg-[#121c38] text-slate-200 border-[#1d2a4d] hover:bg-[#1a2850]'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <span>📚 All Questions & Types</span>
+                  {selectedCategory === 'All' && <Check className="w-3.5 h-3.5 text-white stroke-[3]" />}
+                </div>
+                <span
+                  className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                    selectedCategory === 'All'
+                      ? 'bg-indigo-700 text-white'
+                      : 'bg-slate-800 text-slate-300'
+                  }`}
+                >
+                  {questions.length} Total
+                </span>
+              </button>
+            </div>
+
+            {/* Categories Scrollable List */}
+            <div className="flex-1 overflow-y-auto p-3 space-y-1.5">
+              {filteredCategoryList.length === 0 ? (
+                <div className="py-8 text-center text-slate-400 text-xs">
+                  No question type found matching "{typeSearchQuery}".
+                </div>
+              ) : (
+                filteredCategoryList.map((cat) => {
+                  const count = questions.filter((q) => q.category === cat).length;
+                  const isSelected = selectedCategory === cat;
+                  const answeredCount = questions.filter(
+                    (q) => q.category === cat && userProgress.answers[q.id]
+                  ).length;
+
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => handleSelectCategoryFromModal(cat)}
+                      className={`w-full flex items-center justify-between p-2.5 rounded-xl border text-xs transition-all text-left ${
+                        isSelected
+                          ? 'bg-indigo-600/20 text-indigo-200 border-indigo-500/80 shadow-sm'
+                          : 'bg-[#0f172f] hover:bg-[#142042] text-slate-200 border-[#1b2545]'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div
+                          className={`w-2 h-2 rounded-full shrink-0 ${
+                            isSelected ? 'bg-indigo-400 shadow-sm shadow-indigo-400' : 'bg-slate-600'
+                          }`}
+                        />
+                        <span
+                          className={`font-semibold truncate ${
+                            isSelected ? 'text-indigo-300 font-bold' : ''
+                          }`}
+                        >
+                          {cat}
+                        </span>
+                        {isSelected && (
+                          <span className="text-[9px] bg-indigo-500/30 text-indigo-300 px-1.5 py-0.2 rounded font-bold border border-indigo-500/40 shrink-0">
+                            Active
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-2 shrink-0">
+                        {answeredCount > 0 && (
+                          <span className="text-[10px] text-emerald-400 font-medium">
+                            {answeredCount}/{count}
+                          </span>
+                        )}
+                        <span
+                          className={`text-[11px] px-2 py-0.5 rounded-md font-bold ${
+                            isSelected
+                              ? 'bg-indigo-500/40 text-indigo-200'
+                              : 'bg-[#182346] text-slate-300 border border-[#22315e]'
+                          }`}
+                        >
+                          {count}
+                        </span>
+                        {isSelected && <Check className="w-3.5 h-3.5 text-indigo-400 stroke-[3]" />}
+                      </div>
+                    </button>
+                  );
+                })
+              )}
+            </div>
+
+            {/* Footer with summary and reset */}
+            <div className="px-3.5 py-2 bg-[#090f20] border-t border-[#1b2545] flex items-center justify-between text-[11px] text-slate-400">
+              <span className="text-slate-400 font-medium">
+                {filteredCategoryList.length} Categories available
+              </span>
+              <button
+                onClick={() => handleSelectCategoryFromModal('All')}
+                className="text-indigo-400 hover:text-indigo-300 hover:underline font-bold"
+              >
+                Reset to All
+              </button>
             </div>
           </div>
         </div>
